@@ -1,0 +1,616 @@
+{
+ "run_tag": "propara_audit_v1",
+ "core_version": "core_v1",
+ "gate_status": "PASS",
+ "n_fail": 0,
+ "n_warn": 2,
+ "smoke_test": false,
+ "seed": 2026,
+ "env": {
+  "python": "3.14.4",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "on_kaggle": false,
+  "cpu_count": 12,
+  "disk_free_gb": 291.6,
+  "gpu_present": true,
+  "internet": true,
+  "ram_total_gb": null,
+  "matplotlib": "3.10.9"
+ },
+ "raw_sources": {
+  "grids.v1.train.json": "input:C:\\Users\\ADMIN\\.claude\\jobs\\3967a9d0\\tmp\\fakeA\\input\\propara-raw-v1\\grids.v1.train.json",
+  "grids.v1.dev.json": "input:C:\\Users\\ADMIN\\.claude\\jobs\\3967a9d0\\tmp\\fakeA\\input\\propara-raw-v1\\grids.v1.dev.json",
+  "grids.v1.test.json": "input:C:\\Users\\ADMIN\\.claude\\jobs\\3967a9d0\\tmp\\fakeA\\input\\propara-raw-v1\\grids.v1.test.json",
+  "naacl18.partition.paraid.tsv": "input:C:\\Users\\ADMIN\\.claude\\jobs\\3967a9d0\\tmp\\fakeA\\input\\propara-raw-v1\\naacl18.partition.paraid.tsv",
+  "gold-full-grids.v3.tsv": "input:C:\\Users\\ADMIN\\.claude\\jobs\\3967a9d0\\tmp\\fakeA\\input\\propara-raw-v1\\gold-full-grids.v3.tsv",
+  "leaderboard_answers_train.tsv": "input:C:\\Users\\ADMIN\\.claude\\jobs\\3967a9d0\\tmp\\fakeA\\input\\propara-raw-v1\\leaderboard_answers_train.tsv",
+  "leaderboard_answers_dev.tsv": "input:C:\\Users\\ADMIN\\.claude\\jobs\\3967a9d0\\tmp\\fakeA\\input\\propara-raw-v1\\leaderboard_answers_dev.tsv",
+  "leaderboard_answers_test.tsv": "input:C:\\Users\\ADMIN\\.claude\\jobs\\3967a9d0\\tmp\\fakeA\\input\\propara-raw-v1\\leaderboard_answers_test.tsv"
+ },
+ "checksums": {
+  "grids.v1.train.json": {
+   "expected": "6dc048d09c532ef906ba37d5ab814f54c54e56f230184029912eabe415de225d",
+   "observed": "6dc048d09c532ef906ba37d5ab814f54c54e56f230184029912eabe415de225d",
+   "match": true
+  },
+  "grids.v1.dev.json": {
+   "expected": "580ddc66d86a89c747d3e7f2da5cca0eee95444cca66b60b345fe29c93c3fef6",
+   "observed": "580ddc66d86a89c747d3e7f2da5cca0eee95444cca66b60b345fe29c93c3fef6",
+   "match": true
+  },
+  "grids.v1.test.json": {
+   "expected": "cf239a45d3eb203aba09ec392cffc81812e5c6fde69d782b01d068efd9e6f370",
+   "observed": "cf239a45d3eb203aba09ec392cffc81812e5c6fde69d782b01d068efd9e6f370",
+   "match": true
+  },
+  "naacl18.partition.paraid.tsv": {
+   "expected": "9fecf07296c58b195ae778943fc0b4d38ea489ec71e19045bd8730460175de44",
+   "observed": "9fecf07296c58b195ae778943fc0b4d38ea489ec71e19045bd8730460175de44",
+   "match": true
+  },
+  "gold-full-grids.v3.tsv": {
+   "expected": "8eff6e8fb066869d9d0c0fe18e3d994eb3078caa0a3a1be98f716e8a79dbe0aa",
+   "observed": "8eff6e8fb066869d9d0c0fe18e3d994eb3078caa0a3a1be98f716e8a79dbe0aa",
+   "match": true
+  },
+  "leaderboard_answers_train.tsv": {
+   "expected": "2f2b014aa071583f9180cd8487c855438821abe1c9aae5474ac685854934e8cd",
+   "observed": "2f2b014aa071583f9180cd8487c855438821abe1c9aae5474ac685854934e8cd",
+   "match": true
+  },
+  "leaderboard_answers_dev.tsv": {
+   "expected": "a496afe5bb2b81ad79b0da7a935f81d5d0a6b4cefc89d865ba09fece38a30217",
+   "observed": "a496afe5bb2b81ad79b0da7a935f81d5d0a6b4cefc89d865ba09fece38a30217",
+   "match": true
+  },
+  "leaderboard_answers_test.tsv": {
+   "expected": "cf1a71f38ccad7609e54b1dcf5cbc6e342ea3d2513490c0c09883d5bd80625d6",
+   "observed": "cf1a71f38ccad7609e54b1dcf5cbc6e342ea3d2513490c0c09883d5bd80625d6",
+   "match": true
+  }
+ },
+ "counts": {
+  "train": {
+   "paragraphs": 391,
+   "sentences": 2639,
+   "entities": 1504
+  },
+  "dev": {
+   "paragraphs": 43,
+   "sentences": 290,
+   "entities": 175
+  },
+  "test": {
+   "paragraphs": 54,
+   "sentences": 373,
+   "entities": 236
+  },
+  "all": {
+   "paragraphs": 488,
+   "sentences": 3302,
+   "entities": 1915
+  }
+ },
+ "table1_implicit_over_total": {
+  "train": {
+   "CREATE": [
+    78,
+    747
+   ],
+   "DESTROY": [
+    81,
+    502
+   ],
+   "MOVE": [
+    355,
+    1211
+   ],
+   "NONE": [
+    0,
+    7896
+   ]
+  },
+  "dev": {
+   "CREATE": [
+    11,
+    85
+   ],
+   "DESTROY": [
+    15,
+    68
+   ],
+   "MOVE": [
+    41,
+    157
+   ],
+   "NONE": [
+    0,
+    894
+   ]
+  },
+  "test": {
+   "CREATE": [
+    15,
+    128
+   ],
+   "DESTROY": [
+    22,
+    121
+   ],
+   "MOVE": [
+    53,
+    152
+   ],
+   "NONE": [
+    0,
+    1273
+   ]
+  }
+ },
+ "pair_stats": {
+  "pairs_by_split": {
+   "train": 378,
+   "dev": 58,
+   "test": 97
+  },
+  "source_implicit": 106,
+  "target_implicit": 92,
+  "any_side_implicit": 178,
+  "both_sides_implicit": 20,
+  "sentences_with_pairs": 439,
+  "sentences_1x1": 369,
+  "pairs_from_multi_entity_sentences": 164,
+  "sentence_shapes_DxC": {
+   "1x1": 369,
+   "1x2": 21,
+   "1x4": 1,
+   "2x1": 35,
+   "2x2": 3,
+   "3x1": 6,
+   "3x2": 1,
+   "4x1": 3
+  },
+  "official_q3_conversions_replica_by_split": {
+   "train": 354,
+   "dev": 49,
+   "test": 82
+  },
+  "official_q3_rules": {
+   "same_step": 439,
+   "next_step_create": 34,
+   "next_step_destroy": 12
+  },
+  "pair_slices_train": {
+   "n": 378,
+   "source_implicit": 73,
+   "target_implicit": 65,
+   "any_side_implicit": 125
+  },
+  "pair_slices_dev": {
+   "n": 58,
+   "source_implicit": 16,
+   "target_implicit": 11,
+   "any_side_implicit": 21
+  },
+  "pair_slices_test": {
+   "n": 97,
+   "source_implicit": 17,
+   "target_implicit": 16,
+   "any_side_implicit": 32
+  }
+ },
+ "decision_points": {
+  "DESTROY": {
+   "n": 57,
+   "by_split": {
+    "train": 37,
+    "dev": 10,
+    "test": 10
+   },
+   "avg_candidates": 2.649,
+   "random_acc": 0.5058
+  },
+  "CREATE": {
+   "n": 76,
+   "by_split": {
+    "train": 56,
+    "dev": 8,
+    "test": 12
+   },
+   "avg_candidates": 2.947,
+   "random_acc": 0.3981
+  }
+ },
+ "pp1_pp2": {
+  "all_pairs": 48070,
+  "kept_gold_existence": 11144,
+  "gold_pairs": 533,
+  "gold_kept": 533,
+  "label_questions": 52936
+ },
+ "cooccurrence_pct": {
+  "same_sentence_gold": 66.60412757973734,
+  "same_sentence_src_implicit": 0.0,
+  "any_sentence_gold": 74.671669793621,
+  "any_sentence_src_implicit": 18.867924528301888
+ },
+ "lift": {
+  "CREATE|CREATE": {
+   "lift": 0.2934896613724903,
+   "n_implicit_A_with_B": 10,
+   "p_sig": 0.008802816901408451,
+   "p_nosig": 0.029993618379068283
+  },
+  "CREATE|DESTROY": {
+   "lift": 6.573698332780609,
+   "n_implicit_A_with_B": 63,
+   "p_sig": 0.07787391841779975,
+   "p_nosig": 0.011846287200231146
+  },
+  "CREATE|MOVE": {
+   "lift": 0.30770573517717564,
+   "n_implicit_A_with_B": 10,
+   "p_sig": 0.009115770282588878,
+   "p_nosig": 0.02962496060510558
+  },
+  "DESTROY|CREATE": {
+   "lift": 8.96177502978778,
+   "n_implicit_A_with_B": 85,
+   "p_sig": 0.09032943676939426,
+   "p_nosig": 0.010079413561392792
+  },
+  "DESTROY|DESTROY": {
+   "lift": 1.4099409940994099,
+   "n_implicit_A_with_B": 19,
+   "p_sig": 0.03762376237623762,
+   "p_nosig": 0.026684636118598382
+  },
+  "DESTROY|MOVE": {
+   "lift": 0.04352150847653097,
+   "n_implicit_A_with_B": 2,
+   "p_sig": 0.0016722408026755853,
+   "p_nosig": 0.03842331897979463
+  },
+  "MOVE|CREATE": {
+   "lift": 0.9587781373780311,
+   "n_implicit_A_with_B": 97,
+   "p_sig": 0.1030818278427205,
+   "p_nosig": 0.10751374465485644
+  },
+  "MOVE|DESTROY": {
+   "lift": 1.3339760291818656,
+   "n_implicit_A_with_B": 69,
+   "p_sig": 0.13663366336633664,
+   "p_nosig": 0.10242587601078167
+  },
+  "MOVE|MOVE": {
+   "lift": 1.155580832211267,
+   "n_implicit_A_with_B": 141,
+   "p_sig": 0.11789297658862877,
+   "p_nosig": 0.10202053660152369
+  }
+ },
+ "pp4_feasibility": {
+  "mean_entities": 3.924,
+  "max_entities": 8,
+  "entities_hist": {
+   "1": 6,
+   "2": 93,
+   "3": 117,
+   "4": 111,
+   "5": 83,
+   "6": 42,
+   "7": 27,
+   "8": 9
+  },
+  "mean_sentences": 6.766,
+  "max_sentences": 10,
+  "max_states_per_step_4^n": 65536,
+  "max_T_x_4^n": 655360,
+  "paragraphs_n_gt_8": 0
+ },
+ "mention_sensitivity": {
+  "train/CREATE": 2,
+  "train/DESTROY": 1,
+  "train/MOVE": 1
+ },
+ "duplicate_entity_paragraphs": [
+  "1151",
+  "1204",
+  "1207",
+  "263",
+  "893",
+  "901"
+ ],
+ "cross_split_duplicate_sentences": [
+  "a plant dies.",
+  "a seed is planted.",
+  "a star burns in space.",
+  "blood enters the kidney.",
+  "crystals form and the magma become igneous rocks.",
+  "if subjected to heat and/or pressure from plate-tectonic activity the sedimentary rocks become metamorphic rock.",
+  "it becomes a seedling.",
+  "plants die.",
+  "rock begins as magma from a volcano.",
+  "the bones are left behind.",
+  "the food moves to the small intestine.",
+  "the magma cools.",
+  "the sound waves hit an object.",
+  "the steam drives a turbine.",
+  "water builds up on the ground.",
+  "water covers streets.",
+  "water flows into streams.",
+  "water levels of a river or lake get higher."
+ ],
+ "folds": {
+  "0": {
+   "paragraphs": 99,
+   "gold_pairs": 103,
+   "dp_DESTROY": 12,
+   "dp_CREATE": 15
+  },
+  "1": {
+   "paragraphs": 95,
+   "gold_pairs": 108,
+   "dp_DESTROY": 10,
+   "dp_CREATE": 17
+  },
+  "2": {
+   "paragraphs": 99,
+   "gold_pairs": 108,
+   "dp_CREATE": 14,
+   "dp_DESTROY": 12
+  },
+  "3": {
+   "paragraphs": 99,
+   "gold_pairs": 108,
+   "dp_CREATE": 15,
+   "dp_DESTROY": 11
+  },
+  "4": {
+   "paragraphs": 96,
+   "gold_pairs": 106,
+   "dp_CREATE": 15,
+   "dp_DESTROY": 12
+  }
+ },
+ "checks": [
+  {
+   "id": "S01",
+   "check": "Kiểm thử đơn vị",
+   "expected": "16/16",
+   "observed": "16/16",
+   "status": "PASS",
+   "note": ""
+  },
+  {
+   "id": "S02",
+   "check": "SHA-256 file gốc khớp giá trị ghim",
+   "expected": "8/8",
+   "observed": "8/8",
+   "status": "PASS",
+   "note": "lệch = bản dữ liệu khác; các kiểm tra R quyết định"
+  },
+  {
+   "id": "S03",
+   "check": "Không có lỗi cấu trúc (độ dài trạng thái, câu rỗng, trạng thái rỗng)",
+   "expected": "0",
+   "observed": "0",
+   "status": "PASS",
+   "note": ""
+  },
+  {
+   "id": "S04",
+   "check": "Thực thể trùng tên trong cùng đoạn",
+   "expected": "0",
+   "observed": "6",
+   "status": "WARN",
+   "note": "đoạn ['1151', '1204', '1207', '263', '893', '901']; giữ nguyên, định danh thực thể bằng chỉ số"
+  },
+  {
+   "id": "S05",
+   "check": "Mã đoạn duy nhất, không chéo tập, khớp file phân chia",
+   "expected": "0/0/0",
+   "observed": "0/0/0",
+   "status": "PASS",
+   "note": ""
+  },
+  {
+   "id": "S06",
+   "check": "Không có chủ đề (prompt) nằm ở >1 tập",
+   "expected": "0",
+   "observed": "0",
+   "status": "PASS",
+   "note": ""
+  },
+  {
+   "id": "S07",
+   "check": "Không có đoạn văn trùng nguyên văn giữa các tập",
+   "expected": "0",
+   "observed": "0",
+   "status": "PASS",
+   "note": ""
+  },
+  {
+   "id": "S08",
+   "check": "Câu trùng nguyên văn giữa các tập (thông tin)",
+   "expected": "ghi nhận",
+   "observed": "18",
+   "status": "PASS",
+   "note": "câu ngắn chung chung kiểu 'the magma cools.'; không phải rò rỉ nhãn"
+  },
+  {
+   "id": "S09",
+   "check": "Nhãn vàng không vi phạm ràng buộc tồn tại",
+   "expected": "0",
+   "observed": "0",
+   "status": "PASS",
+   "note": ""
+  },
+  {
+   "id": "S10",
+   "check": "Hành động suy từ grids.v1 = answers.tsv chính thức (so đa tập)",
+   "expected": "0/0/0",
+   "observed": "0/0/0",
+   "status": "PASS",
+   "note": ""
+  },
+  {
+   "id": "S11",
+   "check": "Mọi đoạn có chủ đề (để chia chéo theo chủ đề)",
+   "expected": "0",
+   "observed": "0",
+   "status": "PASS",
+   "note": ""
+  },
+  {
+   "id": "R01",
+   "check": "Số đoạn / câu / thực thể (tr.1)",
+   "expected": "488/3302/1915",
+   "observed": "488/3302/1915",
+   "status": "PASS",
+   "note": ""
+  },
+  {
+   "id": "R02",
+   "check": "Số đoạn train/dev/test (file phân chia)",
+   "expected": "391/43/54",
+   "observed": "391/43/54",
+   "status": "PASS",
+   "note": ""
+  },
+  {
+   "id": "R03",
+   "check": "Bảng 1: tổng số nhãn theo tập (9 ô)",
+   "expected": "khớp 9/9",
+   "observed": "khớp 9/9",
+   "status": "PASS",
+   "note": ""
+  },
+  {
+   "id": "R04",
+   "check": "Bảng 1: số thay đổi ngầm (9 ô, cờ nhắc kiểu báo cáo)",
+   "expected": "khớp 9/9",
+   "observed": "khớp 9/9",
+   "status": "PASS",
+   "note": ""
+  },
+  {
+   "id": "R05",
+   "check": "Tổng cặp vàng D×C (3)",
+   "expected": "533",
+   "observed": "533",
+   "status": "PASS",
+   "note": ""
+  },
+  {
+   "id": "R06",
+   "check": "Cặp vàng train/dev/test",
+   "expected": "378/58/97",
+   "observed": "378/58/97",
+   "status": "PASS",
+   "note": ""
+  },
+  {
+   "id": "R07",
+   "check": "Điểm quyết định DESTROY/CREATE (tr.2)",
+   "expected": "57/76",
+   "observed": "57/76",
+   "status": "PASS",
+   "note": ""
+  },
+  {
+   "id": "R08",
+   "check": "Số ứng viên TB DESTROY/CREATE (tr.3, làm tròn)",
+   "expected": "2.6/2.9",
+   "observed": "2.65/2.95",
+   "status": "PASS",
+   "note": "báo cáo có vẻ cắt bớt chữ số thay vì làm tròn"
+  },
+  {
+   "id": "R09",
+   "check": "Chọn ngẫu nhiên kỳ vọng DESTROY/CREATE (Bảng 3)",
+   "expected": "51%/40%",
+   "observed": "50.6%/39.8%",
+   "status": "PASS",
+   "note": ""
+  },
+  {
+   "id": "R10",
+   "check": "Bảng 2: lift + số ô (9 ô)",
+   "expected": "khớp 9/9",
+   "observed": "khớp 9/9",
+   "status": "PASS",
+   "note": ""
+  },
+  {
+   "id": "R11",
+   "check": "PP1: câu hỏi nhãn 4ΣTn / cặp ΣTn(n−1) (6)(7)",
+   "expected": "52936/48070",
+   "observed": "52936/48070",
+   "status": "PASS",
+   "note": ""
+  },
+  {
+   "id": "R12",
+   "check": "PP2 với tồn tại VÀNG: số cặp còn lại / cặp vàng giữ lại (12)",
+   "expected": "11144/533",
+   "observed": "11144/533",
+   "status": "PASS",
+   "note": ""
+  },
+  {
+   "id": "R13",
+   "check": "Lọc đồng xuất hiện: % cặp vàng / % cặp nguồn ngầm (tr.4)",
+   "expected": "74.7/18.9",
+   "observed": "74.7/18.9",
+   "status": "PASS",
+   "note": "chỉ khớp nếu hiểu 'đồng xuất hiện' = cùng được nhắc trong MỘT câu bất kỳ của đoạn; nếu hiểu là cùng câu t thì 66.6/0.0"
+  },
+  {
+   "id": "R14",
+   "check": "Số thực thể TB mỗi đoạn (tr.6)",
+   "expected": "3.9",
+   "observed": "3.924",
+   "status": "PASS",
+   "note": ""
+  },
+  {
+   "id": "D01",
+   "check": "Số conversion vàng theo bộ chấm CHÍNH THỨC ≠ số cặp D×C",
+   "expected": "khác 533 (định nghĩa khác)",
+   "observed": "485 (354/49/82)",
+   "status": "WARN",
+   "note": "evaluator gộp mọi D,C của một câu thành 1 conversion + luật ghép câu kế tiếp + chấm Jaccard mềm, macro theo đoạn. Bản sao này đếm cả thực thể trùng tên; evaluator gốc gộp chúng ở 4 đoạn train → notebook 01 đối chiếu với mã gốc"
+  },
+  {
+   "id": "D02",
+   "check": "Cặp ở câu 1×1 (cặp được quyết định hoàn toàn bởi nhãn)",
+   "expected": "ghi nhận",
+   "observed": "369/439 câu; 369/533 cặp",
+   "status": "PASS",
+   "note": "với định nghĩa D×C, tập cặp là hàm của nhãn CREATE/DESTROY"
+  },
+  {
+   "id": "D03",
+   "check": "Không có đoạn n>8 (giải mã chính xác 4^n khả thi)",
+   "expected": "0",
+   "observed": "0",
+   "status": "PASS",
+   "note": ""
+  },
+  {
+   "id": "D04",
+   "check": "Độ nhạy cờ nhắc (extended −es/−ies) — số ô ngầm thay đổi",
+   "expected": "ghi nhận",
+   "observed": "4",
+   "status": "PASS",
+   "note": "{'train/CREATE': 2, 'train/DESTROY': 1, 'train/MOVE': 1}"
+  }
+ ],
+ "runtime_sec": 1.4,
+ "figures": [
+  "fig1_implicit_rate_by_label.png",
+  "fig2_entities_per_paragraph.png"
+ ]
+}

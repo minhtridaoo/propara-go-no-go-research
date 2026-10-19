@@ -1,0 +1,30 @@
+id,check,expected,observed,status,note
+S01,Kiểm thử đơn vị,16/16,16/16,PASS,
+S02,SHA-256 file gốc khớp giá trị ghim,8/8,8/8,PASS,lệch = bản dữ liệu khác; các kiểm tra R quyết định
+S03,"Không có lỗi cấu trúc (độ dài trạng thái, câu rỗng, trạng thái rỗng)",0,0,PASS,
+S04,Thực thể trùng tên trong cùng đoạn,0,6,WARN,"đoạn ['1151', '1204', '1207', '263', '893', '901']; giữ nguyên, định danh thực thể bằng chỉ số"
+S05,"Mã đoạn duy nhất, không chéo tập, khớp file phân chia",0/0/0,0/0/0,PASS,
+S06,Không có chủ đề (prompt) nằm ở >1 tập,0,0,PASS,
+S07,Không có đoạn văn trùng nguyên văn giữa các tập,0,0,PASS,
+S08,Câu trùng nguyên văn giữa các tập (thông tin),ghi nhận,18,PASS,câu ngắn chung chung kiểu 'the magma cools.'; không phải rò rỉ nhãn
+S09,Nhãn vàng không vi phạm ràng buộc tồn tại,0,0,PASS,
+S10,Hành động suy từ grids.v1 = answers.tsv chính thức (so đa tập),0/0/0,0/0/0,PASS,
+S11,Mọi đoạn có chủ đề (để chia chéo theo chủ đề),0,0,PASS,
+R01,Số đoạn / câu / thực thể (tr.1),488/3302/1915,488/3302/1915,PASS,
+R02,Số đoạn train/dev/test (file phân chia),391/43/54,391/43/54,PASS,
+R03,Bảng 1: tổng số nhãn theo tập (9 ô),khớp 9/9,khớp 9/9,PASS,
+R04,"Bảng 1: số thay đổi ngầm (9 ô, cờ nhắc kiểu báo cáo)",khớp 9/9,khớp 9/9,PASS,
+R05,Tổng cặp vàng D×C (3),533,533,PASS,
+R06,Cặp vàng train/dev/test,378/58/97,378/58/97,PASS,
+R07,Điểm quyết định DESTROY/CREATE (tr.2),57/76,57/76,PASS,
+R08,"Số ứng viên TB DESTROY/CREATE (tr.3, làm tròn)",2.6/2.9,2.65/2.95,PASS,báo cáo có vẻ cắt bớt chữ số thay vì làm tròn
+R09,Chọn ngẫu nhiên kỳ vọng DESTROY/CREATE (Bảng 3),51%/40%,50.6%/39.8%,PASS,
+R10,Bảng 2: lift + số ô (9 ô),khớp 9/9,khớp 9/9,PASS,
+R11,PP1: câu hỏi nhãn 4ΣTn / cặp ΣTn(n−1) (6)(7),52936/48070,52936/48070,PASS,
+R12,PP2 với tồn tại VÀNG: số cặp còn lại / cặp vàng giữ lại (12),11144/533,11144/533,PASS,
+R13,Lọc đồng xuất hiện: % cặp vàng / % cặp nguồn ngầm (tr.4),74.7/18.9,74.7/18.9,PASS,chỉ khớp nếu hiểu 'đồng xuất hiện' = cùng được nhắc trong MỘT câu bất kỳ của đoạn; nếu hiểu là cùng câu t thì 66.6/0.0
+R14,Số thực thể TB mỗi đoạn (tr.6),3.9,3.924,PASS,
+D01,Số conversion vàng theo bộ chấm CHÍNH THỨC ≠ số cặp D×C,khác 533 (định nghĩa khác),485 (354/49/82),WARN,"evaluator gộp mọi D,C của một câu thành 1 conversion + luật ghép câu kế tiếp + chấm Jaccard mềm, macro theo đoạn. Bản sao này đếm cả thực thể trùng tên; evaluator gốc gộp chúng ở 4 đoạn train → notebook 01 đối chiếu với mã gốc"
+D02,Cặp ở câu 1×1 (cặp được quyết định hoàn toàn bởi nhãn),ghi nhận,369/439 câu; 369/533 cặp,PASS,"với định nghĩa D×C, tập cặp là hàm của nhãn CREATE/DESTROY"
+D03,Không có đoạn n>8 (giải mã chính xác 4^n khả thi),0,0,PASS,
+D04,Độ nhạy cờ nhắc (extended −es/−ies) — số ô ngầm thay đổi,ghi nhận,4,PASS,"{'train/CREATE': 2, 'train/DESTROY': 1, 'train/MOVE': 1}"

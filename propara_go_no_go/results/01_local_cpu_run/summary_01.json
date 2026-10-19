@@ -1,0 +1,650 @@
+{
+ "run_tag": "propara_metrics_v1",
+ "gate_status": "PASS",
+ "n_fail": 0,
+ "n_warn": 0,
+ "env": {
+  "python": "3.14.4",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "on_kaggle": false,
+  "cpu_count": 12,
+  "disk_free_gb": 287.8,
+  "gpu_present": true,
+  "internet": true,
+  "ram_total_gb": null
+ },
+ "versions": {
+  "core": "core_v1",
+  "metrics": "metrics_v1",
+  "heuristics": "heur_v1"
+ },
+ "raw_sources": {
+  "grids.v1.train.json": "input:C:\\Users\\ADMIN\\.claude\\jobs\\3967a9d0\\tmp\\fakeA\\input\\propara-raw-v1\\grids.v1.train.json",
+  "grids.v1.dev.json": "input:C:\\Users\\ADMIN\\.claude\\jobs\\3967a9d0\\tmp\\fakeA\\input\\propara-raw-v1\\grids.v1.dev.json",
+  "grids.v1.test.json": "input:C:\\Users\\ADMIN\\.claude\\jobs\\3967a9d0\\tmp\\fakeA\\input\\propara-raw-v1\\grids.v1.test.json",
+  "naacl18.partition.paraid.tsv": "input:C:\\Users\\ADMIN\\.claude\\jobs\\3967a9d0\\tmp\\fakeA\\input\\propara-raw-v1\\naacl18.partition.paraid.tsv",
+  "gold-full-grids.v3.tsv": "input:C:\\Users\\ADMIN\\.claude\\jobs\\3967a9d0\\tmp\\fakeA\\input\\propara-raw-v1\\gold-full-grids.v3.tsv",
+  "leaderboard_answers_train.tsv": "input:C:\\Users\\ADMIN\\.claude\\jobs\\3967a9d0\\tmp\\fakeA\\input\\propara-raw-v1\\leaderboard_answers_train.tsv",
+  "leaderboard_answers_dev.tsv": "input:C:\\Users\\ADMIN\\.claude\\jobs\\3967a9d0\\tmp\\fakeA\\input\\propara-raw-v1\\leaderboard_answers_dev.tsv",
+  "leaderboard_answers_test.tsv": "input:C:\\Users\\ADMIN\\.claude\\jobs\\3967a9d0\\tmp\\fakeA\\input\\propara-raw-v1\\leaderboard_answers_test.tsv"
+ },
+ "checks": [
+  {
+   "id": "M01",
+   "check": "Kiểm thử core / metrics / evaluator gốc",
+   "expected": "16/17/17",
+   "observed": "16/17/17",
+   "status": "PASS",
+   "note": ""
+  },
+  {
+   "id": "M02",
+   "check": "Hồi quy evaluator gốc (testfiles 1,2,3,7 đúng điểm; 5,6 bị từ chối)",
+   "expected": "6/6",
+   "observed": "6/6",
+   "status": "PASS",
+   "note": ""
+  },
+  {
+   "id": "M03",
+   "check": "Dữ liệu tải về khớp SHA-256 ghim",
+   "expected": "8/8",
+   "observed": "8/8",
+   "status": "PASS",
+   "note": ""
+  },
+  {
+   "id": "M04",
+   "check": "Vàng → PAIR_F1 = 1 (train/dev/test)",
+   "expected": "1/1/1",
+   "observed": "1.000/1.000/1.000",
+   "status": "PASS",
+   "note": ""
+  },
+  {
+   "id": "M05",
+   "check": "Vàng → Q3_OFFICIAL = 1 trên dev/test",
+   "expected": "1.0/1.0",
+   "observed": "1.0/1.0",
+   "status": "PASS",
+   "note": ""
+  },
+  {
+   "id": "M06",
+   "check": "Vàng → Q3_OFFICIAL train < 1 chỉ do thực thể trùng tên",
+   "expected": "~0.998",
+   "observed": "0.998",
+   "status": "PASS",
+   "note": "đoạn trùng tên: ['1151', '1204', '1207', '263', '893', '901']"
+  },
+  {
+   "id": "M07",
+   "check": "Bản sao conversion khớp mã gốc (dev/test)",
+   "expected": "0/0",
+   "observed": "0/0",
+   "status": "PASS",
+   "note": ""
+  },
+  {
+   "id": "M08",
+   "check": "Bản sao lệch mã gốc trên train CHỈ ở đoạn trùng tên",
+   "expected": "⊆ ['1151', '1204', '1207', '263', '893', '901']",
+   "observed": "['263', '893', '901', '1151']",
+   "status": "PASS",
+   "note": ""
+  },
+  {
+   "id": "M09",
+   "check": "Vàng không vi phạm ràng buộc tồn tại",
+   "expected": "0",
+   "observed": "0.0",
+   "status": "PASS",
+   "note": ""
+  },
+  {
+   "id": "H-random-D",
+   "check": "Bảng 3: random / DESTROY",
+   "expected": "51%",
+   "observed": "50.1% (kỳ vọng 50.6%)",
+   "status": "PASS",
+   "note": "dung sai ±2 điểm (cách xử lý hoà khác nhau)"
+  },
+  {
+   "id": "H-random-C",
+   "check": "Bảng 3: random / CREATE",
+   "expected": "40%",
+   "observed": "40.1% (kỳ vọng 39.8%)",
+   "status": "PASS",
+   "note": "dung sai ±2 điểm (cách xử lý hoà khác nhau)"
+  },
+  {
+   "id": "H-random_-D",
+   "check": "Bảng 3: random_unmentioned / DESTROY",
+   "expected": "59%",
+   "observed": "59.6% (kỳ vọng 59.2%)",
+   "status": "PASS",
+   "note": "dung sai ±2 điểm (cách xử lý hoà khác nhau)"
+  },
+  {
+   "id": "H-random_-C",
+   "check": "Bảng 3: random_unmentioned / CREATE",
+   "expected": "42%",
+   "observed": "41.4% (kỳ vọng 41.6%)",
+   "status": "PASS",
+   "note": "dung sai ±2 điểm (cách xử lý hoà khác nhau)"
+  },
+  {
+   "id": "H-nearest-D",
+   "check": "Bảng 3: nearest_mention / DESTROY",
+   "expected": "74%",
+   "observed": "75.1% (kỳ vọng 75.3%)",
+   "status": "PASS",
+   "note": "dung sai ±2 điểm (cách xử lý hoà khác nhau)"
+  },
+  {
+   "id": "H-nearest-C",
+   "check": "Bảng 3: nearest_mention / CREATE",
+   "expected": "33%",
+   "observed": "32.3% (kỳ vọng 33.6%)",
+   "status": "PASS",
+   "note": "dung sai ±2 điểm (cách xử lý hoà khác nhau)"
+  },
+  {
+   "id": "P-ProStruct",
+   "check": "ProStruct_2018: Q3_OFFICIAL tổng trên file gốc",
+   "expected": "0.545",
+   "observed": "0.545",
+   "status": "PASS",
+   "note": ""
+  },
+  {
+   "id": "P-ProGlobal",
+   "check": "ProGlobal_2018: Q3_OFFICIAL tổng trên file gốc",
+   "expected": "0.519",
+   "observed": "0.519",
+   "status": "PASS",
+   "note": ""
+  },
+  {
+   "id": "P-CGLI",
+   "check": "CGLI_2022: Q3_OFFICIAL tổng (file dự đoán công bố của tác giả)",
+   "expected": "ghi nhận",
+   "observed": "0.724",
+   "status": "PASS",
+   "note": "chấm bằng evaluator gốc; chưa đối chiếu với số trong bài báo"
+  },
+  {
+   "id": "P-roundtrip",
+   "check": "ProGlobal: chuyển đổi định dạng không làm đổi điểm chính thức",
+   "expected": "0.519",
+   "observed": "0.519",
+   "status": "PASS",
+   "note": ""
+  },
+  {
+   "id": "I01",
+   "check": "Q3_OFFICIAL Conversions của ALL_NONE (hệ thống rỗng) — mức sàn do trường hợp biên macro",
+   "expected": "ghi nhận",
+   "observed": "0.312 (test)",
+   "status": "PASS",
+   "note": "đoạn không có conversion vàng & không dự đoán được P=R=1 → lý do chọn PAIR_F1 làm thước đo chính"
+  }
+ ],
+ "gold_check": {
+  "train": {
+   "PAIR_F1": 1.0,
+   "PAIR_LOC_F1": 1.0,
+   "Q3_conv_F1": 0.9969909729187563,
+   "Q3_overall": {
+    "precision": 0.996,
+    "recall": 1.0,
+    "f1": 0.998
+   },
+   "VIOL": 0.0
+  },
+  "dev": {
+   "PAIR_F1": 1.0,
+   "PAIR_LOC_F1": 1.0,
+   "Q3_conv_F1": 1.0,
+   "Q3_overall": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "VIOL": 0.0
+  },
+  "test": {
+   "PAIR_F1": 1.0,
+   "PAIR_LOC_F1": 1.0,
+   "Q3_conv_F1": 1.0,
+   "Q3_overall": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0
+   },
+   "VIOL": 0.0
+  }
+ },
+ "official_gold_conversions": {
+  "train": 350,
+  "dev": 49,
+  "test": 82
+ },
+ "decision_point_table": {
+  "random": {
+   "DESTROY": {
+    "n": 57,
+    "expected": 0.5058479532163742,
+    "sim20": 0.5008771929824561
+   },
+   "CREATE": {
+    "n": 76,
+    "expected": 0.39808897243107766,
+    "sim20": 0.4006578947368421
+   }
+  },
+  "random_unmentioned": {
+   "DESTROY": {
+    "n": 57,
+    "expected": 0.5921052631578947,
+    "sim20": 0.5964912280701754
+   },
+   "CREATE": {
+    "n": 76,
+    "expected": 0.4157894736842105,
+    "sim20": 0.41381578947368425
+   }
+  },
+  "nearest_mention": {
+   "DESTROY": {
+    "n": 57,
+    "expected": 0.7529239766081871,
+    "sim20": 0.7508771929824561
+   },
+   "CREATE": {
+    "n": 76,
+    "expected": 0.3364661654135338,
+    "sim20": 0.32302631578947366
+   }
+  }
+ },
+ "decision_point_by_split": {
+  "train": {
+   "random": {
+    "DESTROY": 53.2,
+    "CREATE": 38.1
+   },
+   "random_unmentioned": {
+    "DESTROY": 59.7,
+    "CREATE": 40.4
+   },
+   "nearest_mention": {
+    "DESTROY": 80.6,
+    "CREATE": 30.9
+   }
+  },
+  "dev": {
+   "random": {
+    "DESTROY": 42.5,
+    "CREATE": 45.8
+   },
+   "random_unmentioned": {
+    "DESTROY": 60.0,
+    "CREATE": 45.8
+   },
+   "nearest_mention": {
+    "DESTROY": 73.3,
+    "CREATE": 54.2
+   }
+  },
+  "test": {
+   "random": {
+    "DESTROY": 49.2,
+    "CREATE": 43.6
+   },
+   "random_unmentioned": {
+    "DESTROY": 56.7,
+    "CREATE": 44.4
+   },
+   "nearest_mention": {
+    "DESTROY": 57.5,
+    "CREATE": 32.6
+   }
+  }
+ },
+ "reference_systems": [
+  {
+   "system": "ALL_NONE",
+   "PAIR_P": 0.0,
+   "PAIR_R": 0.0,
+   "PAIR_F1": 0.0,
+   "PAIR_F1@src_imp": 0.0,
+   "PAIR_F1@tgt_imp": 0.0,
+   "PAIR_F1@any_imp": 0.0,
+   "PAIR_LOC_F1": 0.0,
+   "F1_CREATE": 0.0,
+   "F1_DESTROY": 0.0,
+   "F1_MOVE": 0.0,
+   "IMP_ACC_CREATE": 0.0,
+   "IMP_ACC_DESTROY": 0.0,
+   "EXIST_ACC": 0.5755813953488372,
+   "VIOL_per_entity": 0.0,
+   "split": "dev",
+   "kind": "baseline",
+   "PAIR_F1_CI95": "[0.000, 0.000]",
+   "Q3_conv_P": 1.0,
+   "Q3_conv_R": 0.372,
+   "Q3_conv_F1": 0.5422740524781342,
+   "Q3_overall_F1": 0.4573852680293097
+  },
+  {
+   "system": "DIAG_ORACLE_MENTIONED_ONLY",
+   "PAIR_P": 1.0,
+   "PAIR_R": 0.6379310344827587,
+   "PAIR_F1": 0.7789473684210527,
+   "PAIR_F1@src_imp": 0.0,
+   "PAIR_F1@tgt_imp": 0.0,
+   "PAIR_F1@any_imp": 0.0,
+   "PAIR_LOC_F1": 0.7789473684210527,
+   "F1_CREATE": 0.9308176100628931,
+   "F1_DESTROY": 0.8760330578512397,
+   "F1_MOVE": 0.8498168498168498,
+   "IMP_ACC_CREATE": 0.0,
+   "IMP_ACC_DESTROY": 0.0,
+   "EXIST_ACC": 0.9294019933554817,
+   "VIOL_per_entity": 0.04,
+   "split": "dev",
+   "kind": "diagnostic(gold)",
+   "PAIR_F1_CI95": "[0.617, 0.897]",
+   "Q3_conv_P": 0.948,
+   "Q3_conv_R": 0.782,
+   "Q3_conv_F1": 0.857035838150289,
+   "Q3_overall_F1": 0.9124480021893815
+  },
+  {
+   "system": "DIAG_ORACLE_MENTIONED+NEAREST",
+   "PAIR_P": 0.8727272727272727,
+   "PAIR_R": 0.8275862068965517,
+   "PAIR_F1": 0.8495575221238938,
+   "PAIR_F1@src_imp": 0.6923076923076923,
+   "PAIR_F1@tgt_imp": 0.47619047619047616,
+   "PAIR_F1@any_imp": 0.5789473684210527,
+   "PAIR_LOC_F1": 0.8495575221238938,
+   "F1_CREATE": 0.9285714285714286,
+   "F1_DESTROY": 0.9323308270676691,
+   "F1_MOVE": 0.8498168498168498,
+   "IMP_ACC_CREATE": 0.36363636363636365,
+   "IMP_ACC_DESTROY": 0.6,
+   "EXIST_ACC": 0.9509966777408638,
+   "VIOL_per_entity": 0.04,
+   "split": "dev",
+   "kind": "diagnostic(gold)",
+   "PAIR_F1_CI95": "[0.750, 0.938]",
+   "Q3_conv_P": 0.957,
+   "Q3_conv_R": 0.894,
+   "Q3_conv_F1": 0.9244278768233387,
+   "Q3_overall_F1": 0.9416229921677951
+  },
+  {
+   "system": "B1_E2E_RULE+NEAREST",
+   "PAIR_P": 0.09090909090909091,
+   "PAIR_R": 0.08620689655172414,
+   "PAIR_F1": 0.08849557522123895,
+   "PAIR_F1@src_imp": 0.06896551724137931,
+   "PAIR_F1@tgt_imp": 0.0,
+   "PAIR_F1@any_imp": 0.05555555555555555,
+   "PAIR_LOC_F1": 0.0,
+   "F1_CREATE": 0.4804469273743017,
+   "F1_DESTROY": 0.22535211267605634,
+   "F1_MOVE": 0.0,
+   "IMP_ACC_CREATE": 0.0,
+   "IMP_ACC_DESTROY": 0.13333333333333333,
+   "EXIST_ACC": 0.6586378737541528,
+   "VIOL_per_entity": 0.0,
+   "split": "dev",
+   "kind": "baseline (heuristic đầu-cuối, không dùng vàng)",
+   "PAIR_F1_CI95": "[0.017, 0.184]",
+   "Q3_conv_P": 0.515,
+   "Q3_conv_R": 0.452,
+   "Q3_conv_F1": 0.4814477766287487,
+   "Q3_overall_F1": 0.5671852892218061
+  },
+  {
+   "system": "B1_E2E_RULE_ONLY",
+   "PAIR_P": 0.75,
+   "PAIR_R": 0.05172413793103448,
+   "PAIR_F1": 0.0967741935483871,
+   "PAIR_F1@src_imp": 0.0,
+   "PAIR_F1@tgt_imp": 0.0,
+   "PAIR_F1@any_imp": 0.0,
+   "PAIR_LOC_F1": 0.0,
+   "F1_CREATE": 0.5,
+   "F1_DESTROY": 0.2456140350877193,
+   "F1_MOVE": 0.0,
+   "IMP_ACC_CREATE": 0.0,
+   "IMP_ACC_DESTROY": 0.0,
+   "EXIST_ACC": 0.6744186046511628,
+   "VIOL_per_entity": 0.011428571428571429,
+   "split": "dev",
+   "kind": "baseline (heuristic, bỏ suy ngầm)",
+   "PAIR_F1_CI95": "[0.000, 0.228]",
+   "Q3_conv_P": 0.925,
+   "Q3_conv_R": 0.391,
+   "Q3_conv_F1": 0.5496580547112462,
+   "Q3_overall_F1": 0.5896149447197865
+  },
+  {
+   "system": "ALL_NONE",
+   "PAIR_P": 0.0,
+   "PAIR_R": 0.0,
+   "PAIR_F1": 0.0,
+   "PAIR_F1@src_imp": 0.0,
+   "PAIR_F1@tgt_imp": 0.0,
+   "PAIR_F1@any_imp": 0.0,
+   "PAIR_LOC_F1": 0.0,
+   "F1_CREATE": 0.0,
+   "F1_DESTROY": 0.0,
+   "F1_MOVE": 0.0,
+   "IMP_ACC_CREATE": 0.0,
+   "IMP_ACC_DESTROY": 0.0,
+   "EXIST_ACC": 0.47371565113500597,
+   "VIOL_per_entity": 0.0,
+   "split": "test",
+   "kind": "baseline",
+   "PAIR_F1_CI95": "[0.000, 0.000]",
+   "Q3_conv_P": 1.0,
+   "Q3_conv_R": 0.185,
+   "Q3_conv_F1": 0.3122362869198312,
+   "Q3_overall_F1": 0.32565927166178316
+  },
+  {
+   "system": "DIAG_ORACLE_MENTIONED_ONLY",
+   "PAIR_P": 1.0,
+   "PAIR_R": 0.6701030927835051,
+   "PAIR_F1": 0.8024691358024691,
+   "PAIR_F1@src_imp": 0.0,
+   "PAIR_F1@tgt_imp": 0.0,
+   "PAIR_F1@any_imp": 0.0,
+   "PAIR_LOC_F1": 0.8024691358024691,
+   "F1_CREATE": 0.9377593360995851,
+   "F1_DESTROY": 0.9,
+   "F1_MOVE": 0.7888446215139443,
+   "IMP_ACC_CREATE": 0.0,
+   "IMP_ACC_DESTROY": 0.0,
+   "EXIST_ACC": 0.9283154121863799,
+   "VIOL_per_entity": 0.0635593220338983,
+   "split": "test",
+   "kind": "diagnostic(gold)",
+   "PAIR_F1_CI95": "[0.705, 0.885]",
+   "Q3_conv_P": 0.98,
+   "Q3_conv_R": 0.783,
+   "Q3_conv_F1": 0.8704934770277936,
+   "Q3_overall_F1": 0.9219941836872717
+  },
+  {
+   "system": "DIAG_ORACLE_MENTIONED+NEAREST",
+   "PAIR_P": 0.8620689655172413,
+   "PAIR_R": 0.7731958762886598,
+   "PAIR_F1": 0.8152173913043478,
+   "PAIR_F1@src_imp": 0.4166666666666667,
+   "PAIR_F1@tgt_imp": 0.3448275862068966,
+   "PAIR_F1@any_imp": 0.38461538461538464,
+   "PAIR_LOC_F1": 0.8152173913043478,
+   "F1_CREATE": 0.9098039215686274,
+   "F1_DESTROY": 0.9224137931034483,
+   "F1_MOVE": 0.7888446215139443,
+   "IMP_ACC_CREATE": 0.2,
+   "IMP_ACC_DESTROY": 0.36363636363636365,
+   "EXIST_ACC": 0.9342891278375149,
+   "VIOL_per_entity": 0.0847457627118644,
+   "split": "test",
+   "kind": "diagnostic(gold)",
+   "PAIR_F1_CI95": "[0.723, 0.900]",
+   "Q3_conv_P": 0.949,
+   "Q3_conv_R": 0.833,
+   "Q3_conv_F1": 0.8872244668911334,
+   "Q3_overall_F1": 0.9201180781758956
+  },
+  {
+   "system": "B1_E2E_RULE+NEAREST",
+   "PAIR_P": 0.24096385542168675,
+   "PAIR_R": 0.20618556701030927,
+   "PAIR_F1": 0.2222222222222222,
+   "PAIR_F1@src_imp": 0.1408450704225352,
+   "PAIR_F1@tgt_imp": 0.0,
+   "PAIR_F1@any_imp": 0.10416666666666667,
+   "PAIR_LOC_F1": 0.0,
+   "F1_CREATE": 0.48101265822784806,
+   "F1_DESTROY": 0.3257918552036199,
+   "F1_MOVE": 0.0,
+   "IMP_ACC_CREATE": 0.0,
+   "IMP_ACC_DESTROY": 0.2727272727272727,
+   "EXIST_ACC": 0.6356033452807647,
+   "VIOL_per_entity": 0.0,
+   "split": "test",
+   "kind": "baseline (heuristic đầu-cuối, không dùng vàng)",
+   "PAIR_F1_CI95": "[0.109, 0.344]",
+   "Q3_conv_P": 0.526,
+   "Q3_conv_R": 0.337,
+   "Q3_conv_F1": 0.4108041714947857,
+   "Q3_overall_F1": 0.5448776910088645
+  },
+  {
+   "system": "B1_E2E_RULE_ONLY",
+   "PAIR_P": 0.7894736842105263,
+   "PAIR_R": 0.15463917525773196,
+   "PAIR_F1": 0.25862068965517243,
+   "PAIR_F1@src_imp": 0.0,
+   "PAIR_F1@tgt_imp": 0.0,
+   "PAIR_F1@any_imp": 0.0,
+   "PAIR_LOC_F1": 0.0,
+   "F1_CREATE": 0.4956521739130435,
+   "F1_DESTROY": 0.32085561497326204,
+   "F1_MOVE": 0.0,
+   "IMP_ACC_CREATE": 0.0,
+   "IMP_ACC_DESTROY": 0.0,
+   "EXIST_ACC": 0.6373954599761051,
+   "VIOL_per_entity": 0.00847457627118644,
+   "split": "test",
+   "kind": "baseline (heuristic, bỏ suy ngầm)",
+   "PAIR_F1_CI95": "[0.100, 0.410]",
+   "Q3_conv_P": 0.914,
+   "Q3_conv_R": 0.271,
+   "Q3_conv_F1": 0.4180489451476794,
+   "Q3_overall_F1": 0.5463031727379555
+  },
+  {
+   "system": "ProStruct_2018",
+   "PAIR_P": 0.5333333333333333,
+   "PAIR_R": 0.16494845360824742,
+   "PAIR_F1": 0.25196850393700787,
+   "PAIR_F1@src_imp": 0.0,
+   "PAIR_F1@tgt_imp": 0.0,
+   "PAIR_F1@any_imp": 0.0,
+   "PAIR_LOC_F1": 0.031496062992125984,
+   "F1_CREATE": 0.5073170731707317,
+   "F1_DESTROY": 0.32085561497326204,
+   "F1_MOVE": 0.3004291845493562,
+   "IMP_ACC_CREATE": 0.0,
+   "IMP_ACC_DESTROY": 0.0,
+   "EXIST_ACC": 0.545400238948626,
+   "VIOL_per_entity": 0.21610169491525424,
+   "split": "test",
+   "kind": "published",
+   "PAIR_F1_CI95": "[0.147, 0.370]",
+   "Q3_conv_P": 0.878,
+   "Q3_conv_R": 0.2,
+   "Q3_conv_F1": 0.32578849721706865,
+   "Q3_overall_F1": 0.5450077758841073
+  },
+  {
+   "system": "ProGlobal_2018",
+   "PAIR_P": 0.16393442622950818,
+   "PAIR_R": 0.10309278350515463,
+   "PAIR_F1": 0.12658227848101267,
+   "PAIR_F1@src_imp": 0.0,
+   "PAIR_F1@tgt_imp": 0.0,
+   "PAIR_F1@any_imp": 0.0,
+   "PAIR_LOC_F1": 0.0379746835443038,
+   "F1_CREATE": 0.4852941176470589,
+   "F1_DESTROY": 0.1646090534979424,
+   "F1_MOVE": 0.2014742014742015,
+   "IMP_ACC_CREATE": 0.13333333333333333,
+   "IMP_ACC_DESTROY": 0.09090909090909091,
+   "EXIST_ACC": 0.6481481481481481,
+   "VIOL_per_entity": 0.0,
+   "split": "test",
+   "kind": "published",
+   "PAIR_F1_CI95": "[0.056, 0.203]",
+   "Q3_conv_P": 0.492,
+   "Q3_conv_R": 0.324,
+   "Q3_conv_F1": 0.3907058823529411,
+   "Q3_overall_F1": 0.5189232214134772
+  },
+  {
+   "system": "CGLI_2022",
+   "PAIR_P": 0.6617647058823529,
+   "PAIR_R": 0.4639175257731959,
+   "PAIR_F1": 0.5454545454545455,
+   "PAIR_F1@src_imp": 0.45161290322580644,
+   "PAIR_F1@tgt_imp": 0.09090909090909091,
+   "PAIR_F1@any_imp": 0.3076923076923077,
+   "PAIR_LOC_F1": 0.3636363636363637,
+   "F1_CREATE": 0.7716535433070867,
+   "F1_DESTROY": 0.5806451612903226,
+   "F1_MOVE": 0.4689655172413793,
+   "IMP_ACC_CREATE": 0.2,
+   "IMP_ACC_DESTROY": 0.4090909090909091,
+   "EXIST_ACC": 0.8231780167264038,
+   "VIOL_per_entity": 0.0,
+   "split": "test",
+   "kind": "published",
+   "PAIR_F1_CI95": "[0.466, 0.628]",
+   "Q3_conv_P": 0.742,
+   "Q3_conv_R": 0.571,
+   "Q3_conv_F1": 0.6453648134044173,
+   "Q3_overall_F1": 0.7235547886108714
+  }
+ ],
+ "bootstrap_prostruct_vs_proglobal": {
+  "all": {
+   "delta": 0.1253862254559952,
+   "ci_low": 0.023333333333333345,
+   "ci_high": 0.24025593175153293,
+   "p_boot_delta_le_0": 0.007,
+   "n_paragraphs": 54,
+   "n_boot": 10000,
+   "slice": "all"
+  },
+  "any_implicit": {
+   "delta": 0.0,
+   "ci_low": 0.0,
+   "ci_high": 0.0,
+   "p_boot_delta_le_0": 1.0,
+   "n_paragraphs": 54,
+   "n_boot": 10000,
+   "slice": "any_implicit"
+  }
+ },
+ "runtime_sec": 4.4
+}

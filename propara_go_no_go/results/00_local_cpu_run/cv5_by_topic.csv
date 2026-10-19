@@ -1,0 +1,489 @@
+paragraph_id,official_split,topic,fold
+7,train,What causs a volcano to erupt?,2
+11,train,What happens during erosion by the ocean?,1
+13,train,What happens during the water cycle?,2
+14,train,What happens during the water cycle?,2
+15,train,What happens during the water cycle?,2
+20,train,How is sediment transported across the Earth?,3
+22,train,How are valleys formed?,2
+31,train,How do caverns form?,2
+34,train,How does igneous rock form?,1
+35,train,How does igneous rock form?,1
+36,train,How does igneous rock form?,1
+41,train,What causes an earthquake to occur?,0
+43,train,How does rain form?,4
+45,train,How does rain form?,4
+48,train,What happens during a vocanic eruption?,4
+50,train,How do minerals form?,2
+51,train,How do minerals form?,2
+52,train,How do earthquakes occur?,4
+56,train,How does snow form?,1
+57,train,How does snow form?,1
+58,train,How do floods happen?,1
+61,train,How does sediment turn into sedimentary rock?,3
+64,train,How are ravines formed?,3
+76,train,How does sedimentary rock form?,4
+78,train,How does sedimentary rock form?,4
+80,train,How are mountains formed?,4
+112,train,What happens during photosynthesis?,2
+113,train,What happens during photosynthesis?,2
+115,train,How are mountains formed?,4
+116,train,How are mountains formed?,4
+127,train,Describe the process of evaporation,0
+132,train,What do lungs do?,2
+135,train,How do bats use echolocation?,1
+139,train,How do the lungs work?,0
+140,train,How do the lungs work?,0
+141,train,How do the lungs work?,0
+157,train,Describe the process of recycling an aluminum can,3
+158,train,Describe the process of recycling an aluminum can,3
+159,train,Describe the process of recycling an aluminum can,3
+165,train,How does the stomach work?,0
+186,train,How does mold grow on bread?,4
+206,train,How do muscles work?,4
+207,train,How do muscles work?,4
+211,train,How does rain occur?,0
+212,train,How does rain occur?,0
+214,train,How do animals help plants disburse seeds?,3
+221,train,How are clouds formed?,2
+222,train,How are clouds formed?,2
+225,train,How does a battery-operated sewing machine work?,1
+229,train,How do dams help stop flooding?,1
+232,train,How does echolocation work?,1
+251,train,How do rings form inside the trunk of a tree?,1
+252,train,How do rings form inside the trunk of a tree?,1
+253,train,How do plants use animals to help disburse their seeds?,4
+254,train,How do plants use animals to help disburse their seeds?,4
+256,train,Describe the process of breathing.,1
+257,train,Describe the process of breathing.,1
+263,train,How does recycling work?,2
+264,train,How does recycling work?,2
+280,train,How does an electromagnet work?,2
+286,train,How do you make ice cubes?,2
+287,train,How do you make ice cubes?,2
+290,train,Describe the process of pollution causing bad effects on the enviroinment.,1
+293,train,What happens during respiration?,4
+294,train,What happens during respiration?,4
+298,train,Describe how bacteria can cause disease.,4
+300,train,Describe how bacteria can cause disease.,4
+301,train,How do you use a skateboard?,1
+313,train,How does weathering cause rocks to break apart?,0
+315,train,How does weathering cause rocks to break apart?,0
+316,train,What happens during weathering?,0
+317,train,What happens during weathering?,0
+318,train,What happens during weathering?,0
+321,train,Describe the process of planting crops.,3
+330,train,How do green plants get the energy they need?,4
+364,train,Describe how acid rain can affect the environment.,3
+365,train,Describe how acid rain can affect the environment.,3
+366,train,Describe how acid rain can affect the environment.,3
+367,train,How do plants obtain and use water?,3
+369,train,How do plants obtain and use water?,3
+377,train,Describe how oxygen reaches cells in the body,2
+381,train,How does a virus infect an animal?,4
+382,train,How does a virus cause disease?,4
+384,train,How does a virus cause disease?,4
+391,train,How does a coal-powered power station generate electricity?,3
+392,train,How does a coal-powered power station generate electricity?,3
+393,train,How does a coal-powered power station generate electricity?,3
+397,train,How does a wind-powered power station generate electricity?,4
+412,train,How does the human auditory system work?,1
+413,train,How does the human auditory system work?,1
+416,train,How does a broken bone get treated and healed?,4
+422,train,How does coal get from the ground to a power station?,0
+423,train,How does coal get from the ground to a power station?,0
+424,train,How does oil get from the ground to a gas station?,2
+425,train,How does oil get from the ground to a gas station?,2
+433,train,How do you grow vegetables?,3
+435,train,How do you grow vegetables?,3
+436,train,How do you get water to boil?,1
+441,train,Describe how perspiration helps to keep someone cool.,0
+443,train,How do bees pollinate plants?,1
+444,train,How do bees pollinate plants?,1
+448,train,What happens during the rock cycle,1
+449,train,What happens during the rock cycle,1
+458,train,How does acid rain form?,0
+459,train,How does acid rain form?,0
+466,train,Describe the process of desalination,0
+468,train,Describe the process of desalination,0
+472,train,Describe the process of fossilization,0
+475,train,Describe the process of global warming,1
+476,train,Describe the process of global warming,1
+478,train,Describe the process of the greenhouse effect,3
+480,train,Describe the process of photosynthesis,1
+482,train,Describe the process of photosynthesis,1
+483,train,Describe the process of writing and posting a letter,3
+484,train,Describe the process of writing and posting a letter,3
+485,train,Describe the process of writing and posting a letter,3
+489,train,Describe the process of digestion,0
+490,train,Describe the process of digestion,0
+493,train,Describe the process of hibernation,2
+494,train,Describe the process of hibernation,2
+496,train,Describe the process of perspiration,3
+499,train,Describe how a flashlight works,0
+511,train,How do solar eclipses occur?,1
+515,train,Describe the life cycle of a frog,4
+516,train,Describe the life cycle of a frog,4
+517,train,Describe the life cycle of a frog,4
+518,train,Describe the life cycle of a fish,4
+519,train,Describe the life cycle of a fish,4
+520,train,Describe the life cycle of a fish,4
+521,train,Describe the life cycle of a bird,3
+522,train,Describe the life cycle of a bird,3
+523,train,Describe the life cycle of a bird,3
+524,train,Describe the life cycle of a human,0
+525,train,Describe the life cycle of a human,0
+526,train,Describe the life cycle of a human,0
+528,train,Describe the life cycle of a rabbit,1
+529,train,Describe the life cycle of a rabbit,1
+530,train,Describe the life cycle of a plant,2
+531,train,Describe the life cycle of a plant,2
+532,train,Describe the life cycle of a plant,2
+536,train,How does blood remove waste from the human body?,1
+539,train,How do lungs work?,4
+540,train,How do lungs work?,4
+545,train,Describe how kidneys work,0
+546,train,Describe how kidneys work,0
+547,train,Describe how kidneys work,0
+548,train,Describe how the liver works,2
+550,train,Describe how the liver works,2
+551,train,Describe how the pancreas works,1
+552,train,Describe how the pancreas works,1
+555,train,How does the body control its blood sugar level?,0
+556,train,How does the body control its blood sugar level?,0
+557,train,How do you make wine?,4
+563,train,How does a steam engine work?,3
+565,train,How does a steam engine work?,3
+574,train,Describe the steps in taking a flight from one place to another,0
+584,train,Describe the steps in a storm forming,0
+587,train,Describe the lifecycle of a butterfly,1
+588,train,Describe the lifecycle of a butterfly,1
+589,train,Describe the lifecycle of a butterfly,1
+605,train,Describe how acid rain can affect the environment.,3
+607,train,Describe how acid rain can affect the environment.,3
+611,train,Describe how bacteria can cause disease.,4
+615,train,Describe how kidneys work,0
+616,train,Describe how kidneys work,0
+617,train,Describe how oxygen reaches cells in the body,2
+618,train,Describe how oxygen reaches cells in the body,2
+619,train,Describe how oxygen reaches cells in the body,2
+624,train,Describe how the liver works,2
+626,train,Describe how the pancreas works,1
+627,train,Describe how the pancreas works,1
+628,train,Describe how the pancreas works,1
+635,train,Describe the life cycle of a bird,3
+636,train,Describe the life cycle of a bird,3
+637,train,Describe the life cycle of a bird,3
+640,train,Describe the life cycle of a fish,4
+641,train,Describe the life cycle of a frog,4
+642,train,Describe the life cycle of a frog,4
+643,train,Describe the life cycle of a frog,4
+644,train,Describe the life cycle of a human,0
+645,train,Describe the life cycle of a human,0
+647,train,Describe the life cycle of a plant,2
+648,train,Describe the life cycle of a plant,2
+649,train,Describe the life cycle of a plant,2
+652,train,Describe the life cycle of a rabbit,1
+656,train,Describe the lifecycle of a butterfly,1
+658,train,Describe the lifecycle of a butterfly,1
+665,train,Describe the process of desalination,0
+666,train,Describe the process of desalination,0
+667,train,Describe the process of desalination,0
+671,train,Describe the process of evaporation,0
+674,train,Describe the process of fossilization,0
+675,train,Describe the process of fossilization,0
+676,train,Describe the process of fossilization,0
+681,train,Describe the process of hibernation,2
+683,train,Describe the process of perspiration,3
+686,train,Describe the process of photosynthesis,1
+687,train,Describe the process of photosynthesis,1
+689,train,Describe the process of planting crops.,3
+690,train,Describe the process of planting crops.,3
+693,train,Describe the process of pollution causing bad effects on the enviroinment.,1
+698,train,Describe the process of recycling an aluminum can,3
+699,train,Describe the process of recycling an aluminum can,3
+940,train,What happens during photosynthesis?,2
+941,train,What happens during respiration?,4
+942,train,What happens during respiration?,4
+947,train,What happens during the water cycle?,2
+948,train,What happens during the water cycle?,2
+949,train,What happens during the water cycle?,2
+950,train,What happens during weathering?,0
+960,train,Describe the process of using coal to heat a house.,2
+961,train,Describe the process of using coal to heat a house.,2
+977,train,How does coal contribute to acid rain?,1
+978,train,How does coal contribute to acid rain?,1
+996,train,How do greenhouse gases form?,2
+1004,train,How do you make ice cubes?,2
+1005,train,How do you make ice cubes?,2
+1014,train,Describe how to make a cake.,4
+1015,train,Describe how to make a cake.,4
+1016,train,Describe the typical steps involved in packing for a vacation.,0
+1025,train,Describe the typical steps in repairing a flat bicycle tire.,1
+1028,train,Describe the process of using oil to heat a house.,3
+1029,train,Describe the process of using oil to heat a house.,3
+1030,train,Describe the process of using oil to heat a house.,3
+1104,train,How do mountains form?,4
+1105,train,How do mountains form?,4
+1106,train,Describe the life cycle of a plant.,0
+1107,train,Describe the life cycle of a plant.,0
+1127,train,Describe the process by which hurricanes form.,3
+1128,train,Describe the process by which hurricanes form.,3
+1129,train,Describe the process by which hurricanes form.,3
+1130,train,How do bees make a hive?,1
+1131,train,How do bees make a hive?,1
+1132,train,How do bees make a hive?,1
+1136,train,How do owls hunt at night?,3
+1137,train,How do owls hunt at night?,3
+1138,train,How do owls hunt at night?,3
+1142,train,Describe how forest fires can negatively affect animals,2
+1143,train,Describe how forest fires can negatively affect animals,2
+1144,train,Describe how forest fires can negatively affect animals,2
+1148,train,How does a solar panel work?,1
+1150,train,How does a solar panel work?,1
+1151,train,Describe how radioactive atoms decay,2
+1152,train,Describe how radioactive atoms decay,2
+1153,train,Describe how radioactive atoms decay,2
+1154,train,How is oil formed?,3
+1155,train,How is oil formed?,3
+1156,train,How is oil formed?,3
+1158,train,How does the digestive system work?,4
+1167,train,How is sunlight created?,4
+1169,train,Describe the steps in mitosis.,3
+1170,train,Describe the steps in mitosis.,3
+1172,train,Describe how the liver works,2
+1183,train,How does a water purifier work?,1
+1184,train,How does does a battery produce electricity?,3
+1195,train,How does an eagle get food?,1
+1202,train,How are proteins synthesized in a cell?,2
+1203,train,How are proteins synthesized in a cell?,2
+1204,train,How are proteins synthesized in a cell?,2
+1205,train,Describe the steps in how a cut on your hand is treated and heals,0
+1207,train,Describe the steps in how a cut on your hand is treated and heals,0
+1208,train,How does the internal combustion engine work?,4
+1213,train,How do icebergs form?,0
+1214,train,How does insulin help the body?,0
+1216,train,How does insulin help the body?,0
+1217,train,How do forests form?,3
+1218,train,How do forests form?,3
+1219,train,How do forests form?,3
+1223,train,How does a nuclear power plant work?,3
+1224,train,How does a nuclear power plant work?,3
+1250,train,Describe how a message travels from one person to another over via telephone,0
+1258,train,How is a black hole formed?,1
+1310,train,Describe how squirrels prepare for winter.,1
+1314,train,Describe the life cycle of a tree.,1
+1333,train,How does a microwave oven work?,4
+701,train,Describe the process of the greenhouse effect,3
+702,train,Describe the process of the greenhouse effect,3
+703,train,Describe the process of the greenhouse effect,3
+704,train,Describe the process of writing and posting a letter,3
+705,train,Describe the process of writing and posting a letter,3
+706,train,Describe the process of writing and posting a letter,3
+720,train,How are clouds formed?,2
+721,train,How are clouds formed?,2
+731,train,How are ravines formed?,3
+737,train,How do animals help plants disburse seeds?,3
+739,train,How do animals help plants disburse seeds?,3
+742,train,How do bats use echolocation?,1
+743,train,How do bees pollinate plants?,1
+744,train,How do bees pollinate plants?,1
+745,train,How do bees pollinate plants?,1
+746,train,How do caverns form?,2
+747,train,How do caverns form?,2
+769,train,How do green plants get the energy they need?,4
+770,train,How do lungs work?,4
+771,train,How do lungs work?,4
+772,train,How do lungs work?,4
+773,train,How do minerals form?,2
+775,train,How do minerals form?,2
+779,train,How do plants obtain and use water?,3
+782,train,How do plants use animals to help disburse their seeds?,4
+783,train,How do plants use animals to help disburse their seeds?,4
+784,train,How do plants use animals to help disburse their seeds?,4
+794,train,How do the lungs work?,0
+795,train,How do the lungs work?,0
+796,train,How do the lungs work?,0
+807,train,How do you make ice cubes?,2
+808,train,How do you make ice cubes?,2
+817,train,How does a battery-operated sewing machine work?,1
+821,train,How does a coal-powered power station generate electricity?,3
+823,train,How does a coal-powered power station generate electricity?,3
+828,train,How does a steam engine work?,3
+830,train,How does a virus cause disease?,4
+834,train,How does a virus infect an animal?,4
+842,train,How does an electromagnet work?,2
+844,train,How does an electromagnet work?,2
+846,train,How does blood remove waste from the human body?,1
+852,train,How does coal get from the ground to a power station?,0
+867,train,How does mold grow on bread?,4
+872,train,How does oil get from the ground to a gas station?,2
+873,train,How does oil get from the ground to a gas station?,2
+874,train,How does oil get from the ground to a gas station?,2
+876,train,How does rain form?,4
+877,train,How does rain form?,4
+879,train,How does rain occur?,0
+880,train,How does rain occur?,0
+882,train,How does recycling work?,2
+892,train,How does snow form?,1
+893,train,How does the body control its blood sugar level?,0
+894,train,How does the body control its blood sugar level?,0
+900,train,How does the human auditory system work?,1
+901,train,How does the human auditory system work?,1
+905,train,How does the stomach work?,0
+908,train,How does weathering cause rocks to break apart?,0
+915,train,How is sediment transported across the Earth?,3
+916,train,How is sediment transported across the Earth?,3
+917,train,What causes an earthquake to occur?,0
+919,train,What causes an earthquake to occur?,0
+920,train,What causs a volcano to erupt?,2
+921,train,What causs a volcano to erupt?,2
+922,train,What causs a volcano to erupt?,2
+923,train,What do lungs do?,2
+924,train,What do lungs do?,2
+925,train,What do lungs do?,2
+930,train,What happens during a vocanic eruption?,4
+931,train,What happens during a vocanic eruption?,4
+935,train,What happens during erosion by the ocean?,1
+936,train,What happens during erosion by the ocean?,1
+938,train,What happens during photosynthesis?,2
+939,train,What happens during photosynthesis?,2
+1046,train,How do you use a dishwasher?,3
+1047,train,How do you use a dishwasher?,3
+1048,train,How do you use a dishwasher?,3
+1049,train,How does rust form?,2
+1051,train,How does rust form?,2
+1053,train,How does a greenhouse stay warm?,0
+1055,train,How does a plant get nutrients from the soil?,1
+1058,train,How does a dishwasher work?,3
+1059,train,How does a dishwasher work?,3
+1060,train,How does a dishwasher work?,3
+1061,train,Describe the steps in launching a satelite into space.,2
+1062,train,Describe the steps in launching a satelite into space.,2
+1063,train,Describe the steps in launching a satelite into space.,2
+1064,train,Describe the life cycle of a mushroom.,2
+1065,train,Describe the life cycle of a mushroom.,2
+1066,train,Describe the life cycle of a mushroom.,2
+1073,train,How does lightning occur?,4
+1075,train,How does lightning occur?,4
+1077,train,Describe the process of DNA replication.,0
+1078,train,Describe the process of DNA replication.,0
+1080,train,How does a coal-fired power plant work?,0
+1081,train,How does a coal-fired power plant work?,0
+1083,train,What are the steps involved in growing a pumpkin?,1
+1084,train,What are the steps involved in growing a pumpkin?,1
+1085,train,Describe the typical steps involved in camping.,2
+1086,train,Describe the typical steps involved in camping.,2
+1087,train,Describe the typical steps involved in camping.,2
+1091,train,Describe the typical steps in a kid's birthday party.,0
+1094,train,How is a white dwarf star formed?,0
+1095,train,How is a white dwarf star formed?,0
+1096,train,How is a white dwarf star formed?,0
+1099,train,How do vaccinations work?,0
+1265,train,How does a bird build a nest?,1
+1266,train,How does a bird build a nest?,1
+1273,train,How does pollination happen?,4
+1290,train,Describe how to make pancakes.,4
+1291,train,Describe how to make pancakes.,4
+1293,train,Describe the typical steps in making coffee.,4
+1294,train,Describe the typical steps in making coffee.,4
+1295,train,How does a desalination plant remove salt from water?,0
+1298,train,How do kidneys filter blood?,2
+1299,train,How do kidneys filter blood?,2
+4,dev,How does oil form?,0
+5,dev,How does oil form?,0
+272,dev,How do electric generators work?,4
+349,dev,How do echoes occur?,4
+375,dev,Describe the energy transformations in a computer,1
+388,dev,How is hydroelectric electricity generated?,2
+390,dev,How is hydroelectric electricity generated?,2
+394,dev,How does a nuclear-powered power station generate electricity?,3
+396,dev,How does a nuclear-powered power station generate electricity?,3
+430,dev,Describe how trash travels from the house to the landfill,3
+431,dev,Describe how trash travels from the house to the landfill,3
+432,dev,Describe how trash travels from the house to the landfill,3
+445,dev,Describe the rock cycle,3
+446,dev,Describe the rock cycle,3
+509,dev,Describe how an internal combustion engine works,4
+514,dev,How do glaciers form and move?,0
+542,dev,Describe what kidneys do,4
+543,dev,Describe what kidneys do,4
+544,dev,Describe what kidneys do,4
+608,dev,Describe how an internal combustion engine works,4
+609,dev,Describe how an internal combustion engine works,4
+610,dev,Describe how an internal combustion engine works,4
+629,dev,Describe how trash travels from the house to the landfill,3
+630,dev,Describe how trash travels from the house to the landfill,3
+631,dev,Describe how trash travels from the house to the landfill,3
+632,dev,Describe the energy transformations in a computer,1
+634,dev,Describe the energy transformations in a computer,1
+1002,dev,How do you use a washing machine?,1
+1007,dev,How do bacteria break down dead plants?,4
+1008,dev,How do bacteria break down dead plants?,4
+1112,dev,How do caves form?,3
+1113,dev,How do caves form?,3
+1114,dev,How do caves form?,3
+1197,dev,How does eating food result in energy for your muscles?,0
+1226,dev,What does the pancreas do?,2
+1259,dev,How does a spider make its web?,4
+1303,dev,Describe the process of pasteurization.,4
+708,dev,Describe the rock cycle,3
+716,dev,Describe what kidneys do,4
+758,dev,How do electric generators work?,4
+825,dev,How does a nuclear-powered power station generate electricity?,3
+826,dev,How does a nuclear-powered power station generate electricity?,3
+1260,dev,How does a spider make its web?,4
+37,test,How are fossils formed?,0
+38,test,How are fossils formed?,0
+67,test,How does coal form?,2
+68,test,How does coal form?,2
+69,test,How does coal form?,2
+70,test,What happens during a flood?,0
+99,test,How are deserts formed?,4
+152,test,Describe the process of precipitation,4
+249,test,What happens during chemical weathering?,4
+310,test,How does the heart work?,4
+400,test,How do solar panels generate electricity?,1
+401,test,How do solar panels generate electricity?,1
+409,test,How does the human vision system work?,0
+410,test,How does the human vision system work?,0
+411,test,How does the human vision system work?,0
+429,test,Describe the nitrogen cycle,3
+460,test,How does fossil fuel form?,1
+463,test,How does hail form?,0
+465,test,How does hail form?,0
+502,test,Describe how a car works,1
+503,test,Describe how a car works,1
+533,test,Describe the life cycle of a tree,1
+534,test,Describe the life cycle of a tree,1
+582,test,How do tornadoes form?,1
+583,test,How do tornadoes form?,1
+600,test,Describe how a car works,1
+653,test,Describe the life cycle of a tree,1
+654,test,Describe the life cycle of a tree,1
+659,test,Describe the nitrogen cycle,3
+660,test,Describe the nitrogen cycle,3
+661,test,Describe the nitrogen cycle,3
+695,test,Describe the process of precipitation,4
+696,test,Describe the process of precipitation,4
+697,test,Describe the process of precipitation,4
+1031,test,How are fossils formed?,0
+1032,test,How are fossils formed?,0
+1033,test,How are fossils formed?,0
+1145,test,How is a red giant star formed?,2
+1146,test,How is a red giant star formed?,2
+1147,test,How is a red giant star formed?,2
+1188,test,Describe how meteorites create craters on a planet.,1
+1189,test,Describe how meteorites create craters on a planet.,1
+1190,test,How does the heart work?,4
+1240,test,How does an air conditioner work?,1
+725,test,How are fossils formed?,0
+726,test,How are fossils formed?,0
+727,test,How are fossils formed?,0
+791,test,How do solar panels generate electricity?,1
+896,test,How does the heart work?,4
+903,test,How does the human vision system work?,0
+904,test,How does the human vision system work?,0
+927,test,What happens during a flood?,0
+932,test,What happens during chemical weathering?,4
+933,test,What happens during chemical weathering?,4

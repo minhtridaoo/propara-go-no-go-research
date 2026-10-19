@@ -1,0 +1,575 @@
+{
+ "run_tag": "qwen7b_dev_v1",
+ "smoke_ok": false,
+ "smoke_reason": "QWEN_DIRECT chỉ có 0/3 JSON hợp lệ (< 2)",
+ "smoke": {
+  "QWEN_DIRECT": {
+   "valid_json": "0/3",
+   "pair_f1_train_smoke": 0.0,
+   "hallucinated": 0
+  },
+  "QWEN_FEWSHOT": {
+   "valid_json": "0/3",
+   "pair_f1_train_smoke": 0.0,
+   "hallucinated": 0
+  },
+  "QWEN_STRUCTURED": {
+   "valid_json": "0/3",
+   "pair_f1_train_smoke": 0.0,
+   "hallucinated": 0
+  },
+  "ORACLE_PREV_STATE": {
+   "valid_json": "0/5",
+   "pair_f1_train_smoke": 0.0,
+   "hallucinated": 0
+  }
+ },
+ "did_full_dev": true,
+ "config": {
+  "model_id": "Qwen/Qwen2.5-7B-Instruct",
+  "model_revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+  "model_origin": "kaggle_input:C:\\Users\\ADMIN\\.claude\\jobs\\3967a9d0\\tmp\\fakeT\\input\\tiny-qwen2",
+  "quantization": "fp16_single_gpu",
+  "decoding": "greedy (do_sample=False, repetition_penalty=1.0)",
+  "batch_size_initial": 8,
+  "max_new_tokens_rule": "propara_llm.max_new_tokens",
+  "prompt_version": "prompt_v1",
+  "llm_version": "llm_v1",
+  "core": "core_v1",
+  "metrics": "metrics_v1",
+  "fewshot_train_ids": [
+   "1156",
+   "294"
+  ],
+  "smoke_train_ids": [
+   "796",
+   "253",
+   "782"
+  ],
+  "split": "dev",
+  "modes": [
+   "QWEN_DIRECT",
+   "QWEN_FEWSHOT",
+   "QWEN_STRUCTURED",
+   "ORACLE_PREV_STATE"
+  ],
+  "seed": 2026,
+  "limit_paras": 3
+ },
+ "env": {
+  "python": "3.14.4",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "on_kaggle": false,
+  "cpu_count": 12,
+  "disk_free_gb": 291.0,
+  "gpu_present": true,
+  "internet": true,
+  "ram_total_gb": null,
+  "torch": "2.11.0+cu128",
+  "cuda": "12.8",
+  "gpus": [
+   [
+    "NVIDIA RTX A2000 Laptop GPU",
+    4.0
+   ]
+  ],
+  "transformers": "5.14.1",
+  "accelerate": null,
+  "bitsandbytes": "0.50.2",
+  "hf_cache_free_gb": 291.0
+ },
+ "load_sec": 1.2,
+ "smoke_sec": 11.0,
+ "mode_sec": {
+  "QWEN_DIRECT": 5.4,
+  "QWEN_FEWSHOT": 5.4,
+  "QWEN_STRUCTURED": 11.6,
+  "ORACLE_PREV_STATE": 6.7
+ },
+ "tech": {
+  "QWEN_DIRECT": {
+   "calls": 3,
+   "json_valid_rate": 0.0,
+   "json_status": {
+    "invalid": 3
+   },
+   "hit_max_new_tokens": 3,
+   "hallucinated_total": 0,
+   "latency_per_call_p50_s": 1.7833333333333332,
+   "latency_per_call_p95_s": 1.7833333333333332,
+   "prompt_tokens_mean": 484.6666666666667,
+   "output_tokens_mean": 1010,
+   "peak_vram_gib": 0.03,
+   "mode_wall_sec": 5.4,
+   "gpu_hours_per_1000_paragraphs_est": 0.5
+  },
+  "QWEN_FEWSHOT": {
+   "calls": 3,
+   "json_valid_rate": 0.0,
+   "json_status": {
+    "invalid": 3
+   },
+   "hit_max_new_tokens": 3,
+   "hallucinated_total": 0,
+   "latency_per_call_p50_s": 1.79,
+   "latency_per_call_p95_s": 1.79,
+   "prompt_tokens_mean": 1721.6666666666667,
+   "output_tokens_mean": 1010,
+   "peak_vram_gib": 0.08,
+   "mode_wall_sec": 5.4,
+   "gpu_hours_per_1000_paragraphs_est": 0.5
+  },
+  "QWEN_STRUCTURED": {
+   "calls": 3,
+   "json_valid_rate": 0.0,
+   "json_status": {
+    "invalid": 3
+   },
+   "hit_max_new_tokens": 3,
+   "hallucinated_total": 0,
+   "latency_per_call_p50_s": 3.876666666666667,
+   "latency_per_call_p95_s": 3.876666666666667,
+   "prompt_tokens_mean": 507.6666666666667,
+   "output_tokens_mean": 2225,
+   "peak_vram_gib": 0.03,
+   "mode_wall_sec": 11.6,
+   "gpu_hours_per_1000_paragraphs_est": 1.074074074074074
+  },
+  "ORACLE_PREV_STATE": {
+   "calls": 25,
+   "json_valid_rate": 0.0,
+   "json_status": {
+    "invalid": 25
+   },
+   "hit_max_new_tokens": 25,
+   "hallucinated_total": 0,
+   "latency_per_call_p50_s": 0.2025,
+   "latency_per_call_p95_s": 0.21875,
+   "prompt_tokens_mean": 510.08,
+   "output_tokens_mean": 305.6,
+   "peak_vram_gib": 0.04,
+   "mode_wall_sec": 6.7,
+   "gpu_hours_per_1000_paragraphs_est": 0.6203703703703705
+  },
+  "QWEN_CONSTRAINED": {
+   "cells_fixed_total": 0
+  }
+ },
+ "scores": [
+  {
+   "system": "ALL_NONE",
+   "PAIR_P": 0.0,
+   "PAIR_R": 0.0,
+   "PAIR_F1": 0.0,
+   "PAIR_F1@src_imp": 0.0,
+   "PAIR_F1@tgt_imp": 0.0,
+   "PAIR_F1@any_imp": 0.0,
+   "PAIR_LOC_F1": 0.0,
+   "F1_CREATE": 0.0,
+   "F1_DESTROY": 0.0,
+   "F1_MOVE": 0.0,
+   "IMP_ACC_CREATE": 0.0,
+   "IMP_ACC_DESTROY": 0.0,
+   "EXIST_ACC": 0.48695652173913045,
+   "VIOL_per_entity": 0.0,
+   "kind": "reference",
+   "pairs_from": "labels",
+   "PAIR_F1_CI95": "[0.000, 0.000]",
+   "Q3_conv_F1": null,
+   "Q3_overall_F1": null
+  },
+  {
+   "system": "DIAG_ORACLE_MENTIONED_ONLY",
+   "PAIR_P": 1.0,
+   "PAIR_R": 0.16666666666666666,
+   "PAIR_F1": 0.2857142857142857,
+   "PAIR_F1@src_imp": 0.0,
+   "PAIR_F1@tgt_imp": 0.0,
+   "PAIR_F1@any_imp": 0.0,
+   "PAIR_LOC_F1": 0.2857142857142857,
+   "F1_CREATE": 0.7499999999999999,
+   "F1_DESTROY": 0.6666666666666666,
+   "F1_MOVE": 0.7368421052631579,
+   "IMP_ACC_CREATE": 0.0,
+   "IMP_ACC_DESTROY": 0.0,
+   "EXIST_ACC": 0.8695652173913043,
+   "VIOL_per_entity": 0.07142857142857142,
+   "kind": "diagnostic(gold)",
+   "pairs_from": "labels",
+   "PAIR_F1_CI95": "[0.000, 0.667]",
+   "Q3_conv_F1": null,
+   "Q3_overall_F1": null
+  },
+  {
+   "system": "QWEN_DIRECT",
+   "PAIR_P": 0.0,
+   "PAIR_R": 0.0,
+   "PAIR_F1": 0.0,
+   "PAIR_F1@src_imp": 0.0,
+   "PAIR_F1@tgt_imp": 0.0,
+   "PAIR_F1@any_imp": 0.0,
+   "PAIR_LOC_F1": 0.0,
+   "F1_CREATE": 0.0,
+   "F1_DESTROY": 0.0,
+   "F1_MOVE": 0.0,
+   "IMP_ACC_CREATE": 0.0,
+   "IMP_ACC_DESTROY": 0.0,
+   "EXIST_ACC": 0.48695652173913045,
+   "VIOL_per_entity": 0.0,
+   "kind": "end-to-end",
+   "pairs_from": "labels",
+   "PAIR_F1_CI95": "[0.000, 0.000]",
+   "Q3_conv_F1": null,
+   "Q3_overall_F1": null
+  },
+  {
+   "system": "QWEN_DIRECT[llm_pairs]",
+   "PAIR_P": 0.0,
+   "PAIR_R": 0.0,
+   "PAIR_F1": 0.0,
+   "PAIR_F1@src_imp": 0.0,
+   "PAIR_F1@tgt_imp": 0.0,
+   "PAIR_F1@any_imp": 0.0,
+   "PAIR_LOC_F1": 0.0,
+   "F1_CREATE": 0.0,
+   "F1_DESTROY": 0.0,
+   "F1_MOVE": 0.0,
+   "IMP_ACC_CREATE": 0.0,
+   "IMP_ACC_DESTROY": 0.0,
+   "EXIST_ACC": 0.48695652173913045,
+   "VIOL_per_entity": 0.0,
+   "kind": "end-to-end (cặp LLM tự khai, thước đo phụ)",
+   "pairs_from": "llm",
+   "PAIR_F1_CI95": "[0.000, 0.000]",
+   "Q3_conv_F1": null,
+   "Q3_overall_F1": null
+  },
+  {
+   "system": "QWEN_FEWSHOT",
+   "PAIR_P": 0.0,
+   "PAIR_R": 0.0,
+   "PAIR_F1": 0.0,
+   "PAIR_F1@src_imp": 0.0,
+   "PAIR_F1@tgt_imp": 0.0,
+   "PAIR_F1@any_imp": 0.0,
+   "PAIR_LOC_F1": 0.0,
+   "F1_CREATE": 0.0,
+   "F1_DESTROY": 0.0,
+   "F1_MOVE": 0.0,
+   "IMP_ACC_CREATE": 0.0,
+   "IMP_ACC_DESTROY": 0.0,
+   "EXIST_ACC": 0.48695652173913045,
+   "VIOL_per_entity": 0.0,
+   "kind": "end-to-end",
+   "pairs_from": "labels",
+   "PAIR_F1_CI95": "[0.000, 0.000]",
+   "Q3_conv_F1": null,
+   "Q3_overall_F1": null
+  },
+  {
+   "system": "QWEN_FEWSHOT[llm_pairs]",
+   "PAIR_P": 0.0,
+   "PAIR_R": 0.0,
+   "PAIR_F1": 0.0,
+   "PAIR_F1@src_imp": 0.0,
+   "PAIR_F1@tgt_imp": 0.0,
+   "PAIR_F1@any_imp": 0.0,
+   "PAIR_LOC_F1": 0.0,
+   "F1_CREATE": 0.0,
+   "F1_DESTROY": 0.0,
+   "F1_MOVE": 0.0,
+   "IMP_ACC_CREATE": 0.0,
+   "IMP_ACC_DESTROY": 0.0,
+   "EXIST_ACC": 0.48695652173913045,
+   "VIOL_per_entity": 0.0,
+   "kind": "end-to-end (cặp LLM tự khai, thước đo phụ)",
+   "pairs_from": "llm",
+   "PAIR_F1_CI95": "[0.000, 0.000]",
+   "Q3_conv_F1": null,
+   "Q3_overall_F1": null
+  },
+  {
+   "system": "QWEN_STRUCTURED",
+   "PAIR_P": 0.0,
+   "PAIR_R": 0.0,
+   "PAIR_F1": 0.0,
+   "PAIR_F1@src_imp": 0.0,
+   "PAIR_F1@tgt_imp": 0.0,
+   "PAIR_F1@any_imp": 0.0,
+   "PAIR_LOC_F1": 0.0,
+   "F1_CREATE": 0.0,
+   "F1_DESTROY": 0.0,
+   "F1_MOVE": 0.0,
+   "IMP_ACC_CREATE": 0.0,
+   "IMP_ACC_DESTROY": 0.0,
+   "EXIST_ACC": 0.48695652173913045,
+   "VIOL_per_entity": 0.0,
+   "kind": "end-to-end",
+   "pairs_from": "labels",
+   "PAIR_F1_CI95": "[0.000, 0.000]",
+   "Q3_conv_F1": null,
+   "Q3_overall_F1": null
+  },
+  {
+   "system": "QWEN_STRUCTURED[llm_pairs]",
+   "PAIR_P": 0.0,
+   "PAIR_R": 0.0,
+   "PAIR_F1": 0.0,
+   "PAIR_F1@src_imp": 0.0,
+   "PAIR_F1@tgt_imp": 0.0,
+   "PAIR_F1@any_imp": 0.0,
+   "PAIR_LOC_F1": 0.0,
+   "F1_CREATE": 0.0,
+   "F1_DESTROY": 0.0,
+   "F1_MOVE": 0.0,
+   "IMP_ACC_CREATE": 0.0,
+   "IMP_ACC_DESTROY": 0.0,
+   "EXIST_ACC": 0.48695652173913045,
+   "VIOL_per_entity": 0.0,
+   "kind": "end-to-end (cặp LLM tự khai, thước đo phụ)",
+   "pairs_from": "llm",
+   "PAIR_F1_CI95": "[0.000, 0.000]",
+   "Q3_conv_F1": null,
+   "Q3_overall_F1": null
+  },
+  {
+   "system": "QWEN_CONSTRAINED",
+   "PAIR_P": 0.0,
+   "PAIR_R": 0.0,
+   "PAIR_F1": 0.0,
+   "PAIR_F1@src_imp": 0.0,
+   "PAIR_F1@tgt_imp": 0.0,
+   "PAIR_F1@any_imp": 0.0,
+   "PAIR_LOC_F1": 0.0,
+   "F1_CREATE": 0.0,
+   "F1_DESTROY": 0.0,
+   "F1_MOVE": 0.0,
+   "IMP_ACC_CREATE": 0.0,
+   "IMP_ACC_DESTROY": 0.0,
+   "EXIST_ACC": 0.48695652173913045,
+   "VIOL_per_entity": 0.0,
+   "kind": "end-to-end",
+   "pairs_from": "labels",
+   "PAIR_F1_CI95": "[0.000, 0.000]",
+   "Q3_conv_F1": null,
+   "Q3_overall_F1": null
+  },
+  {
+   "system": "QWEN_CONSTRAINED[llm_pairs]",
+   "PAIR_P": 0.0,
+   "PAIR_R": 0.0,
+   "PAIR_F1": 0.0,
+   "PAIR_F1@src_imp": 0.0,
+   "PAIR_F1@tgt_imp": 0.0,
+   "PAIR_F1@any_imp": 0.0,
+   "PAIR_LOC_F1": 0.0,
+   "F1_CREATE": 0.0,
+   "F1_DESTROY": 0.0,
+   "F1_MOVE": 0.0,
+   "IMP_ACC_CREATE": 0.0,
+   "IMP_ACC_DESTROY": 0.0,
+   "EXIST_ACC": 0.48695652173913045,
+   "VIOL_per_entity": 0.0,
+   "kind": "end-to-end (cặp LLM tự khai, thước đo phụ)",
+   "pairs_from": "llm",
+   "PAIR_F1_CI95": "[0.000, 0.000]",
+   "Q3_conv_F1": null,
+   "Q3_overall_F1": null
+  },
+  {
+   "system": "ORACLE_PREV_STATE",
+   "PAIR_P": 0.0,
+   "PAIR_R": 0.0,
+   "PAIR_F1": 0.0,
+   "PAIR_F1@src_imp": 0.0,
+   "PAIR_F1@tgt_imp": 0.0,
+   "PAIR_F1@any_imp": 0.0,
+   "PAIR_LOC_F1": 0.0,
+   "F1_CREATE": 0.0,
+   "F1_DESTROY": 0.0,
+   "F1_MOVE": 0.0,
+   "IMP_ACC_CREATE": 0.0,
+   "IMP_ACC_DESTROY": 0.0,
+   "EXIST_ACC": 0.6086956521739131,
+   "VIOL_per_entity": 0.0,
+   "kind": "ORACLE (không so đầu-cuối)",
+   "pairs_from": "labels",
+   "PAIR_F1_CI95": "[0.000, 0.000]",
+   "Q3_conv_F1": null,
+   "Q3_overall_F1": null
+  }
+ ],
+ "decision_points_dev": {
+  "ALL_NONE": {
+   "n": 4,
+   "hit": 0,
+   "exact": 0
+  },
+  "DIAG_ORACLE_MENTIONED_ONLY": {
+   "n": 4,
+   "hit": 0,
+   "exact": 0
+  },
+  "QWEN_DIRECT": {
+   "n": 4,
+   "hit": 0,
+   "exact": 0
+  },
+  "QWEN_FEWSHOT": {
+   "n": 4,
+   "hit": 0,
+   "exact": 0
+  },
+  "QWEN_STRUCTURED": {
+   "n": 4,
+   "hit": 0,
+   "exact": 0
+  },
+  "QWEN_CONSTRAINED": {
+   "n": 4,
+   "hit": 0,
+   "exact": 0
+  },
+  "ORACLE_PREV_STATE": {
+   "n": 4,
+   "hit": 0,
+   "exact": 0
+  }
+ },
+ "bootstrap": {
+  "QWEN_FEWSHOT-QWEN_DIRECT@all": {
+   "delta": 0.0,
+   "ci_low": 0.0,
+   "ci_high": 0.0,
+   "p_boot_delta_le_0": 1.0,
+   "n_paragraphs": 3,
+   "n_boot": 10000,
+   "slice": "all"
+  },
+  "QWEN_FEWSHOT-QWEN_DIRECT@any_implicit": {
+   "delta": 0.0,
+   "ci_low": 0.0,
+   "ci_high": 0.0,
+   "p_boot_delta_le_0": 1.0,
+   "n_paragraphs": 3,
+   "n_boot": 10000,
+   "slice": "any_implicit"
+  },
+  "QWEN_STRUCTURED-QWEN_DIRECT@all": {
+   "delta": 0.0,
+   "ci_low": 0.0,
+   "ci_high": 0.0,
+   "p_boot_delta_le_0": 1.0,
+   "n_paragraphs": 3,
+   "n_boot": 10000,
+   "slice": "all"
+  },
+  "QWEN_STRUCTURED-QWEN_DIRECT@any_implicit": {
+   "delta": 0.0,
+   "ci_low": 0.0,
+   "ci_high": 0.0,
+   "p_boot_delta_le_0": 1.0,
+   "n_paragraphs": 3,
+   "n_boot": 10000,
+   "slice": "any_implicit"
+  },
+  "QWEN_CONSTRAINED-QWEN_DIRECT@all": {
+   "delta": 0.0,
+   "ci_low": 0.0,
+   "ci_high": 0.0,
+   "p_boot_delta_le_0": 1.0,
+   "n_paragraphs": 3,
+   "n_boot": 10000,
+   "slice": "all"
+  },
+  "QWEN_CONSTRAINED-QWEN_DIRECT@any_implicit": {
+   "delta": 0.0,
+   "ci_low": 0.0,
+   "ci_high": 0.0,
+   "p_boot_delta_le_0": 1.0,
+   "n_paragraphs": 3,
+   "n_boot": 10000,
+   "slice": "any_implicit"
+  }
+ },
+ "gen_log_tail": [
+  {
+   "tag": "smoke_QWEN_DIRECT",
+   "batch": 3,
+   "sec": 2.72,
+   "peak_vram_gib": 0.03,
+   "max_new": 470
+  },
+  {
+   "tag": "smoke_QWEN_FEWSHOT",
+   "batch": 3,
+   "sec": 2.32,
+   "peak_vram_gib": 0.07,
+   "max_new": 470
+  },
+  {
+   "tag": "smoke_QWEN_STRUCTURED",
+   "batch": 3,
+   "sec": 4.62,
+   "peak_vram_gib": 0.03,
+   "max_new": 875
+  },
+  {
+   "tag": "smoke_ORACLE_PREV_STATE",
+   "batch": 5,
+   "sec": 1.27,
+   "peak_vram_gib": 0.04,
+   "max_new": 240
+  },
+  {
+   "tag": "dev_QWEN_DIRECT",
+   "batch": 3,
+   "sec": 5.35,
+   "peak_vram_gib": 0.03,
+   "max_new": 1010
+  },
+  {
+   "tag": "dev_QWEN_FEWSHOT",
+   "batch": 3,
+   "sec": 5.37,
+   "peak_vram_gib": 0.08,
+   "max_new": 1010
+  },
+  {
+   "tag": "dev_QWEN_STRUCTURED",
+   "batch": 3,
+   "sec": 11.63,
+   "peak_vram_gib": 0.03,
+   "max_new": 2225
+  },
+  {
+   "tag": "dev_ORACLE_PREV_STATE",
+   "batch": 8,
+   "sec": 1.75,
+   "peak_vram_gib": 0.04,
+   "max_new": 320
+  },
+  {
+   "tag": "dev_ORACLE_PREV_STATE",
+   "batch": 8,
+   "sec": 1.62,
+   "peak_vram_gib": 0.04,
+   "max_new": 320
+  },
+  {
+   "tag": "dev_ORACLE_PREV_STATE",
+   "batch": 8,
+   "sec": 1.5,
+   "peak_vram_gib": 0.04,
+   "max_new": 280
+  },
+  {
+   "tag": "dev_ORACLE_PREV_STATE",
+   "batch": 1,
+   "sec": 1.81,
+   "peak_vram_gib": 0.04,
+   "max_new": 280
+  }
+ ],
+ "runtime_sec": 59.2
+}
