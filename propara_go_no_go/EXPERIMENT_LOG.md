@@ -116,6 +116,12 @@
   - Notebook K2 chạy thông cục bộ.
 - **Còn thiếu (cần quyết định):** Qwen trong CV (thêm ở K3); tập test thứ hai CUTL/NHK (cần dữ liệu); chưng cất LLM, PP1 (P2); rà tính mới PP3.
 
+## EXP-004c: Rà K2 theo môi trường Kaggle thật (20/10 ~00:15, pp4_v1.3)
+- Môi trường đọc từ K1: 2×T4, torch 2.11.0+cu128, transformers 5.16.1.
+- Sửa: (1) checkpoint theo epoch không còn kèm bản tốt nhất (trước ghi khoảng 2,5 GB/epoch); bản tốt nhất lưu riêng, chỉ ghi khi cải thiện; (2) tự cài NLTK nếu thiếu.
+- Kiểm chứng: ngắt sau epoch 2 rồi tiếp tục → loss **và trọng số bản tốt nhất** trùng khớp với chạy liền mạch (M0/M0c, CRF_NOE); notebook K2 chạy thông, 0 ô lỗi, không còn file tạm.
+- Ước tính thời gian K2 sửa thành 3–5 giờ (chưa đo).
+
 ## EXP-005: Qwen test khoá + NONCE (D6) · `04_qwen7b_test_locked.ipynb` · lượt **K3**
 - **Thiết lập:** dùng nguyên văn mã nạp mô hình/sinh của NB03; test ở mọi chế độ; NONCE (DIRECT, FEWSHOT) trên dev (chấm công khai) và test (lưu kín).
 - **Kiểm chứng:** chạy thông cục bộ với mô hình tí hon (lưu kín đủ 9 file).

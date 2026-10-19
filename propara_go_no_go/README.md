@@ -59,7 +59,7 @@ Nếu bị lỗi: gửi **traceback** của ô lỗi kèm số thứ tự ô. Kh
 
 ---
 
-## LƯỢT K2: `05_pp3_pp4_dev_cv.ipynb` (mô hình nhóm; GPU; ước tính 2–3 giờ, chưa đo)
+## LƯỢT K2: `05_pp3_pp4_dev_cv.ipynb` (mô hình nhóm; GPU; ước tính 3–5 giờ, chưa đo)
 1. **File → Import Notebook** → chọn `notebooks/05_pp3_pp4_dev_cv.ipynb`.
 2. **Settings:** Accelerator **GPU** (T4 x2 hoặc P100; notebook dùng 1 GPU) · **Internet On**.
 3. **Save Version → Save & Run All (Commit)**, rồi để chạy nền. Notebook tự tải `roberta-base` và WikiHow (~620 MB) vào bộ nhớ tạm.

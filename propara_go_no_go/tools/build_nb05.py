@@ -46,7 +46,7 @@ md(r"""
 | Accelerator | **GPU** (T4 x2 hoặc P100; notebook dùng 1 GPU) |
 | Internet | **On** (tải `roberta-base` ~500 MB và WikiHow `wikihowAll.csv` ~620 MB vào bộ nhớ tạm, không vào Output) |
 | Output | `/kaggle/working/pp34_v2/`: dự đoán dev (+ test kín), lịch sử loss/F1, biểu đồ, E(X,Y), checkpoint tốt nhất của 6 hệ thống (fp16) |
-| Thời gian | **ước tính** 2–3 giờ GPU (chưa đo). Dừng sớm (patience 3); `MAX_HOURS`=9 để kết thúc êm trước giới hạn phiên Kaggle |
+| Thời gian | **ước tính** 3–5 giờ GPU (chưa đo; 25 lượt huấn luyện ≤ 8 epoch + PP3 + CV). Dừng sớm (patience 3); `MAX_HOURS`=9 để kết thúc êm trước giới hạn phiên Kaggle |
 | Checkpoint | Mỗi epoch lưu `state/inprogress_*.pt` (mô hình + optimizer + scheduler + RNG). Bị ngắt thì **Run All lại trong cùng phiên** sẽ tiếp tục đúng epoch đó. **Sang phiên mới:** Add Input → *Notebooks* → output phiên bản trước của chính notebook này → Run All (phần đã xong được bỏ qua). Checkpoint TỐT NHẤT của mọi hệ thống (seed đầu): `checkpoints/*_best.pt` |
 
 **Chạy:** Save Version → **Save & Run All (Commit)**. **Gửi lại:** khối `=== GỬI LẠI ===` + `pp34_v2/summary_05.json`.
@@ -160,7 +160,12 @@ try:
         print("SHA-256 khớp:", PP3["sha256_match"])
     # bộ gán nhãn từ loại (pp3_v2, cũng dùng để tách cụm danh từ cho đầu vị trí); thiếu thì lùi về regex và ghi cảnh báo
     try:
-        import nltk
+        try:
+            import nltk
+        except ImportError:                      # Kaggle thường có sẵn; nếu thiếu thì cài (cần Internet)
+            import subprocess
+            subprocess.run([sys.executable, "-m", "pip", "install", "-q", "nltk"], check=True)
+            import nltk
         from nltk.tag import PerceptronTagger
         for _res in ("averaged_perceptron_tagger_eng", "averaged_perceptron_tagger"):
             try:
@@ -305,7 +310,7 @@ for v in VARIANTS:
                 torch.save({k: t.half() if t.is_floating_point() else t for k, t in state.items()}, CKPT_DIR / f"{name}_seed{seed}_best.pt")
         RESULTS[key] = {"done": True, "epochs_run": len(hist), "early_stopped": len(hist) < EPOCHS}
         (STATE / "results.json").write_text(json.dumps(RESULTS, default=str))
-        CK.unlink(missing_ok=True)       # kết quả đã lưu → xoá checkpoint đang-chạy (tránh phình Output)
+        pp.cleanup_ckpt(str(CK))        # kết quả đã lưu → xoá checkpoint đang-chạy + bản tốt nhất tạm (tránh phình Output)
         del model; torch.cuda.empty_cache() if DEVICE == "cuda" else None
 ''')
 
@@ -442,7 +447,7 @@ if RUN_CV:
                 CV[f"{nm}|fold{fold}"] = preds
             CV[key] = {"done": True}
             (STATE / "cv.json").write_text(json.dumps(CV))
-            CK.unlink(missing_ok=True)
+            pp.cleanup_ckpt(str(CK))
             print(f"CV {v} fold {fold}: xong ({len(te)} đoạn)")
             del model; torch.cuda.empty_cache() if DEVICE == "cuda" else None
 CV_RES, CV_BOOT = {}, {}

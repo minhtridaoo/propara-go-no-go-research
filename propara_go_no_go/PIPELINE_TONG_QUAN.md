@@ -168,7 +168,7 @@ Mọi notebook **nhúng nguyên văn** các file này vào, nên notebook tự c
 |---|---|---|---|---|
 | 03 (K1) | bản đầu (~12:50) → bản hiện tại (~22:24) | 19/10 | Chỉ thêm khả năng tiếp tục sang phiên mới (khôi phục `raw_outputs/`). Prompt, mô hình, cách sinh và cách chấm **không đổi** | **Có**, kết quả tương đương |
 | 05 (K2) | `pp34_v1` (~14:00) | 19/10 | Bản đầu: 6 hệ thống, PP3, CV, NONCE | **Chỉ làm phép so sánh phụ** (“không có đầu vị trí”); không đúng protocol v1.4 |
-| 05 (K2) | `pp34_v2` (~23:20) | 19/10 | + checkpoint mỗi epoch, dừng sớm, khôi phục sang phiên mới · + **đầu dự đoán vị trí** · + **PP2 theo τ1/τ2** · đổi tên output | **Bản chính** |
+| 05 (K2) | `pp34_v2` (~23:20, chỉnh lần cuối 20/10 ~00:15) | 19/10–20/10 | + checkpoint mỗi epoch, dừng sớm, khôi phục sang phiên mới · + **đầu dự đoán vị trí** · + **PP2 theo τ1/τ2** · đổi tên output · (00:15) checkpoint gọn hơn, tự cài NLTK | **Bản chính**: dùng file mới nhất |
 | 04 (K3) | `qwen7b_test_v1`, bản khoá (~23:55) | 19/10 | Dùng nguyên văn mã sinh của 03; **đã khoá theo K1**: Qwen chính = FEWSHOT, thêm train cho CV, thêm hậu xử lý v2 | Bản trước khoá **chưa chạy** → dùng bản này |
 | 01 | `propara_metrics_v1` | ~22:54 | + CGLI, + heuristic đầu-cuối B1-E2E | trợ lý chạy, PASS |
 

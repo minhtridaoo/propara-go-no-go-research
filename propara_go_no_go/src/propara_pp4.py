@@ -27,7 +27,7 @@ import torch.nn.functional as F
 
 import propara_core as pc
 
-PP4_VERSION = "pp4_v1.2"
+PP4_VERSION = "pp4_v1.3"
 LAB_IDX = {pc.CREATE: 0, pc.DESTROY: 1, pc.MOVE: 2, pc.NONE: 3}
 IDX_LAB = {v: k for k, v in LAB_IDX.items()}
 _STATE_CACHE: Dict[Tuple[int, str], Tuple[torch.Tensor, torch.Tensor]] = {}
@@ -494,7 +494,11 @@ def train_variant(make_encoder, tok, variant: str, train_feats: List[dict], dev_
     if ckpt_path and os.path.exists(ckpt_path):
         ck = torch.load(ckpt_path, map_location="cpu", weights_only=False)
         model.load_state_dict(ck["model"]); opt.load_state_dict(ck["opt"]); sched.load_state_dict(ck["sched"])
-        scaler.load_state_dict(ck["scaler"]); hist, order, best = ck["hist"], ck["order"], ck["best"]
+        scaler.load_state_dict(ck["scaler"]); hist, order = ck["hist"], ck["order"]
+        for nm in names:                      # bản tốt nhất được lưu riêng (chỉ ghi khi cải thiện)
+            key_, ep_ = ck["best_meta"][nm]
+            bp = f"{ckpt_path}.best_{nm}.pt"
+            best[nm] = (tuple(key_), torch.load(bp, map_location="cpu", weights_only=True) if os.path.exists(bp) else None, ep_)
         bad, best_main, start_ep = ck["bad"], ck["best_main"], ck["epoch"] + 1
         random.setstate(ck["py_rng"]); torch.set_rng_state(ck["torch_rng"])
         if torch.cuda.is_available() and ck.get("cuda_rng") is not None:
@@ -537,6 +541,9 @@ def train_variant(make_encoder, tok, variant: str, train_feats: List[dict], dev_
             key = (res["PAIR@all"]["F1"], -row["dev_loss"])
             if key > best[nm][0]:
                 best[nm] = (key, {kk: v.detach().to("cpu", copy=True) for kk, v in model.state_dict().items()}, ep)
+                if ckpt_path:                    # ghi bản tốt nhất CHỈ khi cải thiện (tránh ghi 2,5 GB mỗi epoch)
+                    torch.save(best[nm][1], f"{ckpt_path}.best_{nm}.pt.tmp")
+                    os.replace(f"{ckpt_path}.best_{nm}.pt.tmp", f"{ckpt_path}.best_{nm}.pt")
         hist.append(row)
         cur = max(row[f"{nm}:dev_PAIR_F1"] for nm in names)
         if cur > best_main + 1e-9:
@@ -550,7 +557,8 @@ def train_variant(make_encoder, tok, variant: str, train_feats: List[dict], dev_
         if ckpt_path:
             tmp = ckpt_path + ".tmp"
             torch.save({"epoch": ep, "model": model.state_dict(), "opt": opt.state_dict(), "sched": sched.state_dict(),
-                        "scaler": scaler.state_dict(), "hist": hist, "order": order, "best": best, "bad": bad,
+                        "scaler": scaler.state_dict(), "hist": hist, "order": order,
+                        "best_meta": {nm: (list(b[0]), b[2]) for nm, b in best.items()}, "bad": bad,
                         "best_main": best_main, "stopped": stopped, "py_rng": random.getstate(), "torch_rng": torch.get_rng_state(),
                         "cuda_rng": torch.cuda.get_rng_state_all() if torch.cuda.is_available() else None}, tmp)
             os.replace(tmp, ckpt_path)
@@ -560,6 +568,14 @@ def train_variant(make_encoder, tok, variant: str, train_feats: List[dict], dev_
         if stop_after_epochs is not None and n_run >= stop_after_epochs and ep < epochs:
             raise KeyboardInterrupt(f"giả lập phiên bị ngắt sau epoch {ep}")
     return model, hist, {nm: (b[1], b[2]) for nm, b in best.items()}
+
+
+def cleanup_ckpt(ckpt_path: str) -> None:
+    """Xoá checkpoint đang-chạy và các file bản-tốt-nhất đi kèm (gọi sau khi đã lưu kết quả)."""
+    import glob
+    for f in [ckpt_path] + glob.glob(ckpt_path + ".best_*.pt*"):
+        if os.path.exists(f):
+            os.remove(f)
 
 
 @torch.no_grad()

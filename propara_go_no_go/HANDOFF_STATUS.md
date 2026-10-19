@@ -49,7 +49,7 @@
 | Lượt | Notebook | Khi nào | Settings | Công sức bạn | Máy chạy (ước tính, chưa đo) | Gửi lại |
 |---|---|---|---|---|---|---|
 | **K1** | `03_qwen7b_dev.ipynb` | **ngay bây giờ** | GPU T4 x2, Internet On | 10 phút | 30–60 phút | khối GỬI LẠI + `summary_03.json` (+ zip nếu được) |
-| **K2** | `05_pp3_pp4_dev_cv.ipynb` | sau K1 (hoặc song song) | GPU (T4/P100), Internet On | 10 phút | 2–3 giờ | khối GỬI LẠI + `pp34_v2.zip` |
+| **K2** | `05_pp3_pp4_dev_cv.ipynb` | sau K1 (hoặc song song) | GPU (T4/P100), Internet On | 10 phút | 3–5 giờ | khối GỬI LẠI + `pp34_v2.zip` |
 | **K3** | `04_qwen7b_test_locked.ipynb` | khi trợ lý báo "đã khoá" sau K1 | GPU T4 x2, Internet On | 10 phút | 40–80 phút | khối GỬI LẠI + `qwen7b_test_v1.zip` |
 
 Cách chạy cả 3 lượt giống nhau: **File → Import Notebook → chỉnh Settings → Save Version → Save & Run All (Commit)**. Xong thì vào tab **Output** của phiên bản để tải zip.
@@ -91,4 +91,5 @@ Sau K3, trợ lý tự làm phần còn lại (D7–D8) trên CPU, khoảng 1–
 | 19/10 ~23:35 | Trợ lý | Rà soát toàn bộ: notebook 03/04 nhúng bản heuristics cũ (chỉ thiếu 2 hàm không dùng tới, kết quả không đổi) → build lại; sửa 11 chỗ tài liệu cũ (H-COPYMENTION chưa từng làm, D3, §5 audit, M2/M2r/M3-beam…) | ✅ |
 | 19/10 ~23:45 | Bạn | Chạy K1 trên Kaggle | ✅ `results/kaggle/03.txt` |
 | 19/10 ~23:55 | Trợ lý | Phân tích K1; khoá cấu hình Qwen (prompt_v1, chính = FEWSHOT); K3 thêm train cho CV + luật v2; final_analysis thêm CV 486 đoạn; kiểm thử cục bộ | ✅ |
+| 20/10 ~00:15 | Trợ lý | Xác nhận K1 (bản 03 cũ) hợp lệ; rà lại K2 cho môi trường Kaggle thật (torch 2.11, transformers 5.16): checkpoint chỉ ghi bản tốt nhất khi cải thiện (tránh ghi 2,5 GB/epoch), tự cài NLTK nếu thiếu; kiểm thử ngắt→tiếp khớp cả trọng số bản tốt nhất; ước tính K2 sửa thành 3–5 giờ | ✅ |
 | | Bạn | Chạy K2 (`pp34_v2`) và K3 trên Kaggle; tải `qwen7b_dev_v1.zip` từ Output K1 vào `results/kaggle/` | ⬜ |
