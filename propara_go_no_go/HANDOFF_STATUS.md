@@ -92,4 +92,7 @@ Sau K3, trợ lý tự làm phần còn lại (D7–D8) trên CPU, khoảng 1–
 | 19/10 ~23:45 | Bạn | Chạy K1 trên Kaggle | ✅ `results/kaggle/03.txt` |
 | 19/10 ~23:55 | Trợ lý | Phân tích K1; khoá cấu hình Qwen (prompt_v1, chính = FEWSHOT); K3 thêm train cho CV + luật v2; final_analysis thêm CV 486 đoạn; kiểm thử cục bộ | ✅ |
 | 20/10 ~00:15 | Trợ lý | Xác nhận K1 (bản 03 cũ) hợp lệ; rà lại K2 cho môi trường Kaggle thật (torch 2.11, transformers 5.16): checkpoint chỉ ghi bản tốt nhất khi cải thiện (tránh ghi 2,5 GB/epoch), tự cài NLTK nếu thiếu; kiểm thử ngắt→tiếp khớp cả trọng số bản tốt nhất; ước tính K2 sửa thành 3–5 giờ | ✅ |
-| | Bạn | Chạy K2 (`pp34_v2`) và K3 trên Kaggle; tải `qwen7b_dev_v1.zip` từ Output K1 vào `results/kaggle/` | ⬜ |
+| 20/10 ~00:22 | Trợ lý | Tạo file chấm nhãn vàng `annotation/gold_audit_A.xlsx`, `gold_audit_B.xlsx` (80 cặp, có hướng dẫn + danh sách nhãn thả xuống) | ✅ |
+| 20/10 ~00:40 | Trợ lý | Kiểm chứng zip K1: tính lại điểm từ đầu ra thô trùng tuyệt đối; phát hiện có 2 lần chạy K1 (điểm giống hệt); chấm hậu xử lý v2 (Q1+v2 = 0,292 < 0,377); phân tích lỗi; sửa nhãn chấm cặp vàng cho đúng câu chữ PIPELINE §5.5 | ✅ |
+| | Nhóm (2 người) — **tuỳ chọn, P1** | Chấm độc lập 80 cặp vàng (mỗi người 1 file, khoảng 45–60 phút, ước tính) | ⬜ |
+| | Bạn | Chạy K2 (`pp34_v2`) và K3 trên Kaggle; tải `qwen7b_dev_v1.zip` từ Output K1 vào `results/kaggle/` | K2/K3 ⬜ · zip K1 ✅ |

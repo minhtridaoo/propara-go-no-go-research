@@ -63,13 +63,15 @@ Thiết lập đã khoá trước khi chạy: `Qwen/Qwen2.5-7B-Instruct@a09a354`
 | **Qwen Q1 có ví dụ (hệ thống Qwen chính)** | **0,377** [0,243–0,495] | 0,231 | 0,118 | 33% / 9% | 0,51 | 100% | 10,0 |
 | Qwen Q2 từng bước | 0,318 [0,159–0,462] | 0,083 | 0,105 | 7% / 9% | 0,74 | 81% | 16,3 |
 | Qwen Q3 = Q0 + luật tồn tại v1 | 0,033 [0–0,095] | 0 | 0 | 7% / 0% | 0 | — | — |
+| Qwen Q1 + luật tồn tại v2 (sửa tồn tại ban đầu trước) | 0,292 | 0,087 | 0 | — | 0 | — | — |
 | *ORACLE Q4: biết tồn tại đúng trước câu* | *0,425* [0,287–0,557] | *0,392* | *0,311* | *60% / 73%* | — | 100% | 1,4 |
 
 **Nhận xét (chỉ trên dev, chưa phải kết luận):**
 - Ví dụ few-shot giúp rõ: Q1 − Q0 = +0,160 [+0,046; +0,289].
 - **Qwen 7B rất yếu ở thay đổi ngầm**, nhất là CREATE ngầm (9%).
 - **Khi được cho biết tồn tại đúng trước câu, Qwen gán nhãn ngầm tốt hơn hẳn** (DESTROY 33% → 60%, CREATE 9% → 73%). Phần lớn lỗi của Qwen nằm ở **theo dõi trạng thái tồn tại**. Đây đúng là thứ mà ràng buộc tồn tại + giải mã chung của PP4 nhắm tới. Đây là **tín hiệu ủng hộ** hướng của đề tài, nhưng phải chờ M3 (K2) để biết PP4 có thực sự làm tốt hơn không.
-- Qwen vi phạm ràng buộc tồn tại thường xuyên. Sửa theo kiểu “xoá nhãn sai” làm mất hầu hết các cặp, nên đã đăng ký luật sửa v2 (sửa tồn tại ban đầu trước).
+- Qwen vi phạm ràng buộc tồn tại thường xuyên (không có ví dụ: 97/175 thực thể được tạo ra lại bị khai là có sẵn từ đầu). Sửa bằng luật đơn giản luôn làm **giảm** PAIR_F1 (v1: 0,033; v2: 0,292 so với 0,377 khi không sửa). Nghĩa là tính nhất quán không thể “vá” sau, mà cần được mô hình hoá ngay khi giải mã. Đây là luận điểm của PP4, cần kiểm chứng ở K2.
+- Chế độ từng bước: 8/43 đầu ra JSON hỏng; 7 trong số đó do Qwen thiếu dấu đóng ngoặc.
 - So sánh với CGLI (0,545) **chưa làm được**: CGLI chỉ có số trên test, còn Qwen hiện mới có dev. K3 sẽ cho số test của Qwen.
 
 ## 6. Đối chiếu 3 cửa quyết định (protocol §7)

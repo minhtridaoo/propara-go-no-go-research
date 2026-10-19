@@ -80,7 +80,26 @@
   5. Q3_OFFICIAL của Qwen 0,53–0,55 ≈ mức sàn ALL_NONE 0,542 trên dev.
   6. Q2 chỉ 81,4% JSON hợp lệ; các đoạn hỏng bị tính là toàn NONE.
 - **Quyết định (khoá):** giữ prompt_v1, không chỉnh prompt; Qwen chính = QWEN_FEWSHOT; K3 thêm Qwen chính chạy train (CV 486 đoạn) + hậu xử lý v2.
-- **Cần thêm:** file `qwen7b_dev_v1.zip` (tab Output của phiên bản K1) để phân tích lỗi từng đoạn và chấm v2 trên dev.
+- **Kiểm chứng output K1 (20/10 ~00:40, `results/kaggle/notebook 03/qwen7b_dev_v1/`):**
+  - Có **2 lần chạy K1**: `03.txt` (nạp 28,6 s) và zip (nạp 31,0 s); thời gian khác nhau nhưng **điểm giống hệt** (giải mã tham lam).
+  - Tính lại từ đầu ra thô bằng mã hiện tại: Q0 0,2169 · Q1 0,3774 · Q2 0,3182 · oracle 0,4247, **trùng tuyệt đối** với file điểm; nhãn trùng 43/43 đoạn ở cả 3 chế độ. Config ghi `prompt_v1`, `llm_v1`, `core_v1`, `metrics_v1`, revision `a09a354`.
+- **Hậu xử lý v2 trên dev (đăng ký trước khi có số):**
+
+| Hệ thống | PAIR_F1 | @nguồn ngầm | @đích ngầm |
+|---|---|---|---|
+| Q0 + v1 | 0,033 | 0 | 0 |
+| Q0 + v2 | 0,179 | 0,095 | 0 |
+| Q1 + v1 | 0,167 | 0 | 0 |
+| Q1 + v2 | 0,292 | 0,087 | 0 |
+
+  → v2 tốt hơn v1 nhưng **vẫn thấp hơn Q1 không hậu xử lý (0,377)**: ép nhất quán bằng luật đơn giản làm giảm điểm.
+- **Phân tích lỗi:**
+  - Q0: 109/117 vi phạm là “CREATE khi đang tồn tại”; 97/175 thực thể có sự kiện đầu là CREATE nhưng Qwen khai có vị trí ban đầu.
+  - Q1 (có ví dụ): giảm còn 13/175, nhưng vi phạm chuyển sang DESTROY/MOVE khi chưa tồn tại (33 + 33).
+  - Q1 trên ô ngầm vàng: DESTROY đúng 5/15 (10 bị bỏ thành NONE); CREATE đúng 1/11 (9 bị bỏ thành NONE).
+  - Q2: 8/43 JSON hỏng; 7 do **thiếu dấu đóng `]`/`}`** (lỗi của Qwen, đã kiểm `json.loads`), 1 do chạm giới hạn token. Bộ đọc JSON hiện chỉ sửa lỗi nhỏ (dấu phẩy thừa, nháy đơn, True/False); bộ đọc dễ dãi hơn có thể cứu một phần, ghi là giới hạn.
+  - **Phân tích độ nhạy (20/10 ~00:55, không cần GPU):** thử chèn dấu đóng còn thiếu trước khoá cấp cao → cứu được 6/8 đầu ra; nhưng cả 6 đều **không dự đoán cặp D×C nào** (0 cặp dự đoán) → PAIR_F1 của Q2 **không đổi** (0,318 → 0,318). Kết luận: lỗi JSON không ảnh hưởng thước đo chính; **không cần chạy lại K1**. Giữ bộ đọc gốc làm chuẩn.
+  - Tên thực thể không khớp danh sách: ít (ví dụ “hormones”, “turbine”).
 - **Điều kiện hoàn thành:** smoke đạt; dev chạy đủ 4 chế độ; JSON hợp lệ ≥ 90% ở Q0 (nếu thấp hơn thì sửa prompt **trên dev** → prompt_v2 và ghi log).
 - **Bước tiếp sau K1:** phân tích lỗi Qwen trên dev → khoá prompt → viết K2 (PP4/M0–M3, CV) → K3 (test một lần).
 
@@ -129,5 +148,5 @@
 - **Sau K3:** `tools/final_analysis.py` chấm một lần mọi dự đoán test kín, bootstrap cặp Qwen-chính vs M3 và M3 vs M0c, rồi áp điều kiện quyết định §7.
 
 ## Việc song song cho nhóm (không cần GPU)
-- Hai người chấm độc lập `results/00_local_cpu_run/gold_audit_sample.csv` (`CAUSAL` / `PROPARA_ONLY` / `UNCLEAR` / `LIKELY_WRONG`), không xem dự đoán mô hình.
+- Hai người chấm độc lập `results/00_local_cpu_run/gold_audit_sample.csv` (nay là `annotation/gold_audit_A.xlsx`, `gold_audit_B.xlsx`; 4 nhãn theo PIPELINE §5.5), không xem dự đoán mô hình. Bước T16 (P1), không bắt buộc cho Go/No-Go.
 - Hỏi giảng viên: (1) ngưỡng 5 điểm PAIR_F1; (2) đồng ý PAIR_F1 là thước đo chính, Q3_OFFICIAL để so tài liệu.

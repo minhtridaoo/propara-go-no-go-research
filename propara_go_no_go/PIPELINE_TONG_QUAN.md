@@ -143,6 +143,8 @@ Mọi notebook **nhúng nguyên văn** các file này vào, nên notebook tự c
 | `vendor/aristo_propara_evaluator.zip` | Mã chấm **chính thức** của ProPara (allenai, Apache-2.0), giữ nguyên văn, kèm dự đoán công bố của ProStruct/ProGlobal |
 | `vendor/cgli_propara_test_outputs.tsv` | Dự đoán test **công bố** của CGLI (repo Mayer123/CGLI@9c910de, GPL-3.0), chỉ dùng làm dữ liệu để chấm |
 | `kaggle_upload/propara-raw-v1.zip` | Dữ liệu ProPara gốc, dùng khi Kaggle không bật được Internet |
+| `annotation/gold_audit_A.xlsx`, `gold_audit_B.xlsx` | File để **2 người chấm độc lập** 80 cặp vàng (4 nhãn theo PIPELINE §5.5: NHAN_QUA_RO / CHI_DUNG_CHUAN_PROPARA / KHONG_RO / CO_THE_SAI; định nghĩa chi tiết cần nhóm thống nhất). Bước T16, ưu tiên P1, không bắt buộc cho Go/No-Go |
+| `results/kaggle/` | Kết quả lấy từ Kaggle (`03.txt` = K1) |
 | `results/00_local_cpu_run/`, `results/01_local_cpu_run/` | Kết quả thật của 00, 01 (trợ lý chạy CPU) |
 | `results/03_local_pipeline_test_TINY_RANDOM_MODEL/` | Chỉ là kiểm thử luồng mã bằng mô hình ngẫu nhiên, **không phải kết quả** |
 | `reports/go_no_go_preliminary.md` | Báo cáo sơ bộ (sẽ cập nhật khi có kết quả) |

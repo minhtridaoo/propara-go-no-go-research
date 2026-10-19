@@ -1,0 +1,31 @@
+{
+ "model_id": "Qwen/Qwen2.5-7B-Instruct",
+ "model_revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+ "model_origin": "hf:Qwen/Qwen2.5-7B-Instruct@a09a35458c702b33eeacc393d103063234e8bc28",
+ "quantization": "fp16_multi_gpu",
+ "decoding": "greedy (do_sample=False, repetition_penalty=1.0)",
+ "batch_size_initial": 8,
+ "max_new_tokens_rule": "propara_llm.max_new_tokens",
+ "prompt_version": "prompt_v1",
+ "llm_version": "llm_v1",
+ "core": "core_v1",
+ "metrics": "metrics_v1",
+ "fewshot_train_ids": [
+  "1156",
+  "294"
+ ],
+ "smoke_train_ids": [
+  "796",
+  "253",
+  "782"
+ ],
+ "split": "dev",
+ "modes": [
+  "QWEN_DIRECT",
+  "QWEN_FEWSHOT",
+  "QWEN_STRUCTURED",
+  "ORACLE_PREV_STATE"
+ ],
+ "seed": 2026,
+ "limit_paras": 0
+}
