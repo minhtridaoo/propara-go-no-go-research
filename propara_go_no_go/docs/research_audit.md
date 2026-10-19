@@ -29,7 +29,7 @@
 | Lọc đồng xuất hiện: 74,7% cặp vàng, 18,9% cặp nguồn ngầm | 74,7 / 18,9 | ⚠️ chỉ khớp nếu “đồng xuất hiện” = **cùng được nhắc trong một câu bất kỳ của đoạn**; nếu hiểu là cùng câu *t* thì 66,6% / 0% |
 | n trung bình 3,9 | 3,92 | ✅ |
 | PP1 câu hỏi vị trí 188.794, thay thế 42.004 | **CHƯA TÁI HIỆN** (cần bộ tách cụm danh từ mà báo cáo dùng) | ⏸ không quan trọng cho quyết định |
-| Heuristic 74% / 33%, ngẫu nhiên-không-nhắc 59% / 42% | **CHƯA CHẠY** (notebook 01) | ⏸ |
+| Heuristic 74% / 33%, ngẫu nhiên-không-nhắc 59% / 42% | 75,1% / 32,3% và 59,6% / 41,4% (TB 20 seed, notebook 01) | ✅ khớp trong ±1,3 điểm |
 
 **Kết luận phần số liệu:** phân tích dữ liệu trong báo cáo **đáng tin và tái hiện được**. Đây là điểm mạnh của đề tài.
 
@@ -88,7 +88,7 @@
 
 ## 5. Những gì còn THIẾU để quyết định (theo 3 cửa)
 
-- Cửa 1 (bằng chứng đáng tin): thiếu bộ chấm `PAIR_F1` + `Q3_OFFICIAL` có kiểm thử (01), heuristic (01), một baseline nghiên cứu (02), **mô hình nhóm chạy được** (05–07).
+- Cửa 1 (bằng chứng đáng tin): *(cập nhật 19/10 ~23h30)* bộ chấm có kiểm thử ✅, heuristic ✅, baseline nghiên cứu ✅ (ProStruct, ProGlobal, CGLI). **Còn thiếu: kết quả mô hình nhóm** (lượt K2).
 - Cửa 2 (Qwen vượt trội?): chưa có điểm Qwen (03–04).
 - Cửa 3 (đóng góp còn không?): chưa có ablation; tính mới PP3 chưa kiểm tra (V7).
 

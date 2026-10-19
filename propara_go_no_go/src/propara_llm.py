@@ -381,6 +381,27 @@ def apply_existence_constraints(pred: dict) -> Tuple[dict, int]:
     return out, fixed
 
 
+def apply_existence_constraints_v2(pred: dict) -> Tuple[dict, int]:
+    """QWEN_CONSTRAINED_V2 (đăng ký 19/10 ~23h50, SAU khi thấy v1 làm sập PAIR_F1 trên dev, TRƯỚC khi có số của v2;
+    vẫn không dùng vàng):
+    (1) sửa TỒN TẠI BAN ĐẦU trước: thực thể có sự kiện đầu tiên là CREATE → ban đầu không tồn tại; là DESTROY/MOVE → tồn tại;
+    (2) sau đó mới áp luật v1 (nhãn còn không hợp lệ → NONE).
+    Lý do: phần lớn vi phạm của Qwen là khai 'initial' sai (sản phẩm được gán vị trí ban đầu) chứ không phải nhãn sai."""
+    labels = pred["labels"]
+    init = list(pred.get("exists_initial") or [True] * len(labels))
+    for i, row in enumerate(labels):
+        first = next((y for y in row if y != pc.NONE), None)
+        if first == pc.CREATE:
+            init[i] = False
+        elif first in (pc.DESTROY, pc.MOVE):
+            init[i] = True
+    out, fixed = apply_existence_constraints(dict(pred, exists_initial=init))
+    out["exists_initial"] = init
+    if pred.get("location_initial") is not None:
+        out["location_initial"] = [("-" if not e else (v if v != "-" else "?")) for e, v in zip(init, pred["location_initial"])]
+    return out, fixed
+
+
 def as_eval_prediction(pred: dict, pair_source: str = "labels") -> dict:
     """pair_source='labels': cặp = D̂×Ĉ (thước đo CHÍNH, tương thích định nghĩa vàng).
        pair_source='llm':    cặp = conversions LLM tự khai báo (thước đo phụ)."""

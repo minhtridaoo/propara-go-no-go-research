@@ -88,8 +88,8 @@ Không bắt buộc, vì trợ lý đã chạy và kiểm chứng cục bộ (k�
 
 ## Sửa mã (người phát triển)
 ```bash
-cd src && python -m pytest -q propara_core_tests.py propara_metrics_tests.py propara_llm_tests.py   # 45 kiểm thử
-python -c "import propara_pp4_tests as t; print(t.run_all())"   # 5 kiểm thử CRF (cần torch)
+cd src && python -m pytest -q propara_core_tests.py propara_metrics_tests.py propara_llm_tests.py   # 46 kiểm thử
+python -c "import propara_pp4_tests as t; print(t.run_all())"   # 6 kiểm thử CRF + xác suất tồn tại (cần torch)
 python tools/build_nb00.py . ; python tools/build_nb01.py . ; python tools/build_nb03.py . ; python tools/build_nb04.py . ; python tools/build_nb05.py .
 python tools/final_analysis.py --data <raw ProPara> --k1 <qwen7b_dev_v1> --k2 <pp34_v2> --k3 <qwen7b_test_v1> --out results/final
 ```

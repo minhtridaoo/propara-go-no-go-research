@@ -9,8 +9,8 @@
 | D0 Đọc + phản biện | `docs/research_audit.md`, `docs/experiment_protocol.md` (v1.1) | ✅ | G0: protocol đã khoá; ngưỡng 5 điểm **cần GV xác nhận** |
 | D1 Dữ liệu | `00_propara_data_audit.ipynb` | ✅ PASS cục bộ (Kaggle: tuỳ chọn) | G1-data ✅ |
 | D2 Bộ chấm + heuristic | `01_metrics_heuristics.ipynb` | ✅ PASS cục bộ, 0 FAIL / 0 WARN | **Cửa nghiệm thu 1 ✅** |
-| D3 Baseline bài báo | ProStruct/ProGlobal (dự đoán công bố) đã chấm trong 01; CGLI/MeeT ⬜ | 🟡 | |
-| D4 Qwen dev | `03_qwen7b_dev.ipynb` (K1) | 🟡 Luồng mã kiểm thử cục bộ bằng mô hình tí hon: OK. **Chờ bạn chạy trên Kaggle** | G2, G3 |
+| D3 Baseline bài báo | ProStruct, ProGlobal, **CGLI** (dự đoán công bố) + heuristic đầu-cuối B1-E2E đã chấm trong 01; MeeT/XPAD: tìm nhanh chưa thấy mã | ✅ | |
+| D4 Qwen dev | `03_qwen7b_dev.ipynb` (K1) | ✅ **Đã chạy trên Kaggle** (2×T4, fp16, 40 phút). Kết quả: `results/kaggle/03.txt` | G2 ✅, G3 ✅ |
 | D5 PP2/PP3/PP4 | `05_pp3_pp4_dev_cv.ipynb` (K2) | 🟡 mã xong + kiểm thử cục bộ OK. **Chờ bạn chạy Kaggle** | G4 |
 | D4/D5 test khoá | `04_qwen7b_test_locked.ipynb` (K3) + `tools/final_analysis.py` | 🟡 mã xong + kiểm thử cục bộ OK; chạy sau khi khoá từ K1 | G5 |
 | D6–D8 | 09–10 | ⬜ | G6–G7 |
@@ -44,7 +44,7 @@
     - Chẩn đoán (dùng vàng) ORACLE_MENTIONED_ONLY: 0,802 · 0,000. Thêm heuristic nhắc-gần-nhất cho ô ngầm: 0,815 · 0,385.
   - ProStruct − ProGlobal: ΔPAIR_F1 = +0,125, CI95 [+0,023; +0,240].
 - **Nhận xét:**
-  1. Hai hệ thống 2018 **không bắt được cặp ngầm nào** trên test. Đây là bằng chứng ban đầu ủng hộ khoảng trống đề tài nhắm tới (mới là mốc cũ, còn phải xem CGLI/Qwen).
+  1. *(Nhận định lúc đó; đã được điều chỉnh ở EXP-002b: CGLI 2022 có bắt được cặp nguồn ngầm 0,452, chỉ yếu ở đích ngầm 0,091.)* Hai hệ thống 2018 **không bắt được cặp ngầm nào** trên test. Đây là bằng chứng ban đầu ủng hộ khoảng trống đề tài nhắm tới (mới là mốc cũ, còn phải xem CGLI/Qwen).
   2. Q3_OFFICIAL Conversions có sàn 0,31 cho hệ thống rỗng, nên không phân biệt tốt (ProStruct 0,326 ≈ ALL_NONE). Điều này củng cố việc chọn PAIR_F1 làm thước đo chính.
   3. CI trên test rộng ±9–11 điểm, nên so sánh phải dùng bootstrap cặp + CV.
 - **Bước tiếp:** EXP-003.
@@ -58,12 +58,34 @@
 ## EXP-003: Qwen2.5-7B-Instruct trên dev (D4) · `03_qwen7b_dev.ipynb` · llm_v1 / prompt_v1 · lượt **K1**
 - **Giả thuyết:** H4. Qwen 7B không huấn luyện đạt PAIR_F1 cạnh tranh; đo riêng lát ngầm.
 - **Thiết lập (đã khoá trước khi chạy):** `Qwen/Qwen2.5-7B-Instruct@a09a354`; fp16 trên 2×T4 (hoặc nf4 nếu 1 GPU); greedy, repetition_penalty=1.0; 4 chế độ + Q3 hậu xử lý; few-shot train 294, 1156; smoke 3 đoạn train → tự chạy dev nếu Q0 ≥ 2/3 JSON hợp lệ.
-- **Trạng thái:** ✅ luồng mã đã kiểm thử cục bộ (mô hình Qwen2 tí hon trọng số ngẫu nhiên + tokenizer thật; smoke tự đánh giá KHÔNG ĐẠT đúng như kỳ vọng; chế độ ép chạy đầy đủ cũng chạy hết, lưu đủ). Độ dài prompt đo bằng tokenizer thật: Q0 ~480, few-shot ~1.700 token. ⏳ **Chờ chạy Kaggle.**
+- **Trạng thái:** ✅ **ĐÃ CHẠY TRÊN KAGGLE** (19/10, 2×Tesla T4, fp16 chia 2 GPU, torch 2.11, transformers 5.16.1). Nạp mô hình 29 s, smoke 80 s, tổng 2.375 s. Smoke 3/3 JSON hợp lệ → tự chạy dev.
+- **Kết quả dev (43 đoạn), nguồn `results/kaggle/03.txt`:**
+
+| Chế độ | PAIR_F1 [CI95] | @nguồn ngầm | @đích ngầm | IMP_ACC D / C | Vi phạm/thực thể | JSON hợp lệ | s/lời gọi (p50) | VRAM đỉnh |
+|---|---|---|---|---|---|---|---|---|
+| QWEN_DIRECT (Q0) | 0,217 [0,058–0,352] | 0,095 | 0 | 0,07 / 0,09 | 0,669 | 100% | 4,4 | 8,6 GiB |
+| QWEN_DIRECT[cặp LLM tự khai] | 0,370 [0,242–0,487] | 0,167 | 0,267 | — | — | — | — | — |
+| **QWEN_FEWSHOT (Q1)** | **0,377 [0,243–0,495]** | 0,231 | 0,118 | 0,33 / 0,09 | 0,509 | 100% | 10,0 | 10,2 GiB |
+| QWEN_STRUCTURED (Q2) | 0,318 [0,159–0,462] | 0,083 | 0,105 | 0,07 / 0,09 | 0,737 | **81,4%** | 16,3 | 9,2 GiB |
+| QWEN_CONSTRAINED (Q3 = Q0 + luật v1) | **0,033** [0–0,095] | 0 | 0 | 0,07 / 0 | 0 | — | — | — |
+| *ORACLE_PREV_STATE (Q4)* | *0,425 [0,287–0,557]* | *0,392* | *0,311* | *0,60 / 0,73* | — | 100% | 1,4 | 8,7 GiB |
+
+- Kiểm định cặp: Q1 − Q0 = **+0,160 [+0,046; +0,289]**; Q2 − Q0 = +0,101 [−0,051; +0,273]; Q3 − Q0 = −0,184 [−0,299; −0,054].
+- Điểm quyết định ngầm (18 điểm, dev): Q1 trúng 4 (khớp hẳn 3); Q4 trúng 10 (khớp hẳn 7). (So với heuristic nhắc-gần-nhất không công bằng hoàn toàn: heuristic được biết sẵn vị trí điểm quyết định.)
+- **Nhận xét:**
+  1. Hệ thống Qwen chính (quy tắc v1.2 (e)) = **QWEN_FEWSHOT**.
+  2. Qwen yếu ở phần ngầm, đặc biệt CREATE ngầm (9%).
+  3. Khi được cho tồn tại đúng trước câu (Q4), độ chính xác ô ngầm tăng mạnh (D 0,33 → 0,60; C 0,09 → 0,73). Phần lớn lỗi nằm ở **theo dõi tồn tại**, đúng chỗ ràng buộc + giải mã chung của PP4 nhắm tới.
+  4. Qwen vi phạm ràng buộc nhiều (0,5–0,7/thực thể). Luật hậu xử lý v1 xoá nhãn nên làm sập PAIR_F1 → đăng ký **luật v2** (sửa tồn tại ban đầu trước, `apply_existence_constraints_v2`). Số của v2 sẽ được tính trên dev từ dự đoán K1 (cần file zip), không gọi lại mô hình.
+  5. Q3_OFFICIAL của Qwen 0,53–0,55 ≈ mức sàn ALL_NONE 0,542 trên dev.
+  6. Q2 chỉ 81,4% JSON hợp lệ; các đoạn hỏng bị tính là toàn NONE.
+- **Quyết định (khoá):** giữ prompt_v1, không chỉnh prompt; Qwen chính = QWEN_FEWSHOT; K3 thêm Qwen chính chạy train (CV 486 đoạn) + hậu xử lý v2.
+- **Cần thêm:** file `qwen7b_dev_v1.zip` (tab Output của phiên bản K1) để phân tích lỗi từng đoạn và chấm v2 trên dev.
 - **Điều kiện hoàn thành:** smoke đạt; dev chạy đủ 4 chế độ; JSON hợp lệ ≥ 90% ở Q0 (nếu thấp hơn thì sửa prompt **trên dev** → prompt_v2 và ghi log).
 - **Bước tiếp sau K1:** phân tích lỗi Qwen trên dev → khoá prompt → viết K2 (PP4/M0–M3, CV) → K3 (test một lần).
 
 ## EXP-004: Mô hình nhóm PP2/PP3/PP4 + ablation + CV (D5) · `05_pp3_pp4_dev_cv.ipynb` · pp3_v2, pp4_v1, robust_v1 · lượt **K2**
-- **Giả thuyết:** H1 (PP2 với tồn tại dự đoán), H2 (E(X,Y) giúp lát ngầm: M3 vs M3-no-E vs M2r), H3 (M3 vs M0c trên lát ngầm, CV).
+- **Giả thuyết:** H1 (PP2 với tồn tại dự đoán, đo theo công thức (11) bằng xác suất + ngưỡng τ1/τ2, xem EXP-004b), H2 (E(X,Y) giúp lát ngầm: M3 vs M3-no-E vs M2r), H3 (M3 vs M0c trên lát ngầm, CV).
 - **Thiết lập (khoá, protocol v1.2 f–k):**
   - PP4 = RoBERTa-base + BiLSTM + φ (MLP) + ψ = wᵀ[log E, m_i, m_j, d_i, cos, 1].
   - CRF **chính xác** trên 2^n trạng thái tồn tại (n ≤ 8).
@@ -71,7 +93,7 @@
   - 6 hệ thống × 3 seed; CV 5 phần (M0c, M3).
   - Test và NONCE-test lưu kín.
 - **Kiểm chứng đã làm (cục bộ):**
-  - CRF: log Z và Viterbi **khớp liệt kê vét cạn** (5/5 kiểm thử). Đoạn lớn nhất (n=8, T=10): nll+backward 0,06 s trên GPU laptop RTX A2000 (chưa đo trên Kaggle).
+  - CRF: log Z và Viterbi **khớp liệt kê vét cạn** (5/5 kiểm thử lúc đó; nay 6/6 sau khi thêm kiểm thử xác suất tồn tại). Đoạn lớn nhất (n=8, T=10): nll+backward 0,06 s trên GPU laptop RTX A2000 (chưa đo trên Kaggle).
   - Phép thử học thuộc 8 đoạn: loss 1,36 → 0,002, PAIR_F1 = 1,0 (M0 và CRF).
   - Toàn notebook chạy hết với encoder tí hon + 5 MB WikiHow thật.
   - Trích cặp WikiHow bản regex (pp3_v1) cho nhiều cặp rác, nên đổi sang **pp3_v2 theo từ loại** (NLTK). Thời gian trích toàn bộ WikiHow **ngoại suy** từ mẫu 5 MB (0,6 s) ra khoảng 1–2 phút, chưa đo trên toàn bộ.

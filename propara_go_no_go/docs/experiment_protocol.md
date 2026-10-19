@@ -1,6 +1,6 @@
 # experiment_protocol.md — Đề cương thực nghiệm (khoá trước khi chạy mô hình)
 
-**Phiên bản:** protocol_v1.4 · 19/10/2026 · Trạng thái: **KHOÁ cho Giai đoạn 1–4**.
+**Phiên bản:** protocol_v1.5 · 19/10/2026 · Trạng thái: **KHOÁ cho Giai đoạn 1–4**.
 
 > **v1.1 (19/10, trước khi có bất kỳ điểm Qwen nào):**
 > (a) Với LLM, cặp dùng cho `PAIR_F1` chính = **D̂×Ĉ suy từ nhãn LLM** (cùng định nghĩa với vàng, áp dụng như nhau cho mọi hệ thống). Conversions LLM tự khai báo được báo cáo riêng là `PAIR_F1[llm_pairs]`.
@@ -20,6 +20,10 @@
 >   - Thêm **đầu dự đoán vị trí** cho mọi biến thể PP4 (§4.3 báo cáo): ứng viên = cụm danh từ trong đoạn + '?', L_total = L_PP4 + 1·L_vị_trí.
 >   - **PP2 đo theo công thức (11)** bằng xác suất tồn tại (biên CRF) trên lưới τ1 ∈ {0,01; 0,05; 0,1; 0,2; 0,3; 0,5} × τ2 ∈ {0,5; 0,7; 0,8; 0,9; 0,95; 0,99} trên dev. **Điểm vận hành khoá:** τ1 = 0,1, τ2 = 0,9. H1 đạt nếu phủ cặp vàng ≥ 95% và giữ ≤ 50% ứng viên.
 >   - Giới hạn (k) cũ (không có đầu vị trí) **không còn**.
+> (n) **v1.5 (19/10 ~23h55, SAU khi có kết quả DEV của Qwen, TRƯỚC mọi kết quả test):**
+>   - Qwen chính = **QWEN_FEWSHOT** (theo quy tắc (e)). prompt_v1 **giữ nguyên**, không chỉnh prompt.
+>   - Thêm `QWEN_CONSTRAINED_V2`: sửa tồn tại ban đầu trước, rồi áp luật v1. Lý do: v1 làm sập PAIR_F1 dev (0,217 → 0,033). Luật v2 được viết **trước khi** có số của nó. Báo cáo cả v1 lẫn v2.
+>   - K3 cho Qwen chính chạy cả **train** (trừ 2 đoạn few-shot 294, 1156) để so với M3 trong CV gộp **486 đoạn**: paired bootstrap ΔPAIR_F1 tổng và các lát ngầm.
 > (k) **Giới hạn đã biết (cũ, đã được (m) thay thế):** mô hình nhóm chưa có đầu dự đoán vị trí (xuất '?'), nên PAIR_LOC_F1 và Q3_OFFICIAL của mô hình nhóm thấp hơn thực chất. Thước đo chính PAIR_F1 không bị ảnh hưởng. Mọi thay đổi phải tăng phiên bản và ghi vào `EXPERIMENT_LOG.md` kèm lý do. **Tuyệt đối không thay đổi sau khi đã thấy điểm test.**
 
 Các mục đánh dấu **[cần GV xác nhận]** là đề xuất của nhóm. Nhóm cứ tiến hành theo đề xuất; nếu giảng viên đổi thì tăng phiên bản trước khi mở test.
@@ -82,15 +86,15 @@ Các mục đánh dấu **[cần GV xác nhận]** là đề xuất của nhóm.
 | Mã | Hệ thống | Ghi chú |
 |---|---|---|
 | H-RAND, H-RAND-UNM, H-NEAREST | Heuristic điểm quyết định (tr.3 báo cáo), 20 seed | 01 |
-| H-ALLNONE, H-COPYMENTION | Heuristic đầu-cuối xuất đủ lưới hành động (để chạy được Q3_OFFICIAL) | 01, kiểm tra luồng |
-| B-CGLI (ưu tiên), B-MeeT, B-ProStruct | Tái hiện nếu có mã + trọng số; nếu không thì ghi “trích bài báo, không so trực tiếp” | 02 |
+| H-ALLNONE, **B1-E2E** (`B1_E2E_RULE+NEAREST`, `B1_E2E_RULE_ONLY`) | Hệ thống rỗng (kiểm tra luồng) + heuristic đầu-cuối không dùng vàng (luật từ khoá + nhắc gần nhất). *(Bản trước ghi `H-COPYMENTION`: hệ thống này **không được làm**, đã thay bằng B1-E2E.)* | 01 |
+| B-ProStruct, B-ProGlobal, **B-CGLI** | Chấm lại **file dự đoán test công bố** bằng cùng bộ chấm (không huấn luyện lại; chỉ có trên test). MeeT/XPAD: chưa có dự đoán → chỉ trích số bài báo, ghi “không so trực tiếp” | 01 |
 | QWEN_DIRECT (Q0) | Qwen2.5-7B-Instruct, zero-shot, xuất JSON đủ lưới + cặp | 03→04 |
 | QWEN_FEWSHOT (Q1) | + 3 ví dụ cố định từ train | 04 |
 | QWEN_STRUCTURED (Q2) | tồn tại trước → nhãn → vị trí → cặp | 04 |
 | QWEN_CONSTRAINED (Q3) | Q0 + hậu xử lý luật tồn tại (không dùng vàng) | 04 |
 | ORACLE_PREV_STATE (Q4) | Cho tồn tại vàng **trước** câu t; **ORACLE, bảng riêng**. Thay cho “cho trạng thái vàng” (vô nghĩa với vàng D×C, audit V2) | 04 |
 | PP1_SAMPLE | Logit Yes/No trên một mẫu dev, chỉ khi còn quota | tuỳ chọn |
-| M0 / M0c / M1 / M2 / M2r / M3 / M3-no-E / M3-no-pair | Như PIPELINE §9.2, cùng encoder roberta-base | 05–08 |
+| M0, M0c, CRF_NOPAIR (M3-no-pair), CRF_NOE (M3-no-E), CRF_RANDE (M2r), CRF_FULL (M3); M1 = PP2 đo bằng lưới τ1/τ2 | Cùng encoder roberta-base, cùng đầu vị trí. Khác PIPELINE §9.2: **M2** (M1 + E nhưng không giải mã chung) **không làm**, vì điểm cặp ψ chỉ có nghĩa trong giải mã chung; **M2r** ở đây là M3 với log E xáo trộn (vẫn tách được “thêm đặc trưng” với “tri thức hữu ích”); **M3-beam/exact** không cần vì n ≤ 8 nên luôn giải mã chính xác | 05 (gộp, lượt K2) |
 
 Cấu hình Qwen (khoá ở notebook 03 sau smoke test): `Qwen/Qwen2.5-7B-Instruct`, ghi revision hash; 4-bit nf4 (bitsandbytes) nếu fp16 không vừa một GPU; chat template chuẩn; temperature 0; `max_new_tokens` đủ cho đoạn dài nhất (đo trên train). Một đoạn = một lời gọi.
 

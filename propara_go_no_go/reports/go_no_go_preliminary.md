@@ -1,6 +1,6 @@
 # Báo cáo Go/No-Go SƠ BỘ: “Ghép cặp chuyển đổi thực thể – dự đoán thay đổi trạng thái ngầm”
 
-**Ngày:** 19/10/2026 · **Trạng thái:** sơ bộ, chưa phải quyết định cuối · **Nguồn số liệu:** notebook 00, 01 (chạy CPU, mã và đầu ra trong `propara_go_no_go/`), notebook 03 (Qwen, Kaggle) *[điền sau K1]*.
+**Ngày:** 19/10/2026 (cập nhật ~23h30) · **Trạng thái:** sơ bộ, chưa phải quyết định cuối · **Nguồn số liệu:** notebook 00, 01 (chạy CPU, mã và đầu ra trong `propara_go_no_go/`), notebook 03 (Qwen, Kaggle) *[điền sau K1]*.
 
 Ký hiệu nguồn: **[BC]** = báo cáo 16/10 · **[ĐO]** = nhóm tự đo · **[CÔNG BỐ]** = dự đoán do tác giả bài báo công bố, nhóm chấm lại bằng cùng bộ chấm.
 
@@ -50,31 +50,34 @@ Kiểm tra thêm: nhãn suy ra **trùng 100%** với đáp án của bộ chấm
 - **Một hệ thống “mù ngầm” dù hoàn hảo cũng chỉ đạt khoảng 0,80 PAIR_F1.** Phần còn lại (khoảng 20 điểm) và **toàn bộ** lát cặp ngầm là nơi đề tài có thể đóng góp.
 - Heuristic đơn giản chỉ lấy lại được một phần của khoảng này.
 
-## 5. Qwen2.5-7B-Instruct trên DEV *[ĐIỀN SAU LƯỢT K1]*
+## 5. Qwen2.5-7B-Instruct trên DEV (đã chạy trên Kaggle, K1)
 
-Thiết lập đã khoá trước khi chạy: `Qwen/Qwen2.5-7B-Instruct@a09a354`, giải mã tham lam, prompt_v1; ví dụ few-shot chỉ lấy từ train; **không** dùng tập test.
+Thiết lập đã khoá trước khi chạy: `Qwen/Qwen2.5-7B-Instruct@a09a354`, fp16 trên 2×T4, giải mã tham lam, prompt_v1; ví dụ few-shot chỉ lấy từ train; **không** dùng tập test.
 
-| Chế độ | PAIR_F1 [CI95] | @nguồn ngầm | @đích ngầm | Đúng DESTROY ngầm | Đúng CREATE ngầm | Vi phạm tồn tại | JSON hợp lệ | Thời gian/đoạn |
-|---|---:|---:|---:|---:|---:|---:|---:|---:|
-| Mốc dev: ALL_NONE | 0,000 | 0 | 0 | 0 | 0 | 0 | — | — |
-| Mốc dev: mù ngầm (chẩn đoán) | 0,779 [0,617–0,897] | 0 | 0 | 0 | 0 | — | — | — |
-| Qwen trực tiếp (Q0) | CHƯA CHẠY | | | | | | | |
-| Qwen có ví dụ (Q1) | CHƯA CHẠY | | | | | | | |
-| Qwen từng bước (Q2) | CHƯA CHẠY | | | | | | | |
-| Qwen + ràng buộc (Q3) | CHƯA CHẠY | | | | | | | |
-| *ORACLE: biết trạng thái vàng trước câu (Q4)* | CHƯA CHẠY | | | | | | | |
+| Chế độ (dev, 43 đoạn) | PAIR_F1 [CI95] | Nguồn ngầm | Đích ngầm | Đúng DESTROY / CREATE ngầm | Vi phạm tồn tại/thực thể | JSON hợp lệ | s/đoạn (p50) |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Mốc: ALL_NONE | 0,000 | 0 | 0 | 0 / 0 | 0 | — | — |
+| Mốc: mù ngầm (chẩn đoán, dùng vàng) | 0,779 [0,617–0,897] | 0 | 0 | 0 / 0 | — | — | — |
+| Heuristic đầu-cuối B1-E2E | 0,088 [0,017–0,184] | — | — | — | — | — | — |
+| Qwen Q0 trực tiếp | 0,217 [0,058–0,352] | 0,095 | 0 | 7% / 9% | 0,67 | 100% | 4,4 |
+| **Qwen Q1 có ví dụ (hệ thống Qwen chính)** | **0,377** [0,243–0,495] | 0,231 | 0,118 | 33% / 9% | 0,51 | 100% | 10,0 |
+| Qwen Q2 từng bước | 0,318 [0,159–0,462] | 0,083 | 0,105 | 7% / 9% | 0,74 | 81% | 16,3 |
+| Qwen Q3 = Q0 + luật tồn tại v1 | 0,033 [0–0,095] | 0 | 0 | 7% / 0% | 0 | — | — |
+| *ORACLE Q4: biết tồn tại đúng trước câu* | *0,425* [0,287–0,557] | *0,392* | *0,311* | *60% / 73%* | — | 100% | 1,4 |
 
-*Nhận xét: [điền sau K1, phân tích theo 3 câu hỏi dưới đây]*
-- Qwen có bắt được cặp ngầm không? Hơn hay kém heuristic nhắc-gần-nhất bao nhiêu?
-- Lỗi chính của Qwen nằm ở theo dõi tồn tại, ở nhãn ngầm, hay ở định dạng?
-- Khi được cho trạng thái đúng (Q4), Qwen cải thiện bao nhiêu? Đây là phần lỗi mà một mô hình theo dõi trạng thái tốt có thể sửa.
+**Nhận xét (chỉ trên dev, chưa phải kết luận):**
+- Ví dụ few-shot giúp rõ: Q1 − Q0 = +0,160 [+0,046; +0,289].
+- **Qwen 7B rất yếu ở thay đổi ngầm**, nhất là CREATE ngầm (9%).
+- **Khi được cho biết tồn tại đúng trước câu, Qwen gán nhãn ngầm tốt hơn hẳn** (DESTROY 33% → 60%, CREATE 9% → 73%). Phần lớn lỗi của Qwen nằm ở **theo dõi trạng thái tồn tại**. Đây đúng là thứ mà ràng buộc tồn tại + giải mã chung của PP4 nhắm tới. Đây là **tín hiệu ủng hộ** hướng của đề tài, nhưng phải chờ M3 (K2) để biết PP4 có thực sự làm tốt hơn không.
+- Qwen vi phạm ràng buộc tồn tại thường xuyên. Sửa theo kiểu “xoá nhãn sai” làm mất hầu hết các cặp, nên đã đăng ký luật sửa v2 (sửa tồn tại ban đầu trước).
+- So sánh với CGLI (0,545) **chưa làm được**: CGLI chỉ có số trên test, còn Qwen hiện mới có dev. K3 sẽ cho số test của Qwen.
 
 ## 6. Đối chiếu 3 cửa quyết định (protocol §7)
 
 | Cửa | Câu hỏi | Trạng thái |
 |---|---|---|
-| 1. Bằng chứng đáng tin? | Cùng dữ liệu, cùng bộ chấm, có heuristic + baseline, có kết quả mô hình nhóm | 🟡 Dữ liệu + bộ chấm + 2 baseline ✅. **Thiếu kết quả mô hình nhóm** |
-| 2. Qwen vượt trội rõ, ổn định? | Hơn ≥ 5 điểm PAIR_F1 và cả ở lát ngầm, CI không chứa 0, vững với đổi tên/diễn đạt | ⬜ *[sau K1: chỉ có dev; cần test + biến thể]* |
+| 1. Bằng chứng đáng tin? | Cùng dữ liệu, cùng bộ chấm, có heuristic + baseline, có kết quả mô hình nhóm | 🟡 Dữ liệu + bộ chấm + heuristic (B1, B1-E2E) + 3 baseline công bố (ProStruct, ProGlobal, CGLI) ✅. **Thiếu kết quả mô hình nhóm** |
+| 2. Qwen vượt trội rõ, ổn định? | Hơn ≥ 5 điểm PAIR_F1 và cả ở lát ngầm, CI không chứa 0, vững với đổi tên/diễn đạt | 🟡 Mới có dev: Qwen chính 0,377, rất yếu ở ngầm. Cần test (K3), CV 486 đoạn và M3 (K2) |
 | 3. PP2–PP4 còn đóng góp? | Ablation, chi phí, tính mới | ⬜ chưa huấn luyện |
 
 → Vì chưa qua Cửa 1, **chưa được phép kết luận bỏ**. Theo quy tắc đã khoá, kết luận là **INCONCLUSIVE**.

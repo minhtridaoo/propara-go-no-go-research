@@ -63,6 +63,13 @@ def main():
             p = K1 / "predictions" / f"dev_{m}.jsonl"
             if p.exists():
                 qwen_dev[m] = score(m, {k: clean(v) for k, v in load_jsonl(p).items()}, recs["dev"], "dev", "K1")
+        # hậu xử lý v2 (đăng ký sau K1, trước khi có số) chấm trên dev từ dự đoán K1, không gọi lại mô hình
+        for base, nm in (("QWEN_DIRECT", "QWEN_CONSTRAINED_V2"), ("QWEN_FEWSHOT", "QWEN_CONSTRAINED_V2_FS")):
+            p = K1 / "predictions" / f"dev_{base}.jsonl"
+            if p.exists():
+                raw = {k: {kk: vv for kk, vv in v.items() if kk != "diag"} for k, v in load_jsonl(p).items()}
+                qwen_dev[nm] = score(nm, {k: pl.as_eval_prediction(pl.apply_existence_constraints_v2(v)[0]) for k, v in raw.items()},
+                                     recs["dev"], "dev", "K1 + hậu xử lý v2")
         cand = {m: r["PAIR@all"]["F1"] for m, r in qwen_dev.items() if m in E2E_QWEN}
         best_qwen = max(cand, key=cand.get) if cand else None
         R["best_qwen_by_dev"] = best_qwen
@@ -118,6 +125,39 @@ def main():
             if best_qwen and (best_qwen, False) in qwen_test:
                 d = pm.paired_bootstrap_pair_f1(qwen_test[(best_qwen, False)], cgli, sl, n_boot=a.n_boot)
                 comp[f"QWEN[{best_qwen}]-CGLI@{sl}"] = {"delta_mean": d["delta"], "per_seed": [d]}
+    # CV 488 đoạn: Qwen chính (train từ K3 + dev từ K1 + test từ K3) so với M3 / M0c (dự đoán CV gộp của K2)
+    if a.k1 and a.k2 and a.k3 and best_qwen:
+        FS_IDS = {"294", "1156"}                       # 2 đoạn few-shot: loại khỏi so sánh
+        qall = {}
+        for p in (Path(a.k3) / f"train_{best_qwen}.jsonl", Path(a.k1) / "predictions" / f"dev_{best_qwen}.jsonl",
+                  Path(a.k3) / "sealed_predictions" / f"test_{best_qwen}.jsonl"):
+            if p.exists():
+                qall.update({k: clean(v) for k, v in load_jsonl(p).items()})
+        if not (Path(a.k3) / f"train_{best_qwen}.jsonl").exists():
+            R["notes"].append(f"CẢNH BÁO: K3 không có dự đoán train cho {best_qwen} → CV-pool chỉ gồm dev+test")
+            print(R["notes"][-1])
+        cvj = Path(a.k2) / "state" / "cv.json"
+        if cvj.exists() and qall:
+            cv = json.loads(cvj.read_text(encoding="utf-8"))
+            allrecs = [r for sp in ("train", "dev", "test") for r in recs[sp]]
+            def pooled(nm):
+                d = {}
+                for f in range(5):
+                    d.update(cv.get(f"{nm}|fold{f}", {}))
+                return d
+            m3cv, m0ccv = pooled("CRF_FULL") or pooled("CRF_NOE"), pooled("M0c")
+            common = [r for r in allrecs if r["paragraph_id"] in qall and r["paragraph_id"] in m3cv and r["paragraph_id"] in m0ccv
+                      and r["paragraph_id"] not in FS_IDS]
+            if common:
+                rq = score(f"{best_qwen} (CV-pool)", {r["paragraph_id"]: qall[r["paragraph_id"]] for r in common}, common, "cv488", "K1+K3")
+                rm3 = score("M3 (CV-pool)", {r["paragraph_id"]: m3cv[r["paragraph_id"]] for r in common}, common, "cv488", "K2 CV")
+                rm0 = score("M0c (CV-pool)", {r["paragraph_id"]: m0ccv[r["paragraph_id"]] for r in common}, common, "cv488", "K2 CV")
+                for sl in ("all", "any_implicit", "src_implicit", "tgt_implicit"):
+                    d = pm.paired_bootstrap_pair_f1(rq, rm3, sl, n_boot=a.n_boot)
+                    comp[f"CV488 QWEN[{best_qwen}]-M3@{sl}"] = {"delta_mean": d["delta"], "per_seed": [d]}
+                    d = pm.paired_bootstrap_pair_f1(rm3, rm0, sl, n_boot=a.n_boot)
+                    comp[f"CV488 M3-M0c@{sl}"] = {"delta_mean": d["delta"], "per_seed": [d]}
+                R["cv488_n_paragraphs"] = len(common)
     R["comparisons_test"] = comp
     # --- Áp quy tắc §7 (mô tả từng điều kiện; kết luận cuối do người viết báo cáo xác nhận)
     cv_b = R.get("k2_cv_bootstrap") or {}

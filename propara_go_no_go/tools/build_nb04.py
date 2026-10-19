@@ -35,7 +35,8 @@ code = lambda s: cells.append(nbf.v4.new_code_cell(s.strip("\n")))
 md(r"""
 # 04: Qwen2.5-7B-Instruct trên TEST (cấu hình đã khoá) + biến thể đổi tên NONCE · lượt Kaggle **K3**
 
-**Chỉ chạy SAU KHI trợ lý xác nhận đã khoá cấu hình từ kết quả K1** (`config_locked_candidate.json`; prompt `prompt_v1` trừ khi log ghi khác).
+**Cấu hình ĐÃ KHOÁ sau K1 (19/10):** prompt `prompt_v1` giữ nguyên; **Qwen chính = `QWEN_FEWSHOT`** (PAIR_F1 dev 0,377, cao nhất trong các chế độ đầu-cuối). Thêm: Qwen chính chạy cả **train** (trừ 2 đoạn few-shot) để so với M3 trong CV 488 đoạn; hậu xử lý `QWEN_CONSTRAINED_V2` (sửa tồn tại ban đầu trước).
+Thời gian **ước tính** từ số đo K1: test 4 chế độ ≈ 45–55 phút, NONCE ≈ 25 phút, train ≈ 60 phút → tổng khoảng 2–2,5 giờ.
 
 - Test: chạy mọi chế độ đã khoá; đầu ra được **lưu kín, KHÔNG chấm trong notebook**. Trợ lý chấm một lần trên CPU sau khi khoá.
 - NONCE (đổi tên thực thể bằng từ vô nghĩa, nhãn giữ nguyên): dev được chấm công khai; test lưu kín.
@@ -48,8 +49,11 @@ code(C.cfg_header("qwen7b_test_v1", extra=r'''
 MODEL_ID       = os.environ.get("PROPARA_LLM_MODEL_ID", "Qwen/Qwen2.5-7B-Instruct")
 MODEL_REVISION = os.environ.get("PROPARA_LLM_REVISION", "a09a35458c702b33eeacc393d103063234e8bc28")
 EXPECT_7B      = os.environ.get("PROPARA_EXPECT_7B", "1") == "1"
+# CẤU HÌNH ĐÃ KHOÁ sau K1 (19/10): prompt_v1 giữ nguyên; Qwen chính = QWEN_FEWSHOT (PAIR_F1 dev cao nhất, quy tắc protocol v1.2 (e))
+PRIMARY_MODE   = "QWEN_FEWSHOT"
 TEST_MODES     = ["QWEN_DIRECT", "QWEN_FEWSHOT", "QWEN_STRUCTURED", "ORACLE_PREV_STATE"]   # khoá theo protocol §6
 NONCE_MODES    = ["QWEN_DIRECT", "QWEN_FEWSHOT"]
+RUN_TRAIN_FOR_CV = os.environ.get("PROPARA_RUN_TRAIN", "1") == "1"   # Qwen chính chạy cả train (trừ 2 đoạn few-shot) để so với M3 trong CV 488 đoạn
 LIMIT_PARAS    = int(os.environ.get("PROPARA_LIMIT_PARAS", "0"))
 N_BOOT         = 10000
 '''))
@@ -64,6 +68,9 @@ _fs_ids = {r["paragraph_id"] for r in FEWSHOT}
 _raws = {sp: pc.load_jsonl(str(RAW[f"grids.v1.{sp}.json"])) for sp in ("dev", "test")}
 NONCE = pr.nonce_records(_raws, TOPICS)
 TARGETS = {"test": BY_SPLIT["test"], "nonce_dev": NONCE["dev"], "nonce_test": NONCE["test"]}
+if RUN_TRAIN_FOR_CV:
+    TARGETS["train"] = [r for r in BY_SPLIT["train"] if r["paragraph_id"] not in _fs_ids]
+MODES_BY_TARGET = {"test": TEST_MODES, "nonce_dev": NONCE_MODES, "nonce_test": NONCE_MODES, "train": [PRIMARY_MODE]}
 if LIMIT_PARAS:
     TARGETS = {k: v[:LIMIT_PARAS] for k, v in TARGETS.items()}
 print({k: len(v) for k, v in TARGETS.items()}, "| few-shot:", sorted(_fs_ids))
@@ -83,15 +90,18 @@ if not SMOKE_OK and os.environ.get("PROPARA_RUN_FULL", "auto") != "force":
     raise RuntimeError("Smoke không đạt — dừng để không tốn GPU. Gửi output cho trợ lý.")
 PREDS, DIAGS, SEC = {}, {}, {}
 for tgt, recs in TARGETS.items():
-    for mode in (TEST_MODES if tgt == "test" else NONCE_MODES):
+    for mode in MODES_BY_TARGET[tgt]:
         t0 = time.time()
         raw = generate_all(items_for(recs, mode), f"{tgt}_{mode}")
         PREDS[(tgt, mode)], DIAGS[(tgt, mode)] = predictions_for(recs, mode, raw)
         SEC[f"{tgt}|{mode}"] = round(time.time() - t0, 1)
         print(f"{tgt} {mode}: {SEC[f'{tgt}|{mode}']}s")
-    if tgt == "test" or tgt == "nonce_test" or tgt == "nonce_dev":
-        if (tgt, "QWEN_DIRECT") in PREDS:
-            PREDS[(tgt, "QWEN_CONSTRAINED")] = {pid: pl.apply_existence_constraints(p)[0] for pid, p in PREDS[(tgt, "QWEN_DIRECT")].items()}
+    # hậu xử lý (không gọi lại mô hình, không dùng vàng): v1 = luật gốc; v2 = sửa tồn tại ban đầu trước (đăng ký sau K1)
+    for base in ("QWEN_DIRECT", PRIMARY_MODE):
+        if (tgt, base) in PREDS:
+            suf = "" if base == "QWEN_DIRECT" else "_FS"
+            PREDS[(tgt, "QWEN_CONSTRAINED" + suf)] = {pid: pl.apply_existence_constraints(p)[0] for pid, p in PREDS[(tgt, base)].items()}
+            PREDS[(tgt, "QWEN_CONSTRAINED_V2" + suf)] = {pid: pl.apply_existence_constraints_v2(p)[0] for pid, p in PREDS[(tgt, base)].items()}
 ''')
 md("## 8. Chấm NONCE-dev (công khai); test và NONCE-test chỉ lưu kín")
 code(r'''
@@ -112,7 +122,7 @@ def jdump(obj, path):
     Path(path).write_text(json.dumps(obj, indent=1, ensure_ascii=False, default=str), encoding="utf-8")
 S = OUT / "sealed_predictions"; S.mkdir(exist_ok=True)
 for (tgt, mode), preds in PREDS.items():
-    d = S if tgt != "nonce_dev" else OUT
+    d = S if tgt in ("test", "nonce_test") else OUT
     with open(d / f"{tgt}_{mode}.jsonl", "w", encoding="utf-8") as f:
         for pid, p in preds.items():
             f.write(json.dumps(dict(p, diag=DIAGS.get((tgt, mode), {}).get(pid)), ensure_ascii=False) + "\n")

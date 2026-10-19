@@ -125,6 +125,19 @@ def test_fewshot_prompt_has_examples_then_target():
     assert [m["role"] for m in msgs] == ["system", "user", "assistant", "user"]
 
 
+def test_constraint_v2_fixes_initial_existence_first():
+    rec = _rec()
+    # Qwen khai sugar tồn tại từ đầu nhưng lại CREATE ở câu 2 → v1 xoá CREATE, v2 sửa tồn tại ban đầu và giữ CREATE
+    pred = {"paragraph_id": "t1", "labels": [[pc.NONE, pc.DESTROY, pc.NONE], [pc.NONE, pc.DESTROY, pc.NONE],
+                                             [pc.NONE, pc.CREATE, pc.MOVE], [pc.NONE] * 3],
+            "exists_initial": [True, True, True, True]}
+    v1, _ = pl.apply_existence_constraints(pred)
+    v2, _ = pl.apply_existence_constraints_v2(pred)
+    assert v1["labels"][2][1] == pc.NONE and v2["labels"][2][1] == pc.CREATE
+    assert v2["exists_initial"][2] is False
+    assert pc.count_constraint_violations(v2["labels"], v2["exists_initial"])[0] == 0
+
+
 def run_all(verbose=True):
     names = sorted(n for n in globals() if n.startswith("test_"))
     failed = []

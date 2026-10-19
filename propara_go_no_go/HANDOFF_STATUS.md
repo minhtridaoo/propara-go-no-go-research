@@ -22,8 +22,8 @@
 
 **Phương án dự phòng:** nếu K1 lỗi hoặc không kịp (ví dụ hết quota GPU, tài khoản chưa xác minh số điện thoại), vẫn nộp được báo cáo sơ bộ ở trạng thái hiện tại:
 - dữ liệu và bộ chấm đã kiểm chứng;
-- 2 baseline gốc chấm cùng bộ chấm;
-- bằng chứng "phương pháp cũ bắt được 0 cặp ngầm";
+- heuristic (B1, B1-E2E) và 3 baseline công bố (ProStruct, ProGlobal, CGLI) chấm cùng bộ chấm;
+- bằng chứng: hai hệ thống 2018 bắt 0 cặp ngầm; CGLI 2022 bắt được cặp nguồn ngầm (0,452) nhưng rất yếu ở **đích ngầm (0,091)**;
 - kết luận **INCONCLUSIVE**, kèm kế hoạch các bước tiếp.
 
 Đây vẫn là câu trả lời trung thực cho yêu cầu của giảng viên.
@@ -37,9 +37,9 @@
 [✅] D1 Dữ liệu (NB00): PASS
 [✅] D2 Bộ chấm + heuristic (NB01): PASS (Cửa nghiệm thu 1)
 [✅] D3 Baseline: heuristic B1a/b/c ✅ · heuristic đầu-cuối B1-E2E ✅ · ProStruct/ProGlobal ✅ · **CGLI ✅** (chấm file dự đoán công bố) · MeeT/XPAD: chưa có mã công khai
-[🟡] D4 Qwen dev: NB03 = K1 ← BẠN CHẠY NGAY
-[🟡] D5 PP3 + PP4 + ablation + CV: NB05 = K2 ← mã xong, đang kiểm thử cục bộ; bạn chạy SAU K1 (hoặc song song nếu tài khoản cho 2 phiên GPU)
-[🟡] D6 Test khoá + đổi tên: NB04 = K3 ← mã xong; chạy SAU khi trợ lý xác nhận khoá prompt từ K1
+[✅] D4 Qwen dev: NB03 = K1 ← **đã chạy** (Qwen chính = QWEN_FEWSHOT, PAIR_F1 dev 0,377)
+[🟡] D5 PP3 + PP4 + ablation + CV: NB05 = K2 ← **bản `pp34_v2`** (có đầu vị trí, PP2 theo τ1/τ2, checkpoint), đã kiểm thử cục bộ; bạn chạy song song hoặc sau K1
+[🟡] D6 Test khoá + đổi tên: NB04 = K3 ← **ĐÃ KHOÁ, bạn chạy được ngay** (thêm Qwen chạy train cho CV + hậu xử lý v2; ước tính 2–2,5 giờ)
 [⬜] D7 Chấm test (đã lưu kín), thống kê, biểu đồ, so bài báo: trợ lý làm trên CPU khi có output K1+K2+K3
 [⬜] D8 Báo cáo Go/No-Go cuối: trợ lý viết, bạn duyệt
 ```
@@ -79,7 +79,7 @@ Sau K3, trợ lý tự làm phần còn lại (D7–D8) trên CPU, khoảng 1–
 |---|---|---|---|
 | 19/10 ~02:30 | Trợ lý | Đọc 4 tài liệu, tải ProPara + evaluator chính thức, viết research_audit + protocol | ✅ 14/14 nhóm số liệu của báo cáo tái hiện được; phát hiện Q3 của báo cáo ≠ Q3 chính thức |
 | 19/10 ~02:45 | Trợ lý | NB00 kiểm tra dữ liệu (chạy cục bộ) | ✅ PASS |
-| 19/10 ~12:45 | Trợ lý | NB01 bộ chấm + heuristic + ProStruct/ProGlobal (chạy cục bộ) | ✅ PASS; 2 phương pháp gốc bắt 0 cặp ngầm |
+| 19/10 ~12:45 | Trợ lý | NB01 bộ chấm + heuristic + ProStruct/ProGlobal (chạy cục bộ) | ✅ PASS; 2 phương pháp 2018 bắt 0 cặp ngầm (sau đó CGLI cho thấy khác, xem dòng ~22:25) |
 | 19/10 ~12:50 | Trợ lý | NB03 Qwen dev: viết + kiểm thử luồng bằng mô hình tí hon | ✅ sẵn sàng cho Kaggle |
 | 19/10 ~13:30 | Trợ lý | Viết HANDOFF_STATUS + bản nháp báo cáo sơ bộ | ✅ |
 | 19/10 ~22:55 | Trợ lý | Tự đối chiếu với báo cáo PDF (DOI_CHIEU_BAO_CAO.md); sửa 2 thiếu sót mức Cao: đầu dự đoán vị trí + PP2 theo τ1/τ2 | ✅ K2 bản mới đã kiểm thử; **dùng bản mới khi chạy K2** |
@@ -88,4 +88,7 @@ Sau K3, trợ lý tự làm phần còn lại (D7–D8) trên CPU, khoảng 1–
 | 19/10 ~14:00 | Trợ lý | PP4: CRF chính xác (kiểm thử khớp liệt kê vét cạn), RoBERTa+BiLSTM, 6 biến thể; PP3: trích mẫu WikiHow + E(X,Y); biến thể đổi tên NONCE; NB05 (K2), NB04 (K3) | 🟡 đang kiểm thử cục bộ |
 | 19/10 ~23:10 | Trợ lý | Tự rà soát “có bịa không”: sửa bảng đếm sai trong DOI_CHIEU, E0 chỉ khớp khi gộp, số bài WikiHow chưa kiểm chứng (bài gốc ghi >230k), năm bài KOALA, mốc giờ work log, ghi rõ máy đo tốc độ | ✅ |
 | 19/10 ~23:20 | Trợ lý | Đổi tên output K2 thành `pp34_v2` (bản có đầu vị trí + PP2 τ + checkpoint) để không lẫn với bản cũ `pp34_v1` | ✅ |
-| | Bạn | Chạy K1 trên Kaggle | ⬜ |
+| 19/10 ~23:35 | Trợ lý | Rà soát toàn bộ: notebook 03/04 nhúng bản heuristics cũ (chỉ thiếu 2 hàm không dùng tới, kết quả không đổi) → build lại; sửa 11 chỗ tài liệu cũ (H-COPYMENTION chưa từng làm, D3, §5 audit, M2/M2r/M3-beam…) | ✅ |
+| 19/10 ~23:45 | Bạn | Chạy K1 trên Kaggle | ✅ `results/kaggle/03.txt` |
+| 19/10 ~23:55 | Trợ lý | Phân tích K1; khoá cấu hình Qwen (prompt_v1, chính = FEWSHOT); K3 thêm train cho CV + luật v2; final_analysis thêm CV 486 đoạn; kiểm thử cục bộ | ✅ |
+| | Bạn | Chạy K2 (`pp34_v2`) và K3 trên Kaggle; tải `qwen7b_dev_v1.zip` từ Output K1 vào `results/kaggle/` | ⬜ |
