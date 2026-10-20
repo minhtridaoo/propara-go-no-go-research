@@ -2,7 +2,7 @@
 
 > File này trả lời 3 câu hỏi: **(1) pipeline gồm những bước nào, nối với nhau ra sao; (2) mỗi file làm gì; (3) chạy cái gì, ở đâu, ra cái gì.**
 > Tiến độ từng bước xem `HANDOFF_STATUS.md`. Chi tiết thí nghiệm xem `EXPERIMENT_LOG.md`. Đối chiếu từng mục với báo cáo PDF xem `docs/DOI_CHIEU_BAO_CAO.md`.
-> **Cập nhật lần cuối:** 19/10/2026 khoảng 23h55 (đã có kết quả K1). Bao gồm: CGLI + heuristic đầu-cuối, đầu dự đoán vị trí, PP2 theo τ1/τ2, checkpoint, K2 đổi tên output thành `pp34_v2`.
+> **Cập nhật lần cuối:** 20/10/2026, đã có phân tích cuối và quyết định. Bao gồm: CGLI + heuristic đầu-cuối, đầu dự đoán vị trí, PP2 theo τ1/τ2, checkpoint, K2 đổi tên output thành `pp34_v2`.
 
 ---
 
@@ -49,11 +49,11 @@ D0 Phản biện + khoá đề cương ............................ ✅  (trợ 
      └─ D2+D3 NB01 Bộ chấm + heuristic + ProStruct/ProGlobal + CGLI ✅  CPU, trợ lý  ← Cửa nghiệm thu 1
          ├─ D4 NB03 Qwen 7B trên DEV .................... ✅  GPU Kaggle, BẠN (K1): Qwen chính = FEWSHOT, dev 0,377
          │    └─ trợ lý khoá cấu hình ................... ✅
-         │         └─ D6 NB04 Qwen trên TEST + đổi tên + train ⏳  GPU Kaggle, BẠN (K3), chạy được ngay
-         └─ D5 NB05 (pp34_v2) PP3 + PP4 + ablation + CV . ⏳  GPU Kaggle, BẠN (K2)
+         │         └─ D6 NB04 Qwen trên TEST + đổi tên + train ✅  K3: Qwen test 0,411 (< CGLI 0,545)
+         └─ D5 NB05 (pp34_v2) PP3 + PP4 + ablation + CV . ✅  K2: M3 dev 0,508, CV 0,524, test 0,497
               (K2 chạy độc lập với K1, chạy song song được)
-D7 final_analysis.py: chấm test kín, thống kê ........... ⬜  CPU, trợ lý (khi có K1+K2+K3)
-D8 Báo cáo Go/No-Go cuối ................................ ⬜  trợ lý viết, bạn duyệt
+D7 final_analysis.py: chấm test kín, thống kê ........... ✅  results/final/
+D8 Báo cáo Go/No-Go ...................................... ✅  KEEP có điều chỉnh: reports/go_no_go_final.md
 ```
 
 **Vì sao số notebook không theo thứ tự chạy:** số được đặt theo bản đồ trong MASTER_PROMPT (02 = tái hiện baseline bài báo, chưa làm, tuỳ chọn). **Thứ tự chạy thật: 03 (K1) → 05 (K2) → 04 (K3).**
@@ -90,19 +90,19 @@ Mã B0–B2c, L0–L5, M0–M3 lấy từ `PIPELINE_GO_NO_GO_PROPARA_QWEN7B.md` 
 | **B2** | **CGLI** (COLING 2022) | `CGLI_2022` | NB01 mục 9; `final_analysis.py` | Chấm lại **file dự đoán test công bố của tác giả** (repo Mayer123/CGLI) bằng cùng bộ chấm | ✅ test: PAIR_F1 **0,545**, @nguồn ngầm 0,452, @đích ngầm 0,091; Q3 chính thức 0,724 |
 | B2b | MeeT (EACL 2023) | — | — | Tìm nhanh bằng GitHub search API chưa thấy mã/dự đoán (chưa tìm kỹ) | ⬜ chỉ trích số bài báo, ghi “không so trực tiếp” |
 | B2x | XPAD (2019) | — | — | Không xuất cặp X→Y (theo báo cáo); tìm nhanh chưa thấy dự đoán công khai | ⬜ tham khảo |
-| L0 / Q0 | Qwen trực tiếp | `QWEN_DIRECT` | NB03 (dev), NB04 (test) | Chạy Qwen2.5-7B-Instruct | ✅ dev 0,217 · test ⏳ K3 |
-| L1 / Q1 | Qwen có ví dụ (train) — **Qwen chính** | `QWEN_FEWSHOT` | NB03, NB04 (+ train cho CV) | | ✅ dev **0,377** · test ⏳ K3 |
-| L2 / Q2 | Qwen từng bước | `QWEN_STRUCTURED` | NB03, NB04 | | ✅ dev 0,318 (JSON hợp lệ 81%) · test ⏳ K3 |
-| L3 / Q3 | Qwen + luật tồn tại | `QWEN_CONSTRAINED` (v1), `QWEN_CONSTRAINED_V2` (sửa tồn tại ban đầu trước; đăng ký sau K1) | NB03, NB04, final | hậu xử lý, không gọi lại mô hình | ✅ dev v1 0,033 · v2 chờ zip K1 |
+| L0 / Q0 | Qwen trực tiếp | `QWEN_DIRECT` | NB03 (dev), NB04 (test) | Chạy Qwen2.5-7B-Instruct | ✅ dev 0,217 · test 0,350 |
+| L1 / Q1 | Qwen có ví dụ (train) — **Qwen chính** | `QWEN_FEWSHOT` | NB03, NB04 (+ train cho CV) | | ✅ dev **0,377** · test **0,411** · 486 đoạn 0,438 |
+| L2 / Q2 | Qwen từng bước | `QWEN_STRUCTURED` | NB03, NB04 | | ✅ dev 0,318 · test 0,254 |
+| L3 / Q3 | Qwen + luật tồn tại | `QWEN_CONSTRAINED` (v1), `QWEN_CONSTRAINED_V2` (sửa tồn tại ban đầu trước; đăng ký sau K1) | NB03, NB04, final | hậu xử lý, không gọi lại mô hình | ✅ dev v1 0,033 / v2 0,179 (Q0), v2 0,292 (Q1) · test Q1+v2 0,398 |
 | L4 / Q4 | Qwen biết trạng thái đúng trước câu (ORACLE) | `ORACLE_PREV_STATE` | NB03, NB04 | bảng riêng, không so đầu-cuối | ✅ dev 0,425 (ô ngầm D 60%, C 73%) |
 | L5 | PP1 chấm vét cạn Yes/No | — | — | Không chạy (331.804 câu hỏi; ưu tiên thấp theo kế hoạch) | ⬜ |
-| **M0** | Gán nhãn độc lập | `M0` | NB05 | Huấn luyện RoBERTa+BiLSTM | ⏳ K2 |
-| M0c | M0 + luật tồn tại khi giải mã | `M0c` | NB05 | Cùng mô hình M0 | ⏳ K2 |
-| M1 | M0 + PP2 | (mục 10 của NB05) | NB05 | Công thức (11): xác suất tồn tại (biên CRF) + lưới τ1, τ2 trên dev; điểm khoá τ1=0,1, τ2=0,9 | ⏳ K2 |
-| M3-no-pair | CRF, không điểm cặp | `CRF_NOPAIR` | NB05 | | ⏳ K2 |
-| M3-no-E | CRF + điểm cặp, không tri thức E | `CRF_NOE` | NB05 | | ⏳ K2 |
-| M2r | E xáo trộn ngẫu nhiên (ở đây = M3 với log E xáo trộn; kế hoạch gốc: M1 + điểm cặp ngẫu nhiên) | `CRF_RANDE` | NB05 | | ⏳ K2 |
-| **M3** | PP2+PP3+PP4 đầy đủ | `CRF_FULL` | NB05 | | ⏳ K2 |
+| **M0** | Gán nhãn độc lập | `M0` | NB05 | Huấn luyện RoBERTa+BiLSTM | ✅ dev 0,449 · CV 0,469 |
+| M0c | M0 + luật tồn tại khi giải mã | `M0c` | NB05 | Cùng mô hình M0 | ✅ dev 0,467 · CV 0,472 |
+| M1 | M0 + PP2 | (mục 10 của NB05) | NB05 | Công thức (11): xác suất tồn tại (biên CRF) + lưới τ1, τ2 trên dev; điểm khoá τ1=0,1, τ2=0,9 | ✅ M3: giữ 62%, phủ 93% → H1 chưa đạt |
+| M3-no-pair | CRF, không điểm cặp | `CRF_NOPAIR` | NB05 | | ✅ dev 0,495 |
+| M3-no-E | CRF + điểm cặp, không tri thức E | `CRF_NOE` | NB05 | | ✅ dev 0,519 |
+| M2r | E xáo trộn ngẫu nhiên (ở đây = M3 với log E xáo trộn; kế hoạch gốc: M1 + điểm cặp ngẫu nhiên) | `CRF_RANDE` | NB05 | | ✅ dev 0,506 |
+| **M3** | PP2+PP3+PP4 đầy đủ | `CRF_FULL` | NB05 | | ✅ dev 0,508 · CV 0,524 (Δ so với M0c +0,050, có ý nghĩa) · test 0,497 ± 0,024 (so với CGLI 0,545: không có ý nghĩa) |
 | M2 (kế hoạch) | M1 + E(X,Y), không giải mã chung | — | — | **Không làm**: điểm cặp ψ chỉ có nghĩa trong giải mã chung | ⚠️ khác kế hoạch, đã khai báo trong protocol |
 | M3-beam/exact (kế hoạch) | So giải mã xấp xỉ với chính xác | — | — | Không cần: n ≤ 8 nên luôn giải mã chính xác | ⚠️ khác kế hoạch |
 
@@ -147,7 +147,9 @@ Mọi notebook **nhúng nguyên văn** các file này vào, nên notebook tự c
 | `results/kaggle/` | Kết quả lấy từ Kaggle (`03.txt` = K1) |
 | `results/00_local_cpu_run/`, `results/01_local_cpu_run/` | Kết quả thật của 00, 01 (trợ lý chạy CPU) |
 | `results/03_local_pipeline_test_TINY_RANDOM_MODEL/` | Chỉ là kiểm thử luồng mã bằng mô hình ngẫu nhiên, **không phải kết quả** |
-| `reports/go_no_go_preliminary.md` | Báo cáo sơ bộ (sẽ cập nhật khi có kết quả) |
+| `reports/go_no_go_final.md` | **Báo cáo Go/No-Go cuối** (KEEP có điều chỉnh) |
+| `reports/go_no_go_preliminary.md` | Báo cáo sơ bộ (đã được bản cuối thay thế) |
+| `results/final/` | Kết quả phân tích cuối: `final_results.json`, `final_table.md`, `test_seed_aggregates.json`, 3 biểu đồ `fig_*.png` |
 | `docs/` | `research_audit.md` (phản biện V1–V12), `experiment_protocol.md` (đề cương khoá, v1.5), `DOI_CHIEU_BAO_CAO.md` (đối chiếu từng mục báo cáo PDF), `KAGGLE_RUN_PLAN.md` (các lượt Kaggle) |
 
 ---

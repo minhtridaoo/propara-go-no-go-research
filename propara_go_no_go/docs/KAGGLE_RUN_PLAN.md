@@ -8,9 +8,9 @@
 |---|---|---|---|---|---|
 | — | 00 data audit | trợ lý (máy, CPU) | CPU | ✅ PASS cục bộ. Chạy trên Kaggle là **tuỳ chọn** | — |
 | — | 01 bộ chấm + heuristic | trợ lý (máy, CPU) | CPU | ✅ PASS cục bộ = **Cửa nghiệm thu 1 đạt** | — |
-| **K1** | `03_qwen7b_dev.ipynb` | **bạn** | GPU T4 x2 | ⏳ sẵn sàng | cần GPU; kết quả dev quyết định khoá prompt |
-| **K2** | `05_pp3_pp4_dev_cv.ipynb`, bản `pp34_v2` (gộp PP3 WikiHow + PP4 có đầu vị trí + PP2 theo τ1/τ2; 6 hệ thống × 3 seed; CV 5 phần; đổi tên NONCE; checkpoint) | **bạn** | GPU | ⏳ đã viết + kiểm thử cục bộ | cần GPU; chạy độc lập với K1 |
-| **K3** | `04_test_locked.ipynb` (Qwen + M3 trên test **một lần**; biến thể diễn đạt lại/đổi tên) | **bạn** | GPU | ⬜ | **bắt buộc** sau khi khoá cấu hình trên dev (chống rò rỉ test) |
+| **K1** | `03_qwen7b_dev.ipynb` | **bạn** | GPU T4 x2 | ✅ đã chạy (40 phút) | cần GPU; kết quả dev quyết định khoá prompt |
+| **K2** | `05_pp3_pp4_dev_cv.ipynb`, bản `pp34_v2` (gộp PP3 WikiHow + PP4 có đầu vị trí + PP2 theo τ1/τ2; 6 hệ thống × 3 seed; CV 5 phần; đổi tên NONCE; checkpoint) | **bạn** | GPU | ✅ đã chạy (2,13 giờ); thiếu zip | cần GPU; chạy độc lập với K1 |
+| **K3** | `04_test_locked.ipynb` (Qwen + M3 trên test **một lần**; biến thể diễn đạt lại/đổi tên) | **bạn** | GPU | ✅ đã chạy (2,03 giờ) | **bắt buộc** sau khi khoá cấu hình trên dev (chống rò rỉ test) |
 | — | 09–10 phân tích, thống kê, báo cáo Go/No-Go | trợ lý (máy, CPU) | CPU | ⬜ | — |
 
 ## Vì sao không gộp tất cả thành một lượt

@@ -101,7 +101,7 @@
 ### PP3 (§4.5)
 | # | Báo cáo | Pipeline (`propara_pp3.py`) | Trạng thái |
 |---|---|---|---|
-| D22 | WikiHow ~215 nghìn bài | `Lajvi/wikihowAll` (ghim commit + SHA-256). Tên file và các cột `headline,title,text` giống bộ WikiHow của Koupaee & Wang (2018), nhưng đây là **suy luận**, chưa kiểm chứng nguồn gốc bản sao. Bài gốc (arXiv 1810.09305) ghi “hơn 230.000 cặp bài–tóm tắt”, **không phải** 215 nghìn như báo cáo. Số bài thật sẽ được đếm trong K2 | ⚠️ chưa kiểm chứng số bài |
+| D22 | WikiHow ~215 nghìn bài | `Lajvi/wikihowAll@5e44fed` (SHA-256 khớp, K2). **Đếm được 215.365 dòng, 5.410.591 câu**, khớp con số ~215 nghìn của báo cáo (nhiều khả năng báo cáo đếm theo dòng). Bài gốc (arXiv 1810.09305) ghi “hơn 230.000 cặp bài–tóm tắt”. Việc bản sao là bộ của Koupaee & Wang vẫn là suy luận từ tên file và tên cột | ✅ (số dòng khớp) |
 | D23 | 5 nhóm mẫu (bảng trang 6) | 7 mẫu phủ đủ 5 nhóm (+ “made out of” bị động) | ✅ |
 | D24 | Rút về danh từ đầu dạng gốc; loại đại từ, từ rỗng | Gán nhãn từ loại NLTK + đưa về số ít bằng luật (không có lemmatizer) | ⚠️ gần đúng; khai báo |
 | D25 | (20)–(22) E = σ(uᵀWv + aᵀu + bᵀv + c) | Đúng công thức | ✅ |
@@ -111,14 +111,14 @@
 | D29 | Tách train/val theo bài | Tách theo bài (băm tiêu đề) | ✅ |
 | D30 | Độ phủ (24)–(26) | `coverage` | ✅ |
 | D31 | 9% cặp vàng có cùng danh từ đầu | Đo được 9,0% | ✅ |
-| D32 | Độ phủ thấp → thay bằng Wikipedia/sách khoa học | Chưa có nhánh thay thế | ❌ quyết định sau khi K2 báo độ phủ thật |
+| D32 | Độ phủ thấp → thay bằng Wikipedia/sách khoa học | **K2 đo được:** phủ cặp 6,9%, nguồn 61,9%, đích 58,7%. Theo quy tắc của báo cáo (phủ cặp thấp nhưng phủ nguồn/đích cao → bộ chấm phải tổng quát hoá), nhưng E không giúp ở ablation (M3 ≈ không E ≈ E xáo trộn). Chưa có nhánh nguồn thay thế | ❌ đề xuất thay nguồn (kết luận tạm: thiết kế lại PP3) |
 
 ## E. §5: Đánh giá
 
 | # | Báo cáo | Pipeline | Trạng thái |
 |---|---|---|---|
 | E1 | CV 5 phần theo chủ đề trên 488 đoạn | `cv5_by_topic.csv` (183 chủ đề, cân bằng) | ✅ |
-| E2 | CV dùng cho **các phương pháp** | Mới có M0c và M3 trong CV. **Qwen chỉ chạy dev/test**, chưa có dự đoán trên train nên chưa so được Qwen với M3 trên 488 đoạn | ❌ → đề xuất thêm vào K3: Qwen (chế độ chính) chạy cả train |
+| E2 | CV dùng cho **các phương pháp** | M0/M0c/M3 có CV (K2); Qwen chính chạy đủ train + dev + test (K3) → so cặp trên 486 đoạn đã làm (`results/final/`). CGLI không có trong CV (chỉ có dự đoán test công bố) | ✅ (trừ CGLI) |
 | E3 | **Tập test thứ hai cho ghép cặp (CUTL hoặc NHK)** | Chưa có (chính báo cáo ghi “chưa xác nhận dữ liệu”) | ❌ cần nhóm cung cấp/xác nhận dữ liệu |
 | E4 | Baseline CGLI | ✅ (chấm file công bố) | ✅ |
 | E5 | Baseline heuristic “nhắc gần nhất” | ✅ trên điểm quyết định + ✅ bản đầu-cuối B1-E2E | ✅ |

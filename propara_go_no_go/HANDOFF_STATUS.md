@@ -24,7 +24,7 @@
 - dữ liệu và bộ chấm đã kiểm chứng;
 - heuristic (B1, B1-E2E) và 3 baseline công bố (ProStruct, ProGlobal, CGLI) chấm cùng bộ chấm;
 - bằng chứng: hai hệ thống 2018 bắt 0 cặp ngầm; CGLI 2022 bắt được cặp nguồn ngầm (0,452) nhưng rất yếu ở **đích ngầm (0,091)**;
-- kết luận **INCONCLUSIVE**, kèm kế hoạch các bước tiếp.
+- kết luận lúc 19/10 là INCONCLUSIVE (nay đã có K2 + K3, kết luận tạm là ĐIỀU CHỈNH), kèm kế hoạch các bước tiếp.
 
 Đây vẫn là câu trả lời trung thực cho yêu cầu của giảng viên.
 
@@ -38,10 +38,10 @@
 [✅] D2 Bộ chấm + heuristic (NB01): PASS (Cửa nghiệm thu 1)
 [✅] D3 Baseline: heuristic B1a/b/c ✅ · heuristic đầu-cuối B1-E2E ✅ · ProStruct/ProGlobal ✅ · **CGLI ✅** (chấm file dự đoán công bố) · MeeT/XPAD: chưa có mã công khai
 [✅] D4 Qwen dev: NB03 = K1 ← **đã chạy** (Qwen chính = QWEN_FEWSHOT, PAIR_F1 dev 0,377)
-[🟡] D5 PP3 + PP4 + ablation + CV: NB05 = K2 ← **bản `pp34_v2`** (có đầu vị trí, PP2 theo τ1/τ2, checkpoint), đã kiểm thử cục bộ; bạn chạy song song hoặc sau K1
-[🟡] D6 Test khoá + đổi tên: NB04 = K3 ← **ĐÃ KHOÁ, bạn chạy được ngay** (thêm Qwen chạy train cho CV + hậu xử lý v2; ước tính 2–2,5 giờ)
-[⬜] D7 Chấm test (đã lưu kín), thống kê, biểu đồ, so bài báo: trợ lý làm trên CPU khi có output K1+K2+K3
-[⬜] D8 Báo cáo Go/No-Go cuối: trợ lý viết, bạn duyệt
+[✅] D5 PP3 + PP4 + ablation + CV: NB05 = K2 ← **đã chạy** (2,13 giờ). ⚠️ Cần thêm file `pp34_v2.zip`
+[✅] D6 Test khoá + đổi tên: NB04 = K3 ← **đã chạy** (2,03 giờ); test Qwen đã chấm (Qwen chính 0,411 < CGLI 0,545)
+[✅] D7 Chấm test (một lần) + thống kê + biểu đồ: `results/final/`
+[✅] D8 Báo cáo Go/No-Go: **KEEP có điều chỉnh** (giữ PP4, thiết kế lại PP3), `reports/go_no_go_final.md`
 ```
 
 ## 3. VIỆC CỦA BẠN TRÊN KAGGLE (cả pipeline chỉ có 3 lượt)
@@ -95,4 +95,9 @@ Sau K3, trợ lý tự làm phần còn lại (D7–D8) trên CPU, khoảng 1–
 | 20/10 ~00:22 | Trợ lý | Tạo file chấm nhãn vàng `annotation/gold_audit_A.xlsx`, `gold_audit_B.xlsx` (80 cặp, có hướng dẫn + danh sách nhãn thả xuống) | ✅ |
 | 20/10 ~00:40 | Trợ lý | Kiểm chứng zip K1: tính lại điểm từ đầu ra thô trùng tuyệt đối; phát hiện có 2 lần chạy K1 (điểm giống hệt); chấm hậu xử lý v2 (Q1+v2 = 0,292 < 0,377); phân tích lỗi; sửa nhãn chấm cặp vàng cho đúng câu chữ PIPELINE §5.5 | ✅ |
 | | Nhóm (2 người) — **tuỳ chọn, P1** | Chấm độc lập 80 cặp vàng (mỗi người 1 file, khoảng 45–60 phút, ước tính) | ⬜ |
-| | Bạn | Chạy K2 (`pp34_v2`) và K3 trên Kaggle; tải `qwen7b_dev_v1.zip` từ Output K1 vào `results/kaggle/` | K2/K3 ⬜ · zip K1 ✅ |
+| 20/10 | Bạn | Chạy K2 và K3 trên Kaggle | ✅ `results/kaggle/notebook 04`, `notebook 05/05.txt` |
+| 20/10 | Trợ lý | Phân tích K2 + K3; chấm test Qwen một lần; Qwen so với CGLI; Qwen trên 486 đoạn gộp; đánh giá tạm theo 3 cửa; cập nhật toàn bộ tài liệu | ✅ |
+| 20/10 | Bạn | Tải `pp34_v2.zip` vào `results/kaggle/notebook 05/` | ✅ |
+| 20/10 | Trợ lý | Chạy phân tích cuối (chấm test M3 một lần, so cặp M3/Qwen/CGLI, CV 486 đoạn), vẽ 3 biểu đồ, viết `reports/go_no_go_final.md`; cập nhật toàn bộ tài liệu | ✅ |
+| | Nhóm | Đọc báo cáo cuối; quyết định hướng điều chỉnh PP3; (tuỳ chọn) chấm 80 cặp vàng; hỏi giảng viên 3 câu đã soạn | ⬜ |
+| | (cũ) Bạn | Chạy K2 (`pp34_v2`) và K3 trên Kaggle; tải `qwen7b_dev_v1.zip` từ Output K1 vào `results/kaggle/` | K2/K3 ⬜ · zip K1 ✅ |

@@ -1,6 +1,8 @@
+> **ĐÃ ĐƯỢC THAY THẾ** bởi `reports/go_no_go_final.md` (20/10, sau khi chấm test M3). Giữ lại để lưu vết.
+
 # Báo cáo Go/No-Go SƠ BỘ: “Ghép cặp chuyển đổi thực thể – dự đoán thay đổi trạng thái ngầm”
 
-**Ngày:** 19/10/2026 (cập nhật ~23h30) · **Trạng thái:** sơ bộ, chưa phải quyết định cuối · **Nguồn số liệu:** notebook 00, 01 (chạy CPU, mã và đầu ra trong `propara_go_no_go/`), notebook 03 (Qwen, Kaggle) *[điền sau K1]*.
+**Ngày:** cập nhật 20/10/2026 sau K2 + K3 · **Trạng thái:** sơ bộ, gần cuối, chưa phải quyết định cuối · **Nguồn số liệu:** notebook 00, 01 (chạy CPU, mã và đầu ra trong `propara_go_no_go/`), notebook 03 (Qwen, Kaggle) *[điền sau K1]*.
 
 Ký hiệu nguồn: **[BC]** = báo cáo 16/10 · **[ĐO]** = nhóm tự đo · **[CÔNG BỐ]** = dự đoán do tác giả bài báo công bố, nhóm chấm lại bằng cùng bộ chấm.
 
@@ -8,7 +10,7 @@ Ký hiệu nguồn: **[BC]** = báo cáo 16/10 · **[ĐO]** = nhóm tự đo · 
 
 ## 1. Tóm tắt
 
-- **Kết luận hiện tại: INCONCLUSIVE (chưa đủ bằng chứng để giữ hay bỏ).** Lý do: mô hình của nhóm (PP2+PP3+PP4) **chưa được huấn luyện**, và theo quy tắc đã khoá thì không được kết luận bỏ khi phương pháp chưa được thử.
+- **Kết luận hiện tại (tạm, 20/10): ĐIỀU CHỈNH (PIVOT).** Giữ PP4, thiết kế lại PP3. Qwen 7B không vượt trội: thua CGLI trên test và thấp hơn mô hình nhóm ở PAIR_F1 tổng, nhưng mạnh hơn ở thay đổi ngầm. Xem mục 6–7.
 - **Những gì đã chắc chắn:**
   1. Toàn bộ phân tích dữ liệu trong báo cáo **tái hiện đúng** (14/14 nhóm số liệu).
   2. Bộ chấm chung **đã kiểm chứng**: tái hiện đúng điểm chính thức của ProStruct (0,545) và ProGlobal (0,519).
@@ -72,24 +74,51 @@ Thiết lập đã khoá trước khi chạy: `Qwen/Qwen2.5-7B-Instruct@a09a354`
 - **Khi được cho biết tồn tại đúng trước câu, Qwen gán nhãn ngầm tốt hơn hẳn** (DESTROY 33% → 60%, CREATE 9% → 73%). Phần lớn lỗi của Qwen nằm ở **theo dõi trạng thái tồn tại**. Đây đúng là thứ mà ràng buộc tồn tại + giải mã chung của PP4 nhắm tới. Đây là **tín hiệu ủng hộ** hướng của đề tài, nhưng phải chờ M3 (K2) để biết PP4 có thực sự làm tốt hơn không.
 - Qwen vi phạm ràng buộc tồn tại thường xuyên (không có ví dụ: 97/175 thực thể được tạo ra lại bị khai là có sẵn từ đầu). Sửa bằng luật đơn giản luôn làm **giảm** PAIR_F1 (v1: 0,033; v2: 0,292 so với 0,377 khi không sửa). Nghĩa là tính nhất quán không thể “vá” sau, mà cần được mô hình hoá ngay khi giải mã. Đây là luận điểm của PP4, cần kiểm chứng ở K2.
 - Chế độ từng bước: 8/43 đầu ra JSON hỏng; 7 trong số đó do Qwen thiếu dấu đóng ngoặc.
-- So sánh với CGLI (0,545) **chưa làm được**: CGLI chỉ có số trên test, còn Qwen hiện mới có dev. K3 sẽ cho số test của Qwen.
+- *(Đã có số test của Qwen, xem mục 7: Qwen chính 0,411 so với CGLI 0,545.)*
 
-## 6. Đối chiếu 3 cửa quyết định (protocol §7)
+## 6. Mô hình của nhóm (K2): ablation trên dev, CV 5 phần
 
-| Cửa | Câu hỏi | Trạng thái |
-|---|---|---|
-| 1. Bằng chứng đáng tin? | Cùng dữ liệu, cùng bộ chấm, có heuristic + baseline, có kết quả mô hình nhóm | 🟡 Dữ liệu + bộ chấm + heuristic (B1, B1-E2E) + 3 baseline công bố (ProStruct, ProGlobal, CGLI) ✅. **Thiếu kết quả mô hình nhóm** |
-| 2. Qwen vượt trội rõ, ổn định? | Hơn ≥ 5 điểm PAIR_F1 và cả ở lát ngầm, CI không chứa 0, vững với đổi tên/diễn đạt | 🟡 Mới có dev: Qwen chính 0,377, rất yếu ở ngầm. Cần test (K3), CV 486 đoạn và M3 (K2) |
-| 3. PP2–PP4 còn đóng góp? | Ablation, chi phí, tính mới | ⬜ chưa huấn luyện |
+| Hệ thống (dev, TB ± SD 3 seed) | PAIR_F1 | Có phía ngầm | PAIR_LOC_F1 | Vi phạm |
+|---|---:|---:|---:|---:|
+| M0 gán nhãn độc lập | 0,449 ± 0,040 | 0,030 | 0,241 | 0,291 |
+| M0c = M0 + luật tồn tại | 0,467 ± 0,032 | 0 | 0,276 | 0 |
+| CRF không điểm cặp | 0,495 ± 0,026 | 0 | 0,311 | 0 |
+| CRF + điểm cặp, không E | 0,519 ± 0,009 | 0,027 | 0,298 | 0 |
+| CRF + E xáo trộn | 0,506 ± 0,006 | 0 | 0,286 | 0 |
+| **M3 = PP2+PP3+PP4** | 0,508 ± 0,005 | 0 | 0,281 | 0 |
 
-→ Vì chưa qua Cửa 1, **chưa được phép kết luận bỏ**. Theo quy tắc đã khoá, kết luận là **INCONCLUSIVE**.
+**CV 5 phần theo chủ đề (488 đoạn):** M3 0,524 so với M0c 0,472.
+- ΔM3 − M0c: tổng **+0,051 [+0,020; +0,085]**; có phía ngầm **+0,065 [+0,015; +0,116]**; nguồn ngầm +0,075 [+0,007; +0,145]; đích ngầm +0,036 [−0,004; +0,093].
 
-## 7. Đề xuất hướng đi và kế hoạch
+**PP3:** WikiHow cho 3.683 cặp; phủ **6,9%** cặp vàng (nguồn 62%, đích 59%). M3 ≈ bản không E ≈ bản E xáo trộn → **chưa thấy tri thức WikiHow giúp gì**.
 
-1. **Giữ đề tài, phát biểu lại đóng góp cho đúng với cách đo:** “phát hiện thực thể bị **tạo/huỷ ngầm** nhờ tri thức cặp X→Y + giải mã chung”, đo bằng PAIR_F1 trên lát ngầm. Giải mã chính xác của PP4 **khả thi** trên ProPara (tối đa 8 thực thể/đoạn → ≤ 65.536 cấu hình/câu).
-2. **So sánh then chốt cần có:** mô hình nhóm đầy đủ (M3) với mô hình cơ sở **cộng luật ràng buộc** (M0c). Phải so với M0c, không phải M0, để chứng minh cải thiện không chỉ đến từ luật.
-3. **Lịch dự kiến** (ước tính): huấn luyện M0–M3 + CV (2–4 ngày làm + GPU Kaggle) → test một lần + biến thể đổi tên/diễn đạt lại → báo cáo cuối.
-4. **Cần giảng viên xác nhận:** ngưỡng chênh lệch có ý nghĩa thực tiễn 5 điểm PAIR_F1; việc dùng PAIR_F1 làm thước đo chính.
+**PP2** (τ1 = 0,1, τ2 = 0,9): giữ 62% ứng viên, phủ 93% cặp vàng → chưa đạt tiêu chí (≥ 95% và ≤ 50%).
+
+**Đổi tên thực thể (dev):** M3 0,508 → 0,421.
+
+## 7. Test (chấm một lần) và đánh giá tạm theo 3 cửa
+
+| Hệ thống (TEST, 54 đoạn) | PAIR_F1 [CI95] | Nguồn ngầm | Đích ngầm |
+|---|---:|---:|---:|
+| CGLI 2022 (công bố) | **0,545** [0,466–0,628] | 0,452 | 0,091 |
+| **Qwen Q1 có ví dụ** | 0,411 [0,301–0,521] | 0,383 | 0 |
+| Qwen Q0 trực tiếp | 0,350 [0,238–0,457] | 0,077 | 0 |
+| ProStruct 2018 | 0,252 [0,147–0,370] | 0 | 0 |
+| B1-E2E heuristic | 0,222 [0,109–0,344] | 0,141 | 0 |
+| M3 / M0c của nhóm | *chờ file `pp34_v2.zip`* | | |
+
+- **Qwen − CGLI = −0,134 [−0,253; −0,014]**: CGLI hơn Qwen 7B, có ý nghĩa.
+- **Trên 486 đoạn gộp:** Qwen 0,438 (có phía ngầm 0,258) so với M3 CV 0,524 (có phía ngầm 0,096). Đây là so sánh theo điểm số; bootstrap cặp đang chờ file zip.
+
+| Cửa | Trạng thái tạm |
+|---|---|
+| 1. Bằng chứng đáng tin? | 🟡 Gần đủ; thiếu test M3 và bootstrap cặp M3–Qwen–CGLI |
+| 2. Qwen vượt trội rõ? | **Không**: thua CGLI trên test; thấp hơn M3 ở PAIR_F1 tổng (theo điểm số). Nhưng **hơn M3 rõ ở lát ngầm** |
+| 3. PP2–PP4 còn đóng góp? | **PP4 có** (CV, có ý nghĩa); **PP3 không thấy**; PP2 chưa đạt H1 |
+
+**Kết luận tạm: ĐIỀU CHỈNH (PIVOT).** Giữ giải mã chung PP4 vì có đóng góp đo được. Thiết kế lại PP3, vì tri thức WikiHow không giúp và độ phủ quá thấp. Vấn đề trung tâm còn mở là **thay đổi ngầm**, nơi mọi hệ thống còn yếu: Qwen tốt hơn M3 nhưng vẫn thấp, CGLI yếu ở đích ngầm.
+
+Hướng thử tiếp theo (đề xuất, chưa kiểm chứng): đưa tín hiệu của LLM vào CRF (thay cho E từ WikiHow), hoặc thay nguồn tri thức bằng văn bản khoa học. **Chưa phải quyết định cuối:** cần chấm test của M3 và các so sánh cặp.
 
 ## 8. Giới hạn
 

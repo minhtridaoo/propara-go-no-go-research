@@ -11,11 +11,11 @@
 | D2 Bộ chấm + heuristic | `01_metrics_heuristics.ipynb` | ✅ PASS cục bộ, 0 FAIL / 0 WARN | **Cửa nghiệm thu 1 ✅** |
 | D3 Baseline bài báo | ProStruct, ProGlobal, **CGLI** (dự đoán công bố) + heuristic đầu-cuối B1-E2E đã chấm trong 01; MeeT/XPAD: tìm nhanh chưa thấy mã | ✅ | |
 | D4 Qwen dev | `03_qwen7b_dev.ipynb` (K1) | ✅ **Đã chạy trên Kaggle** (2×T4, fp16, 40 phút). Kết quả: `results/kaggle/03.txt` | G2 ✅, G3 ✅ |
-| D5 PP2/PP3/PP4 | `05_pp3_pp4_dev_cv.ipynb` (K2) | 🟡 mã xong + kiểm thử cục bộ OK. **Chờ bạn chạy Kaggle** | G4 |
-| D4/D5 test khoá | `04_qwen7b_test_locked.ipynb` (K3) + `tools/final_analysis.py` | 🟡 mã xong + kiểm thử cục bộ OK; chạy sau khi khoá từ K1 | G5 |
+| D5 PP2/PP3/PP4 | `05_pp3_pp4_dev_cv.ipynb` (K2) | ✅ **Đã chạy Kaggle** (2,13 giờ); zip đã có | G4 ✅ |
+| D4/D5 test khoá | `04_qwen7b_test_locked.ipynb` (K3) + `tools/final_analysis.py` | ✅ K3 đã chạy; **toàn bộ test đã chấm một lần** (`results/final/`) | G5 ✅ |
 | D6–D8 | 09–10 | ⬜ | G6–G7 |
 
-**Quyết định hiện tại: INCONCLUSIVE** (chưa có điểm Qwen, chưa có mô hình nhóm).
+**Quyết định (20/10, theo protocol v1.5 §7): KEEP có điều chỉnh**: giữ đề tài, thu hẹp đóng góp về PP4, thiết kế lại PP3. Báo cáo: `reports/go_no_go_final.md`; số liệu: `results/final/`.
 
 ---
 
@@ -123,7 +123,33 @@
   - Khôi phục sang phiên mới qua Add Input output phiên trước.
   - Checkpoint tốt nhất của cả 6 hệ thống.
   - Đã kiểm chứng: ngắt sau epoch 2 rồi tiếp tục cho loss trùng khớp 6 chữ số với chạy liền mạch; trong notebook thật, ngắt giữa chừng thì Run All lại tiếp tục đúng epoch; phiên mới khôi phục 25 file và bỏ qua mọi phần đã xong.
-- **Trạng thái:** ⏳ chờ chạy Kaggle.
+- **Trạng thái:** ✅ đã chạy Kaggle.
+
+### KẾT QUẢ K2 (Kaggle 2×T4, 2,13 giờ, `results/kaggle/notebook 05/05.txt`; zip `pp34_v2.zip` CHƯA có)
+- Hoàn thành 15/15 lượt (5 biến thể × 3 seed) + CV 10/10 fold; dừng sớm hoạt động (epoch tốt nhất 4–8).
+- **PP3 (WikiHow):** 3.683 cặp khác nhau (4.304 lần khớp mẫu). Độ phủ trên 533 cặp vàng: **cặp 6,9%**, nguồn 61,9%, đích 58,7%, cùng danh từ đầu 9,0%.
+  - E(X,Y) trên validation WikiHow: AUC 0,692, AP 0,496, AUC so với cặp đảo chiều 0,768. Epoch tốt nhất = 30 = epoch tối đa, nên có thể chưa hội tụ.
+  - AUC của log E trên cặp ProPara (dev): **0,612**.
+- **Ablation trên DEV** (trung bình ± SD qua 3 seed):
+
+| Hệ thống | PAIR_F1 | @có phía ngầm | PAIR_LOC_F1 | IMP_ACC D / C | Vi phạm |
+|---|---|---|---|---|---|
+| M0 độc lập | 0,449 ± 0,040 | 0,030 | 0,241 | 0,022 / 0 | 0,291 |
+| M0c = M0 + luật | 0,467 ± 0,032 | 0 | 0,276 | 0 / 0 | 0 |
+| M3-no-pair (CRF) | 0,495 ± 0,026 | 0 | 0,311 | 0 / 0,030 | 0 |
+| M3-no-E | **0,519 ± 0,009** | 0,027 | 0,298 | 0 / 0,030 | 0 |
+| M2r (E xáo trộn) | 0,506 ± 0,006 | 0 | 0,286 | 0 / 0 | 0 |
+| **M3 (đầy đủ)** | 0,508 ± 0,005 | 0 | 0,281 | 0 / 0 | 0 |
+
+- Δ trên dev (TB 3 seed; CI của seed đầu): M3 − M0c +0,041 [−0,054; +0,124] · M3 − M3-no-E −0,011 [−0,024; +0,012] · M3 − M2r +0,003 [−0,057; +0,056] · M3-no-E − M3-no-pair +0,024 · M3-no-pair − M0c +0,028 [−0,027; +0,132] · M0c − M0 +0,018 [−0,058; +0,078]. **Không chênh lệch nào trên dev có ý nghĩa thống kê.**
+- **PP2 (τ1 = 0,1, τ2 = 0,9, dev):** M0c giữ 52,6% ứng viên, phủ 82,8% cặp vàng; M3 giữ 62,1%, phủ 93,1% → **H1 CHƯA ĐẠT** (tiêu chí: phủ ≥ 95% và giữ ≤ 50%).
+- **Đổi tên NONCE (dev):** M0 0,449 → 0,324 · M0c 0,467 → 0,381 · M3-no-pair 0,495 → 0,396 · M3-no-E 0,519 → 0,406 · M3 0,508 → 0,421 (giảm 0,09–0,13).
+- **CV 5 phần theo chủ đề (seed 13, 488 đoạn):** M0 0,469 (@ngầm 0,058) · M0c 0,472 (@ngầm 0,030) · **M3 0,524** (@nguồn ngầm 0,107, @đích ngầm 0,057, @có phía ngầm 0,096).
+  - **ΔM3 − M0c (bootstrap theo đoạn):** tổng **+0,051 [+0,020; +0,085]** · nguồn ngầm **+0,075 [+0,007; +0,145]** · đích ngầm +0,036 [−0,004; +0,093] · có phía ngầm **+0,065 [+0,015; +0,116]**.
+- **Nhận xét K2:**
+  1. Giải mã chung (PP4) có lợi **có ý nghĩa** so với cùng mô hình cộng luật (M0c) trên CV, kể cả lát ngầm → **H3 được ủng hộ** (về hướng). Nhưng mức tuyệt đối ở lát ngầm vẫn **rất thấp** (0,096).
+  2. **PP3 không cho thấy đóng góp:** M3 ≈ M3-no-E ≈ M2r (E xáo trộn); độ phủ cặp WikiHow chỉ 6,9% → **H2 không được ủng hộ** với nguồn WikiHow và cách trích hiện tại.
+  3. H1 (PP2) chưa đạt ở điểm vận hành đã khoá.
 
 ## EXP-004b: Tự đối chiếu với báo cáo + sửa 2 thiếu sót trước K2 (19/10)
 - **Đối chiếu:** `docs/DOI_CHIEU_BAO_CAO.md`, kiểm từng mục §1–§5 và công thức (1)–(28).
@@ -144,9 +170,64 @@
 ## EXP-005: Qwen test khoá + NONCE (D6) · `04_qwen7b_test_locked.ipynb` · lượt **K3**
 - **Thiết lập:** dùng nguyên văn mã nạp mô hình/sinh của NB03; test ở mọi chế độ; NONCE (DIRECT, FEWSHOT) trên dev (chấm công khai) và test (lưu kín).
 - **Kiểm chứng:** chạy thông cục bộ với mô hình tí hon (lưu kín đủ 9 file).
-- **Trạng thái:** ⏳ chạy sau khi khoá cấu hình từ K1.
+- **Trạng thái:** ✅ đã chạy Kaggle.
+
+### KẾT QUẢ K3 (Kaggle 2×T4, 2,03 giờ, `results/kaggle/notebook 04/`) + CHẤM TEST MỘT LẦN (phần Qwen: `results/final_partial/`; bản đầy đủ: `results/final/`)
+- JSON hợp lệ: test Q0 98,1%, Q1 100%, Q2 92,6%; train Q1 100%; NONCE Q1 100%.
+- **TEST (54 đoạn), cùng bộ chấm:**
+
+| Hệ thống | PAIR_F1 [CI95] | @nguồn ngầm | @đích ngầm | IMP_ACC D / C | Vi phạm |
+|---|---|---|---|---|---|
+| CGLI 2022 (công bố) | **0,545** [0,466–0,628] | 0,452 | 0,091 | 0,41 / 0,20 | 0 |
+| **Qwen Q1 có ví dụ (chính)** | **0,411** [0,301–0,521] | 0,383 | **0** | 0,64 / 0,07 | 0,41 |
+| Qwen Q0 trực tiếp | 0,350 [0,238–0,457] | 0,077 | 0 | 0,14 / 0,13 | 0,70 |
+| Qwen Q2 từng bước | 0,254 [0,149–0,359] | 0,051 | 0,051 | 0,14 / 0,33 | 0,79 |
+| Qwen Q1 + hậu xử lý v1 | 0,387 | 0,429 | 0 | — | 0 |
+| Qwen Q1 + hậu xử lý v2 | 0,398 | 0,400 | 0 | — | 0 |
+| Qwen Q0 + hậu xử lý v1 / v2 | 0,020 / 0,360 | — | — | — | 0 |
+| *ORACLE (biết tồn tại đúng trước câu)* | *0,386* | *0,165* | *0,149* | *0,50 / 0,53* | — |
+
+- **Qwen chính − CGLI (test):** tổng **−0,134 [−0,253; −0,014]** (CGLI hơn, có ý nghĩa) · có phía ngầm −0,022 [−0,226; +0,199] · đích ngầm −0,091 [−0,235; 0].
+- **Đổi tên NONCE:** test Q1 0,411 → 0,357 (−0,054), Q0 0,350 → 0,342; dev Q1 0,377 → 0,208 (−0,169), Q0 0,217 → 0,308 (+0,091).
+- **Qwen Q1 trên 486 đoạn gộp** (train K3 + dev K1 + test K3, bỏ 2 đoạn few-shot): PAIR_F1 **0,438** [0,389–0,484] · @nguồn ngầm 0,315 · @đích ngầm 0,110 · **@có phía ngầm 0,258** · IMP_ACC D 0,43 / C 0,22.
+  - So sánh điểm (CHƯA có bootstrap cặp vì thiếu zip K2) với M3 CV: PAIR_F1 0,438 (Qwen) so với 0,524 (M3); @có phía ngầm **0,258 (Qwen) so với 0,096 (M3)**.
+- **Chưa làm được (thiếu `pp34_v2.zip`):** chấm test của M3/M0c; M3 so với CGLI, Qwen so với M3 (test + CV 486 đoạn, bootstrap cặp).
+
 - **Sau K3:** `tools/final_analysis.py` chấm một lần mọi dự đoán test kín, bootstrap cặp Qwen-chính vs M3 và M3 vs M0c, rồi áp điều kiện quyết định §7.
 
 ## Việc song song cho nhóm (không cần GPU)
 - Hai người chấm độc lập `results/00_local_cpu_run/gold_audit_sample.csv` (nay là `annotation/gold_audit_A.xlsx`, `gold_audit_B.xlsx`; 4 nhãn theo PIPELINE §5.5), không xem dự đoán mô hình. Bước T16 (P1), không bắt buộc cho Go/No-Go.
 - Hỏi giảng viên: (1) ngưỡng 5 điểm PAIR_F1; (2) đồng ý PAIR_F1 là thước đo chính, Q3_OFFICIAL để so tài liệu.
+
+
+## Đánh giá tạm theo 3 cửa (20/10, CHƯA phải quyết định cuối)
+- **Cửa 1, bằng chứng đáng tin:** gần đủ (dữ liệu, bộ chấm, heuristic, 3 baseline, Qwen dev + test, mô hình nhóm dev + CV). Còn thiếu: test của M3 và các so sánh cặp (cần `pp34_v2.zip`).
+- **Cửa 2, Qwen vượt trội rõ? → KHÔNG.**
+  - Trên test, Qwen chính **thua CGLI** (−0,134, CI không chứa 0).
+  - So theo điểm số (chưa có bootstrap cặp), Qwen thấp hơn M3 ở PAIR_F1 tổng (CV: 0,438 so với 0,524; dev: 0,377 so với 0,508).
+  - Nhưng **Qwen hơn hẳn M3 ở lát ngầm** (CV: 0,258 so với 0,096).
+- **Cửa 3, PP2/PP3/PP4 còn đóng góp?**
+  - **PP4 (giải mã chung): CÓ**, trên CV: +0,051 tổng, +0,065 lát ngầm so với M0c, có ý nghĩa.
+  - **PP3 (WikiHow): KHÔNG thấy** (M3 ≈ M3-no-E ≈ E xáo trộn; phủ cặp 6,9%).
+  - **PP2:** chưa đạt H1.
+- **Theo ma trận đã khoá:**
+  - Dòng “PP3 không tăng chất lượng nhưng PP4 vẫn có ích” → **ĐIỀU CHỈNH**.
+  - Điều kiện KEEP_a (M3 > M0c có ý nghĩa ở lát ngầm, CV) đạt, nhưng mức tuyệt đối ở lát ngầm còn rất thấp.
+- **Hướng điều chỉnh có cơ sở dữ liệu** (đề xuất, chưa kiểm chứng):
+  1. Lỗi lớn nhất của cả Qwen lẫn M3 là thay đổi ngầm, mà oracle cho thấy là do **theo dõi tồn tại**.
+  2. Qwen giỏi ngầm hơn, còn M3 giỏi phần tường minh và luôn nhất quán. Gợi ý thử: **dùng đề xuất của LLM (ví dụ điểm của Qwen cho cặp/nhãn ngầm) làm đặc trưng ψ hoặc φ trong CRF**, thay cho E(X,Y) từ WikiHow.
+  3. Hoặc thay WikiHow bằng nguồn tri thức khoa học (như báo cáo đã dự phòng ở mục 4.5).
+
+
+## EXP-006: Phân tích cuối + quyết định Go/No-Go (D7–D8) · 20/10 · `tools/final_analysis.py`
+- **Đầu vào:** K1 `results/kaggle/notebook 03/qwen7b_dev_v1/qwen7b_dev_v1`, K2 `notebook 05/pp34_v2/pp34_v2`, K3 `notebook 04/qwen7b_test_v1/qwen7b_test_v1`.
+  - K2: WikiHow 215.365 dòng, 5.410.591 câu, SHA-256 khớp; bộ trích pp3_v2 (NLTK).
+- **Test** (TB 3 seed với mô hình nhóm): CGLI 0,545 · M3 0,497 ± 0,024 · M3 không E 0,493 · M0c 0,483 · M0 0,469 · Qwen có ví dụ 0,411 · Qwen trực tiếp 0,350.
+  - M3 − CGLI −0,048 (0/3 seed có ý nghĩa); ở cặp ngầm −0,203 (2/3 seed có ý nghĩa, CGLI hơn).
+  - Qwen − CGLI −0,134 [−0,253; −0,014].
+- **CV 486–488 đoạn:** M3 0,524 · M0c 0,474 · Qwen 0,438.
+  - M3 − M0c +0,050 [+0,018; +0,082]; ở cặp ngầm +0,066 [+0,015; +0,117].
+  - Qwen − M3 −0,086 [−0,136; −0,038]; ở cặp ngầm +0,162 [+0,081; +0,242].
+- **Đổi tên (test):** M3 0,497 → 0,489; Qwen có ví dụ 0,411 → 0,357; cặp ngầm của Qwen 0,286 → 0,070.
+- **Điều kiện quyết định:** KEEP_a ĐÚNG; STOP_1 SAI; STOP_2 SAI. Cộng thêm dòng “PP3 vô ích nhưng PP4 có ích” → **KEEP có điều chỉnh**.
+- **Thiếu (ghi là giới hạn):** chi phí của M3; tập test thứ hai; kiểm tra nhãn vàng bởi người; CGLI trên dev/CV.

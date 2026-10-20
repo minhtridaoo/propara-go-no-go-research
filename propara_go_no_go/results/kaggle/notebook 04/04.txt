@@ -1,0 +1,10 @@
+notebook=04_qwen7b_test model=hf:Qwen/Qwen2.5-7B-Instruct@a09a35458c702b33eeacc393d103063234e8bc28 quant=fp16_multi_gpu runtime=7301.3s
+json_rate: {'test|QWEN_DIRECT': 0.981, 'test|QWEN_FEWSHOT': 1.0, 'test|QWEN_STRUCTURED': 0.926, 'nonce_dev|QWEN_DIRECT': 0.977, 'nonce_dev|QWEN_FEWSHOT': 1.0, 'nonce_test|QWEN_DIRECT': 0.981, 'nonce_test|QWEN_FEWSHOT': 1.0, 'train|QWEN_FEWSHOT': 1.0}
+  NONCE-dev QWEN_DIRECT: PAIR_F1=0.308 @any_imp=0.148
+  NONCE-dev QWEN_FEWSHOT: PAIR_F1=0.208 @any_imp=0.062
+  NONCE-dev QWEN_CONSTRAINED: PAIR_F1=0.033 @any_imp=0.000
+  NONCE-dev QWEN_CONSTRAINED_V2: PAIR_F1=0.276 @any_imp=0.080
+  NONCE-dev QWEN_CONSTRAINED_FS: PAIR_F1=0.120 @any_imp=0.000
+  NONCE-dev QWEN_CONSTRAINED_V2_FS: PAIR_F1=0.180 @any_imp=0.000
+Đã lưu kín: ['nonce_test_QWEN_CONSTRAINED.jsonl', 'nonce_test_QWEN_CONSTRAINED_FS.jsonl', 'nonce_test_QWEN_CONSTRAINED_V2.jsonl', 'nonce_test_QWEN_CONSTRAINED_V2_FS.jsonl', 'nonce_test_QWEN_DIRECT.jsonl', 'nonce_test_QWEN_FEWSHOT.jsonl', 'test_ORACLE_PREV_STATE.jsonl', 'test_QWEN_CONSTRAINED.jsonl', 'test_QWEN_CONSTRAINED_FS.jsonl', 'test_QWEN_CONSTRAINED_V2.jsonl', 'test_QWEN_CONSTRAINED_V2_FS.jsonl', 'test_QWEN_DIRECT.jsonl', 'test_QWEN_FEWSHOT.jsonl', 'test_QWEN_STRUCTURED.jsonl']
+=== HẾT ===  (gửi file qwen7b_test_v1.zip cho trợ lý)

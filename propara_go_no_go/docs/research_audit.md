@@ -88,11 +88,11 @@
 
 ## 5. Những gì còn THIẾU để quyết định (theo 3 cửa)
 
-- Cửa 1 (bằng chứng đáng tin): *(cập nhật 19/10 ~23h30)* bộ chấm có kiểm thử ✅, heuristic ✅, baseline nghiên cứu ✅ (ProStruct, ProGlobal, CGLI). **Còn thiếu: kết quả mô hình nhóm** (lượt K2).
+- *(cập nhật 20/10 sau K2 + K3)* Cửa 1: đạt phần lớn (thiếu chi phí M3, tập test thứ hai, kiểm tra nhãn bởi người). Cửa 2: Qwen không vượt trội (thua CGLI trên test). Cửa 3: PP4 có đóng góp trên CV, PP3 không thấy đóng góp. Chi tiết: `EXPERIMENT_LOG.md` mục “Đánh giá tạm theo 3 cửa”.
 - Cửa 2 (Qwen vượt trội?): chưa có điểm Qwen (03–04).
 - Cửa 3 (đóng góp còn không?): chưa có ablation; tính mới PP3 chưa kiểm tra (V7).
 
-**Trạng thái quyết định hiện tại: INCONCLUSIVE.** Lý do: chưa có bất kỳ kết quả mô hình nào. Đây là trạng thái đúng ở Giai đoạn 0, không phải tín hiệu xấu.
+**Trạng thái quyết định:** ở Giai đoạn 0 là INCONCLUSIVE (chưa có kết quả mô hình). **Sau phân tích cuối (20/10): KEEP có điều chỉnh**: giữ PP4, thiết kế lại PP3. Xem `reports/go_no_go_final.md`.
 
 ---
 

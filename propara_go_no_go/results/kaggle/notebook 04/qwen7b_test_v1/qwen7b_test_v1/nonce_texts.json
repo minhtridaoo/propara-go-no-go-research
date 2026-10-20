@@ -1,0 +1,1662 @@
+{
+ "nonce_dev": {
+  "4": {
+   "entities": [
+    "blaxs",
+    "drax",
+    "frax",
+    "glax"
+   ],
+   "sentences": [
+    "Blaxs die.",
+    "They are buried in frax.",
+    "Drax is buried in the frax.",
+    "Large amounts of frax gradually pile on top of the original frax.",
+    "Pressure builds up.",
+    "Heat increases.",
+    "The chemical structure of the buried frax and blaxs changes.",
+    "The frax and blaxs are at least one mile underground.",
+    "The buried area is extremely hot.",
+    "More chemical changes happen and the buried material becomes glax."
+   ]
+  },
+  "5": {
+   "entities": [
+    "blax",
+    "drax",
+    "frax",
+    "glax",
+    "krax"
+   ],
+   "sentences": [
+    "Blax and drax die.",
+    "The dead blax and drax end up part of frax on a seafloor.",
+    "The frax breaks down.",
+    "The bottom layers of frax become compacted by pressure.",
+    "Higher pressure causes the frax to heat up.",
+    "The heat causes chemical processes.",
+    "The glax becomes a liquid.",
+    "Is known as krax.",
+    "Krax moves up through rock."
+   ]
+  },
+  "272": {
+   "entities": [
+    "blax",
+    "drax frax",
+    "glax frax",
+    "krax",
+    "plax of snaxs ; trax"
+   ],
+   "sentences": [
+    "A blax goes into the generator.",
+    "The generator converts drax frax into glax frax.",
+    "A krax moves near a wire.",
+    "A steady plax of snaxs is C.",
+    "Trax plaxs through a wire.",
+    "Trax comes out of the generator."
+   ]
+  },
+  "349": {
+   "entities": [
+    "blax ; blax draxs",
+    "fraxs"
+   ],
+   "sentences": [
+    "Something happens to produce a blax.",
+    "The blax travels in draxs.",
+    "The blax draxs hit an object.",
+    "The object absorbs some of the blax draxs.",
+    "Some of the blax draxs bounce off of the object.",
+    "The reflected blax draxs can be heard, though they have slightly different properties than the original blax.",
+    "The blax continues to bounce off of things and produce fraxs until it is totally absorbed or dissipated."
+   ]
+  },
+  "375": {
+   "entities": [
+    "blax",
+    "drax",
+    "frax",
+    "glax",
+    "glax krax"
+   ],
+   "sentences": [
+    "Blax enters the computer.",
+    "Some blax becomes drax.",
+    "Some drax becomes frax when it hits something.",
+    "Some blax becomes glax in a hard drive, dvd drive or fan.",
+    "Glax krax also becomes frax."
+   ]
+  },
+  "388": {
+   "entities": [
+    "blaxs;blax",
+    "draxs",
+    "fraxs",
+    "glax"
+   ],
+   "sentences": [
+    "Blaxs flows downwards thanks to gravity.",
+    "Enters the dam at high pressure.",
+    "The moving blax spins the draxs in the power plant.",
+    "The draxs turn the fraxs.",
+    "The fraxs spin, and produce glax.",
+    "The blax leaves the dam at the bottom."
+   ]
+  },
+  "390": {
+   "entities": [
+    "blax",
+    "drax",
+    "frax",
+    "glax",
+    "drax'krax plax",
+    "snax plax",
+    "trax vax ; zax"
+   ],
+   "sentences": [
+    "A blax is formed.",
+    "The collects drax converting the drax'krax from kinectic to potential.",
+    "The drax is forced through a frax under the blax.",
+    "The frax spins and so does the glax connected to it.",
+    "The drax'krax plax is turned into snax plax.",
+    "The transformer converts snax plax from the glax to a trax vax.",
+    "The national grid uses trax vaxs to transmit zax through the power lines."
+   ]
+  },
+  "394": {
+   "entities": [
+    "blax",
+    "drax",
+    "frax",
+    "glax",
+    "krax",
+    "plax",
+    "snax",
+    "trax"
+   ],
+   "sentences": [
+    "Blax produces drax.",
+    "Frax is boiled to make glax.",
+    "Glax spins krax.",
+    "Plax is turned.",
+    "Makes snax.",
+    "Snax transfers to transformers.",
+    "Produces the correct trax."
+   ]
+  },
+  "396": {
+   "entities": [
+    "blax drax",
+    "blax fraxs",
+    "glax",
+    "krax",
+    "plax",
+    "snax"
+   ],
+   "sentences": [
+    "Blax drax is placed in the nuclear reactor.",
+    "The blax fraxs are split (fission) to produce glax.",
+    "The glax is used to turn krax into plax.",
+    "The plax drives a turbine.",
+    "The turbine spins a genator.",
+    "The spinning generator creates snax."
+   ]
+  },
+  "430": {
+   "entities": [
+    "blax",
+    "drax",
+    "Frax"
+   ],
+   "sentences": [
+    "Blax is made during household activities.",
+    "Blax is collected within the house.",
+    "Sometimes blax is sorted into frax.",
+    "Blax is put out at the curbside.",
+    "The city collects the blax.",
+    "The blax is placed into a drax.",
+    "The drax drives to a landfill.",
+    "The blax is unloaded.",
+    "Sometimes the blax might be sorted more.",
+    "The blax is put into the landfill."
+   ]
+  },
+  "431": {
+   "entities": [
+    "blax",
+    "blax drax",
+    "fraxs"
+   ],
+   "sentences": [
+    "Blax is put into a household frax.",
+    "The fraxs are thrown into a large outdoor trashcan.",
+    "The trashcan is emptied by a large blax drax.",
+    "The blax drax travels to the landfill.",
+    "Unloads all the blax the drax has collected."
+   ]
+  },
+  "432": {
+   "entities": [
+    "blax",
+    "blax drax",
+    "frax",
+    "glax"
+   ],
+   "sentences": [
+    "Frax is deposited in a large can or in bags outside of the house.",
+    "The frax is picked up by workers who put it on a blax drax.",
+    "The blax drax is driven to a sorting center.",
+    "The blax is sorted.",
+    "Some of the blax is saved for glax.",
+    "The rest of the blax is driven to the landfill."
+   ]
+  },
+  "445": {
+   "entities": [
+    "blax",
+    "drax",
+    "frax drax",
+    "glax krax of drax"
+   ],
+   "sentences": [
+    "The blax comes out from a volcano.",
+    "The blax cools and becomes a drax.",
+    "Over time the drax picks up sediment which changes the type of drax.",
+    "This creates a frax drax.",
+    "The heat from inside and outside can cook a drax.",
+    "This heat forms a glax krax of drax.",
+    "The cycle continues around the three types of draxs."
+   ]
+  },
+  "446": {
+   "entities": [
+    "blax",
+    "draxs",
+    "fraxs glaxs",
+    "krax glaxs",
+    "plax glax"
+   ],
+   "sentences": [
+    "Glax begins as blax from a volcano.",
+    "The blax cools.",
+    "Draxs form and the blax become fraxs glaxs.",
+    "The fraxs glaxs break down into sediment become krax glaxs.",
+    "If subjected to heat and/or pressure from plate-tectonic activity the krax glaxs become plax glax.",
+    "The metaphoric glaxs melt becoming blax again."
+   ]
+  },
+  "509": {
+   "entities": [
+    "blax drax",
+    "frax",
+    "glax ; krax glax",
+    "plax glax",
+    "snax drax",
+    "trax"
+   ],
+   "sentences": [
+    "Glax is injected into the chamber.",
+    "The trax moves upwards.",
+    "Compresses the glax.",
+    "The glax explodes.",
+    "Blax drax becomes snax drax.",
+    "The frax pushes the trax downward.",
+    "The trax moves upwards again.",
+    "The krax glax is ejected.",
+    "Plax glax is injected.",
+    "The cycle repeats."
+   ]
+  },
+  "514": {
+   "entities": [
+    "blax",
+    "drax",
+    "fraxs"
+   ],
+   "sentences": [
+    "Drax falls in an area for a very long time.",
+    "The drax builds up for a very long time.",
+    "The drax starts to become packed very firmly.",
+    "The drax becomes something that's more like ice.",
+    "Air pockets in the fraxs continue to grow smaller.",
+    "The fraxs becomes solid and heavy enough to be called a blax.",
+    "The blax moves because of gravity."
+   ]
+  },
+  "542": {
+   "entities": [
+    "blax",
+    "drax",
+    "frax drax",
+    "glax blax",
+    "krax"
+   ],
+   "sentences": [
+    "Blax builds up in the drax.",
+    "Drax enters the kidney.",
+    "Drax passes through nephrons in the kidney.",
+    "Different kinds of blax are momentarily trapped in the kidney.",
+    "Frax drax flows out of the kidney.",
+    "Glax blax accumulates in liquid form (krax).",
+    "Krax flows out of the kidney into the bladder."
+   ]
+  },
+  "543": {
+   "entities": [
+    "blax",
+    "drax",
+    "frax",
+    "glax blax"
+   ],
+   "sentences": [
+    "Blax is carried into the kidneys by the renal artery.",
+    "Kidneys filter that blax tiny filters inside the kidneys called nephrons.",
+    "Remove the drax from the blax.",
+    "The drax that is collected combines with water to become frax.",
+    "As each kidney makes frax, the frax slides down a long tube called the ureter.",
+    "Collects in the bladder.",
+    "The glax blax is sent back into the body."
+   ]
+  },
+  "544": {
+   "entities": [
+    "blaxs and draxs ; blax ; fraxs",
+    "glaxs",
+    "krax"
+   ],
+   "sentences": [
+    "They take in blaxs and draxs.",
+    "They process the blax.",
+    "They take out the glaxs.",
+    "Produce krax.",
+    "Krax is released.",
+    "The fraxs are returned to the body."
+   ]
+  },
+  "608": {
+   "entities": [
+    "blax",
+    "drax",
+    "frax",
+    "glax",
+    "krax"
+   ],
+   "sentences": [
+    "Blax enters the engine through a carburetor or blax injectors.",
+    "Drax is let into the engine at the same time as the blax.",
+    "The frax in the engine moves downwards compressing the drax and blax mixture.",
+    "A glax plug causes a glax at the bottom stroke of the frax.",
+    "An krax occurs in the engine forcing the frax back upwards.",
+    "As the frax goes up the valves for blax and drax open again.",
+    "Blax and drax go in, and the process repeats.",
+    "The moving fraxs are attached via connecting rods to a shaft.",
+    "The shaft rotates out of the motor to turn the frax energy into rotational energy."
+   ]
+  },
+  "609": {
+   "entities": [
+    "blax",
+    "drax",
+    "frax",
+    "glax",
+    "krax",
+    "plax"
+   ],
+   "sentences": [
+    "The blax starts at the top, the intake valve opens, and the blax moves down to let the engine take in a cylinder-full of drax and frax.",
+    "Then the blax moves back up to compress this fuel/drax mixture.",
+    "Compression makes the krax more powerful.",
+    "When the blax reaches the top of its stroke, the glax plug emits a glax to ignite the frax.",
+    "The frax charge in the cylinder explodes, driving the blax down.",
+    "Once the blax hits the bottom of its stroke, the plax valve opens and the plax leaves the cylinder to go out the tailpipe."
+   ]
+  },
+  "610": {
+   "entities": [
+    "blax",
+    "drax",
+    "frax",
+    "glax"
+   ],
+   "sentences": [
+    "Blaxs burns in the combustion chamber.",
+    "The burning blax creates energy.",
+    "The upward motion cause drax to be released into the cylinder.",
+    "The piston compresses the drax.",
+    "A frax ignites the blax and drax inside the cylinder.",
+    "The glax pushes the piston down.",
+    "The exhaust valve opens.",
+    "The piston pushes the drax out of the cylinder."
+   ]
+  },
+  "629": {
+   "entities": [
+    "blax",
+    "drax frax",
+    "glax krax",
+    "glax plax; plax"
+   ],
+   "sentences": [
+    "People put blax in a drax frax.",
+    "The drax frax is put into a glax krax.",
+    "The glax krax is rolled outside.",
+    "The glax plax comes to the house.",
+    "Workers take the drax frax out of the glax krax and place it in the plax.",
+    "The plax drives to the landfill.",
+    "The plax dumps the blax into the landfill."
+   ]
+  },
+  "630": {
+   "entities": [
+    "blax",
+    "drax"
+   ],
+   "sentences": [
+    "Blax is placed into a garbage container in the house.",
+    "The blax is moved to a centralized container for the house.",
+    "Blax is picked up by a sanitation company.",
+    "The blax is combined in a large drax with blax from all around the city.",
+    "The drax goes to the landfill.",
+    "The drax dumps the blax into the landfill."
+   ]
+  },
+  "631": {
+   "entities": [
+    "blax",
+    "draxs",
+    "frax",
+    "blax glax; glax"
+   ],
+   "sentences": [
+    "Blax is bagged up.",
+    "Draxs get carried out to the frax.",
+    "Frax is put at the curb once a week.",
+    "Can gets emptied into blax glax.",
+    "As the glax fills it will compact the blax.",
+    "When the glax is full it heads to the landfill.",
+    "The glax dumps its load into the landfill."
+   ]
+  },
+  "632": {
+   "entities": [
+    "blax",
+    "drax",
+    "frax"
+   ],
+   "sentences": [
+    "Blax comes into the computer from the plug.",
+    "The blax runs the components in the computer.",
+    "Blax turns the fan to keep the components cool.",
+    "Drax is released from the computer.",
+    "Blax runs the computer's display.",
+    "Frax is formed from the blax."
+   ]
+  },
+  "634": {
+   "entities": [
+    "blax; drax",
+    "frax glaxs",
+    "kraxs"
+   ],
+   "sentences": [
+    "Blax enters the power supply unit.",
+    "The power supply gives blax to transistors.",
+    "The power supply gives blax to the CPU.",
+    "The systems use blax to complete tasks.",
+    "The glaxs they complete are sent out as frax glaxs.",
+    "The drax is used to complete kraxs."
+   ]
+  },
+  "1002": {
+   "entities": [
+    "blax drax",
+    "drax frax"
+   ],
+   "sentences": [
+    "Add blax drax to the washing machine.",
+    "Add drax frax to the washing machine.",
+    "Select the setting for the load of drax.",
+    "Close the door of the washing machine.",
+    "Turn on the washing machine."
+   ]
+  },
+  "1007": {
+   "entities": [
+    "blax ; drax",
+    "fraxs"
+   ],
+   "sentences": [
+    "A blax dies and withers.",
+    "The dead blax starts to draw fraxs.",
+    "The fraxs break down the drax.",
+    "Forms decay.",
+    "The resulting drax disappears.",
+    "The blax becomes one with the soil."
+   ]
+  },
+  "1008": {
+   "entities": [
+    "blax",
+    "draxs",
+    "frax glaxs",
+    "kraxs"
+   ],
+   "sentences": [
+    "A frax dies.",
+    "Blax from the ground migrate to the frax material.",
+    "Blax release draxs onto the frax material.",
+    "The draxs break down the frax glaxs to simpler kraxs.",
+    "The blax absorb the resulting kraxs."
+   ]
+  },
+  "1112": {
+   "entities": [
+    "blax drax",
+    "frax",
+    "glax",
+    "krax",
+    "plaxs"
+   ],
+   "sentences": [
+    "Dissolution of krax forms plaxs.",
+    "Frax gets blax drax from the air.",
+    "When frax goes into soil it creates an glax.",
+    "The glax dissolves the krax along cracks.",
+    "Some will dissolve enough to form plaxs."
+   ]
+  },
+  "1113": {
+   "entities": [
+    "blax",
+    "drax frax",
+    "glax",
+    "krax plax",
+    "snax",
+    "traxs"
+   ],
+   "sentences": [
+    "Blax picks up drax frax from the air.",
+    "Blax goes into soil.",
+    "Glax with drax frax percolates through soil.",
+    "The glax becomes a krax plax.",
+    "The glax dissolves snax.",
+    "Traxs form where the snax was dissolved."
+   ]
+  },
+  "1114": {
+   "entities": [
+    "blax; drax",
+    "frax",
+    "glaxs",
+    "kraxs"
+   ],
+   "sentences": [
+    "Blax falls onto the soil.",
+    "The blax seeps into the soil.",
+    "The drax starts going into the frax below.",
+    "The frax erodes after much time passes.",
+    "The frax forms glaxs.",
+    "The glaxs grow larger and wider.",
+    "The glaxs finally become kraxs."
+   ]
+  },
+  "1197": {
+   "entities": [
+    "blax",
+    "drax frax blax",
+    "glax",
+    "krax"
+   ],
+   "sentences": [
+    "Blax enters the mouth.",
+    "Blax mixes with saliva.",
+    "Blax is swallowed.",
+    "Enzymes in the stomach break frax the blax.",
+    "The blax moves to the small intestine.",
+    "Hormones from the pancreas move to the small intestine.",
+    "The hormones create the amount of glax in the blood from the blax.",
+    "The glax in the blood travels to the body.",
+    "The glax provides krax for the muscles."
+   ]
+  },
+  "1226": {
+   "entities": [
+    "Blax",
+    "Draxs",
+    "Frax",
+    "Glaxs"
+   ],
+   "sentences": [
+    "Blax is entered into the gut.",
+    "The pancreas secretes draxs.",
+    "Some of the enzymes break down frax.",
+    "It breaks down glaxs.",
+    "The broken down blax can be passed.",
+    "Absorbed by the body."
+   ]
+  },
+  "1259": {
+   "entities": [
+    "Blax",
+    "Drax"
+   ],
+   "sentences": [
+    "A spider must find a suitable place for its drax.",
+    "The spider produces a blax from one its glands from one point to another.",
+    "The spider does this in several points.",
+    "The spider blaxs through each of the other blaxs forming a drax.",
+    "The spider reinforces the drax."
+   ]
+  },
+  "1303": {
+   "entities": [
+    "blax",
+    "drax",
+    "fraxs"
+   ],
+   "sentences": [
+    "Blax or drax that could spoil easily is brought in.",
+    "Through methods of heating the blax is treated.",
+    "The fraxs that may proliferate in the blax are destroyed.",
+    "Depending on the treatment this happens a few more times.",
+    "The blax is considered pasteurized."
+   ]
+  },
+  "708": {
+   "entities": [
+    "blax",
+    "drax",
+    "frax blax",
+    "glax blax"
+   ],
+   "sentences": [
+    "Blaxs are constantly worn down and broken by erosion.",
+    "Erosion can be wind or water.",
+    "Erosion breaks them down to drax.",
+    "Drax gets compressed and heated or gets buried.",
+    "When drax is buried it then gets glax.",
+    "When drax is compressed it becomes frax blax.",
+    "Frax blax gets buried.",
+    "Buried frax blax gets glax.",
+    "Glax blax eventually cools.",
+    "Blax pushed back to the surface."
+   ]
+  },
+  "716": {
+   "entities": [
+    "blax",
+    "drax",
+    "frax",
+    "glax",
+    "krax blax"
+   ],
+   "sentences": [
+    "Blax filled with drax flows into the fraxs.",
+    "The fraxs are made up of filtering units called nephrons.",
+    "The nephrons in the fraxs filter the blax.",
+    "Produce glax.",
+    "The glax leaves the fraxs.",
+    "The krax blax goes back into the body."
+   ]
+  },
+  "758": {
+   "entities": [
+    "blax; drax frax",
+    "glax krax",
+    "plax krax; snaxs"
+   ],
+   "sentences": [
+    "An engine must be powered by blax or some drax frax.",
+    "The drax frax will power an alternator.",
+    "An alternator will convert glax krax in to measurable plax krax.",
+    "Plax krax will be channeled and moved.",
+    "The snaxs will run through to the outlets of the generator.",
+    "When you plug something in to the outlets of the generator, a flow of current will conduct snaxs."
+   ]
+  },
+  "825": {
+   "entities": [
+    "blax ; blax draxs",
+    "frax glax",
+    "krax",
+    "plax",
+    "snax"
+   ],
+   "sentences": [
+    "Blax is underground.",
+    "Blax is dug up.",
+    "Blax is brought to nuclear power plants.",
+    "Blax draxs are split into two smaller draxs.",
+    "Frax glax is released from the blax.",
+    "The frax glax turns krax into plax in a nuclear reactor.",
+    "The plax turns big turbines.",
+    "The turbines drive generators.",
+    "The generators make snax.",
+    "The plax turns back into krax."
+   ]
+  },
+  "826": {
+   "entities": [
+    "blax",
+    "drax",
+    "frax"
+   ],
+   "sentences": [
+    "A nuclear reactor generates blax by nuclear fission.",
+    "The blax created raises drax.",
+    "The drax runs through turbines.",
+    "The turbines generate frax.",
+    "The frax leaves the station."
+   ]
+  },
+  "1260": {
+   "entities": [
+    "blax",
+    "drax"
+   ],
+   "sentences": [
+    "The spider picks a suitable place.",
+    "The spider produces sticky blax from its abdomen.",
+    "The spider attaches it to objects where it wants to build the drax.",
+    "The spider strings this blax back and forth between objects.",
+    "A drax is created."
+   ]
+  }
+ },
+ "nonce_test": {
+  "37": {
+   "entities": [
+    "blax; drax",
+    "frax glaxs",
+    "kraxs",
+    "plax",
+    "snaxs"
+   ],
+   "sentences": [
+    "A blax of drax dies in a watery environment.",
+    "Is buried in mud and silt.",
+    "Frax glaxs quickly decompose leaving behind hard kraxs or shells.",
+    "Over time sediment builds over the top and hardens into rock.",
+    "As the krax decays plax seeps in replacing it.",
+    "Snaxs are formed."
+   ]
+  },
+  "38": {
+   "entities": [
+    "blax; drax",
+    "frax",
+    "glax",
+    "krax"
+   ],
+   "sentences": [
+    "The blax dies and the drax falls down.",
+    "It is not eaten by anything.",
+    "The drax falls in a sandy or wet place.",
+    "The frax forms around the drax.",
+    "Time passes on and the glax forms.",
+    "Millions years later the krax forms.",
+    "A person now finds the krax."
+   ]
+  },
+  "67": {
+   "entities": [
+    "blaxs; drax blaxs",
+    "frax",
+    "glax"
+   ],
+   "sentences": [
+    "Blaxs die.",
+    "The drax blaxs end up in swamps.",
+    "The drax blaxs sink to the bottom of the swamps.",
+    "Many more drax blaxs sink in the same area.",
+    "The drax blaxs join together forming frax.",
+    "Sediment covers the frax.",
+    "The frax continues to decompose.",
+    "The frax keeps carbon while eliminating other elements.",
+    "The frax turns into glax after a long time."
+   ]
+  },
+  "68": {
+   "entities": [
+    "blaxs; draxs",
+    "blax and drax fraxs",
+    "glax; krax glax",
+    "plax",
+    "snax",
+    "trax"
+   ],
+   "sentences": [
+    "300 millions years ago blaxs and draxs died.",
+    "The blax and drax fraxs sank to the bottom of steamy, swampy areas.",
+    "Layer upon layer of fraxs accumulated.",
+    "Eventually forming a soggy, dense material called glax.",
+    "The glax was buried over millions of years by sand, clay, and other mineral material.",
+    "Pressure caused by the wait of the materials squeezed plax from the glax.",
+    "With the snax caused by increased krax glax slowly became trax."
+   ]
+  },
+  "69": {
+   "entities": [
+    "blaxs;draxs",
+    "frax",
+    "glax",
+    "krax",
+    "plax snaxs",
+    "trax",
+    "vax",
+    "zax"
+   ],
+   "sentences": [
+    "Blaxs and draxs die.",
+    "Dead blaxs and draxs pile up at the bottom of swamps.",
+    "Dead blaxs and draxs form layers called frax.",
+    "Glax and krax cover the frax.",
+    "The glax and krax form plax snaxs.",
+    "Trax caused by plax snaxs squeezes vax out of the frax.",
+    "Heat changes the material into zax."
+   ]
+  },
+  "70": {
+   "entities": [
+    "blax",
+    "drax",
+    "fraxs",
+    "drax glaxs"
+   ],
+   "sentences": [
+    "There is a lot of blax.",
+    "Drax glaxs of a river or lake get higher.",
+    "Drax builds up on the ground.",
+    "Drax covers streets.",
+    "Drax goes into houses.",
+    "The blax or other source of drax stops.",
+    "Drax flows into fraxs.",
+    "The rest of the drax evaporates."
+   ]
+  },
+  "99": {
+   "entities": [
+    "blax draxs",
+    "blax",
+    "draxs",
+    "a frax glax krax",
+    "plax"
+   ],
+   "sentences": [
+    "Blax draxs travel across the sky.",
+    "Blax draxs are stopped or slowed by mountains or wind.",
+    "The blax draxs drop the blax.",
+    "The draxs are no longer raining when or if they reach the other side of the obstacle.",
+    "On the other side of the mountains or blax, there isn't much blax.",
+    "The area that receives little blax develops a frax glax krax.",
+    "The area that receives little blax becomes a plax."
+   ]
+  },
+  "152": {
+   "entities": [
+    "blax drax ; frax drax ; drax",
+    "glax ; krax plaxs"
+   ],
+   "sentences": [
+    "Blax drax is in the atmosphere.",
+    "Blax drax is frax up.",
+    "Frax drax cools below dew point.",
+    "Drax turns into a glax.",
+    "Krax plaxs aggregate into larger sizes.",
+    "Krax plaxs drop from the sky."
+   ]
+  },
+  "249": {
+   "entities": [
+    "blaxs ; drax fraxs",
+    "glax",
+    "krax plaxs of blaxs ; krax snax ; trax plaxs of blaxs"
+   ],
+   "sentences": [
+    "Chemical reactions break down the bonds holding the blaxs together.",
+    "The blaxs fall apart.",
+    "They form drax and drax fraxs.",
+    "Oxidation takes place when glax combines with other elements in blaxs.",
+    "They form krax plaxs of blaxs.",
+    "The krax snax is softer.",
+    "Carbonation takes place when carbon dioxide reactions with trax plaxs of blaxs.",
+    "A solution is formed that can easily be carried away by water."
+   ]
+  },
+  "310": {
+   "entities": [
+    "blax",
+    "drax frax",
+    "glax"
+   ],
+   "sentences": [
+    "Blax enters the right side of your heart.",
+    "Blax travels to the lungs.",
+    "Drax frax is removed from the blax.",
+    "Glax is added to your blax.",
+    "Blax returns to left side of your heart.",
+    "The blax travels through the body."
+   ]
+  },
+  "400": {
+   "entities": [
+    "blax",
+    "drax"
+   ],
+   "sentences": [
+    "The are set up and produced with conductors.",
+    "They are set up to take the sun rays.",
+    "The sun heats up the elements.",
+    "The elements create blax.",
+    "The blax is turned into drax."
+   ]
+  },
+  "401": {
+   "entities": [
+    "blax",
+    "drax frax",
+    "glax frax"
+   ],
+   "sentences": [
+    "Solar panels are made up of two types of silicon.",
+    "Sun shines on solar panels.",
+    "Blax goes into the top half of the solar panel.",
+    "Blax travels into the bottom half of the solar panel.",
+    "The \"jump\" between the two halves can be used to make drax frax.",
+    "A solar \"inverter\" changes the drax frax to glax frax.",
+    "Glax frax can be used to power things in your house."
+   ]
+  },
+  "409": {
+   "entities": [
+    "blax",
+    "drax fraxs"
+   ],
+   "sentences": [
+    "Light enters the eyes.",
+    "The lens focuses light through the vitreous humor.",
+    "The cornea focuses through the eye's internal lens.",
+    "The retina receives the blax.",
+    "The retina transforms this blax into drax fraxs.",
+    "The fraxs travel along the optic nerve to the brain.",
+    "The brain decodes the impuses."
+   ]
+  },
+  "410": {
+   "entities": [
+    "blax drax",
+    "frax"
+   ],
+   "sentences": [
+    "The cornea helps to focus frax.",
+    "Frax passes to the iris.",
+    "The pupil within the iris expands or contracts to control the amount of frax entering the eye.",
+    "The retina converts the frax that reaches the retina into an blax drax.",
+    "Sends the drax to the brain.",
+    "The brain translates the electrical draxs into the images a person sees."
+   ]
+  },
+  "411": {
+   "entities": [
+    "blax draxs",
+    "frax"
+   ],
+   "sentences": [
+    "Visual perception begins as soon as the eye focuses frax onto the retina, where it is absorbed by a layer of photoreceptor cells.",
+    "These cells convert frax into blax draxs, and are divided into two types, rods.",
+    "Cones.",
+    "Draxs from the photoreceptor cells pass through a network of interneurons in the second layer of the retina to ganglion cells in the third layer.",
+    "The neurons in these two retinal layers exhibit complex receptive fields that enable them to detect contrast changes within an image; these changes might indicate edges or shadows.",
+    "The optic nerve primarily routes information via the thalamus to the cerebral cortex.",
+    "Information concerning moving targets and information governing scanning of the eyes travels to a second site in the brainstem, a nucleus called the superior colliculus.",
+    "Most projections from the retina travel via the optic nerve to a part of the thalamus called the lateral geniculate nucleus (LGN), deep in the center of the brain."
+   ]
+  },
+  "429": {
+   "entities": [
+    "blax",
+    "drax blax; frax blax",
+    "glaxs",
+    "krax",
+    "plax-snax trax"
+   ],
+   "sentences": [
+    "Blax exists naturally in the atmosphere.",
+    "Bacteria in soil \"fix\" the blax.",
+    "Blax is now frax by living things.",
+    "Glaxs absorb this frax blax through their roots.",
+    "Animals eat the glaxs.",
+    "Animals make krax.",
+    "Uneaten glaxs die.",
+    "Blax re-enters the soil.",
+    "Different bacteria turn blax back into a plax-snax trax.",
+    "Plax-snax blax re-enters the atmosphere."
+   ]
+  },
+  "460": {
+   "entities": [
+    "blax draxs ; fraxs of blax draxs",
+    "glax",
+    "glax-krax plax",
+    "snax trax",
+    "vax",
+    "zax"
+   ],
+   "sentences": [
+    "Blax draxs have glax in them.",
+    "Blax draxs die.",
+    "The fraxs of blax draxs eventually become buried underground.",
+    "More physical pressure is put on the fraxs of blax draxs as they become further underground.",
+    "This glax-krax plax stays underground for a long time.",
+    "Humans discover this glax-krax plax.",
+    "This glax-krax plax is brought up to the earth's surface.",
+    "The recently discovered snax trax is burned.",
+    "Burning releases the vax that has been stored in the snax trax.",
+    "The vax can be used to generate zax."
+   ]
+  },
+  "463": {
+   "entities": [
+    "blaxs",
+    "drax frax",
+    "glax"
+   ],
+   "sentences": [
+    "Updrafts in a thunderstorm carry blaxs upwards.",
+    "The blaxs condense onto dust or other small parti.",
+    "The supercooled water molecules condense onto the condensation nucleus and freeze.",
+    "The tiny drax frax keeps moving up and down, gathering more drax on the surface.",
+    "Eventually the glax falls to earth either because it's too heavy to remain aloft or because a drowndraft pushes it down."
+   ]
+  },
+  "465": {
+   "entities": [
+    "blax",
+    "drax"
+   ],
+   "sentences": [
+    "Blax gets caught in winds that are moving upward.",
+    "The blax freezes.",
+    "The blax starts to fall.",
+    "The winds are strong enough from keeping it from falling back to earth.",
+    "This pattern of rising and falling continues.",
+    "The drax becomes too large to be pushed up by the wind.",
+    "The drax finally falls to the ground."
+   ]
+  },
+  "502": {
+   "entities": [
+    "blax",
+    "drax",
+    "frax",
+    "glaxs",
+    "glax krax",
+    "plax krax",
+    "snax"
+   ],
+   "sentences": [
+    "Frax is created by burning either blax or drax in a combustion chamber.",
+    "The frax is transferred from the glaxs moving up and down at high speeds.",
+    "This glax krax is converted to a plax krax through the crankshaft and axle.",
+    "The axle turns the wheels.",
+    "The snax moves forward."
+   ]
+  },
+  "503": {
+   "entities": [
+    "blax",
+    "drax;frax",
+    "glax",
+    "krax",
+    "plax",
+    "snax",
+    "trax"
+   ],
+   "sentences": [
+    "A blax is filled with drax (frax).",
+    "Someone turns the blax on with a key.",
+    "The blax's glax produces a krax (electricity).",
+    "The krax ignites the frax.",
+    "The burning frax expands when it encounters air.",
+    "The expanding air and frax pushes a plax out.",
+    "The motion of several plaxs move the snax.",
+    "Different parts of the blax cause the motion in the snax to cause the traxs to move.",
+    "The traxs and the blax's body can move."
+   ]
+  },
+  "533": {
+   "entities": [
+    "blax",
+    "draxs",
+    "frax",
+    "glax",
+    "krax"
+   ],
+   "sentences": [
+    "A blax comes from an adult krax.",
+    "It draxs from the soil.",
+    "It grows into a small frax, a krax's infancy.",
+    "It grows bigger and becomes a glax, a juvenile krax.",
+    "It reaches maturity, this make take many years depending on the type of krax.",
+    "The krax will begin to age and decline.",
+    "Eventually rot and decay after it dies."
+   ]
+  },
+  "534": {
+   "entities": [
+    "blax",
+    "drax frax ; frax",
+    "glax",
+    "kraxs"
+   ],
+   "sentences": [
+    "A blax is planted.",
+    "The blax becomes a drax frax.",
+    "The drax frax becomes larger and grows.",
+    "Some fraxs bear glax.",
+    "Kraxs.",
+    "After awhile the frax will stop growing.",
+    "Eventually die."
+   ]
+  },
+  "582": {
+   "entities": [
+    "blax, drax frax",
+    "glax, krax frax",
+    "frax plaxs ; plaxs",
+    "snax",
+    "trax",
+    "vax zaxs",
+    "max"
+   ],
+   "sentences": [
+    "Blax, drax frax moves from south to north.",
+    "Glax, krax frax moves from north to south.",
+    "The frax plaxs meet.",
+    "The conditions that form are not stable because the frax plaxs are so different.",
+    "Snaxs are directed in a certain way because of how the plaxs interact.",
+    "An trax results.",
+    "Snaxs start to form vax zaxs in the trax.",
+    "A max can result."
+   ]
+  },
+  "583": {
+   "entities": [
+    "blax, drax frax-glax krax",
+    "plax",
+    "snax, trax vax-zax krax",
+    "max",
+    "nax; tax"
+   ],
+   "sentences": [
+    "Blax, humid frax-zax krax rises.",
+    "Creates a strong plax.",
+    "Snax, trax vax-zax krax is punched through.",
+    "The opposing winds create max.",
+    "When the max is violent enough a nax forms.",
+    "Drops to the ground."
+   ]
+  },
+  "600": {
+   "entities": [
+    "blax",
+    "drax; frax",
+    "glax",
+    "krax plax"
+   ],
+   "sentences": [
+    "Frax is converted to glax when blax and drax mix.",
+    "The car engine burns the mix of blax and drax.",
+    "Krax plax from the burning pushes the pistons.",
+    "The resulting glax powers the crankshaft.",
+    "Crankshaft powers the gears.",
+    "The gears make the wheels roll."
+   ]
+  },
+  "653": {
+   "entities": [
+    "blax",
+    "drax",
+    "frax",
+    "glax",
+    "krax"
+   ],
+   "sentences": [
+    "A blax is planted.",
+    "It becomes a drax.",
+    "It grows into a frax.",
+    "The frax grows glaxs.",
+    "The glaxs become krax.",
+    "The kraxs contain blaxs for new fraxs."
+   ]
+  },
+  "654": {
+   "entities": [
+    "blax",
+    "drax frax",
+    "glax",
+    "krax for plax snax"
+   ],
+   "sentences": [
+    "A blax is grown in the ground.",
+    "The blax grows bigger, and forms its drax frax.",
+    "The draxs start to gain more nourishment as the glax grows.",
+    "The glax starts to attract animals and plants that will grant it more nourishment.",
+    "The glax matures.",
+    "After a number of years the glax will grow old and die, becoming krax for plax snax."
+   ]
+  },
+  "659": {
+   "entities": [
+    "blax; draxs",
+    "frax",
+    "glax",
+    "krax blax"
+   ],
+   "sentences": [
+    "Bacteria changes blax into frax through fixation.",
+    "The nitrification process is where frax gets changed into draxs by bacteria.",
+    "Glaxs absorb the draxs from soil into their roots through assimilation.",
+    "When glaxs die, fungi and bacteria turn blax back into frax through ammonification.",
+    "The denitrification process pushes krax blax from soil into the air.",
+    "The cycle repeats from step 1."
+   ]
+  },
+  "660": {
+   "entities": [
+    "blax drax",
+    "frax drax",
+    "glaxs",
+    "kraxs",
+    "plaxs",
+    "snax",
+    "trax",
+    "drax vax"
+   ],
+   "sentences": [
+    "Drax-fixing bacteria convert blax drax to frax drax.",
+    "Kraxs absorb frax drax from the soil through their roots.",
+    "Glaxs eat the kraxs.",
+    "Kraxs and glaxs die.",
+    "Glaxs expel plaxs.",
+    "Fungi convert frax drax to snax.",
+    "Nitrifying bacteria convert snax to trax.",
+    "Bacteria convert trax to drax vax.",
+    "Drax vax escapes from soil into the atmosphere."
+   ]
+  },
+  "661": {
+   "entities": [
+    "blax",
+    "drax",
+    "fraxs",
+    "glax",
+    "krax"
+   ],
+   "sentences": [
+    "Fixation is the first step in the process of making blax usable by glaxs. Here bacteria change blax into drax.",
+    "Nitrification is the process by which drax gets changed into fraxs by bacteria.",
+    "Fraxs are what the glaxs can then absorb.",
+    "Assimilation is how glaxs get blax.",
+    "They absorb fraxs from the soil into their roots. Then the blax gets used in amino acids, nucleic acids, and chlorophyll.",
+    "Ammonification is part of the decaying process.",
+    "When a glax or krax dies, decomposers like fungi and bacteria turn the blax back into drax so it can reenter the blax cycle.",
+    "Denitrification is when extra blax in the soil gets put back out into the air.",
+    "There are special bacteria that perform this task as well."
+   ]
+  },
+  "695": {
+   "entities": [
+    "blax",
+    "drax; frax; blax drax",
+    "glaxs",
+    "krax",
+    "plax",
+    "snax",
+    "trax"
+   ],
+   "sentences": [
+    "During evaporation the sun heats up blax in rivers or lakes or the ocean and turns it into drax or frax.",
+    "The blax drax or frax leaves the river, lake or ocean and goes into the air.",
+    "Blax drax in the air gets cold and changes back into liquid, forming glaxs, which is called condensation.",
+    "Precipitation occurs when so much blax has condensed that the air cannot hold it anymore.",
+    "Blax falls back to the earth in the form of krax, plax, snax or trax.",
+    "When blax ends up on land, it will either soak into the earth and become part of the \"ground blax\" for animals or plants to drink.",
+    "It may also run into the oceans, lakes, or rivers where the cycle starts again."
+   ]
+  },
+  "696": {
+   "entities": [
+    "blax drax",
+    "blax fraxs",
+    "glax",
+    "krax"
+   ],
+   "sentences": [
+    "Air contains invisible moisture called blax drax.",
+    "Excess blax drax is condensed out as blax in the form of blax fraxs.",
+    "Blax fraxs are carried up into the glaxs.",
+    "The glaxs become heavy with blax fraxs.",
+    "When the glax is saturated.",
+    "Krax will fall."
+   ]
+  },
+  "697": {
+   "entities": [
+    "blax",
+    "draxs",
+    "frax"
+   ],
+   "sentences": [
+    "Blax beings to evaporate from bodies of blax.",
+    "The blax condenses into draxs.",
+    "The draxs travel and accumulate more blax.",
+    "The draxs reach a point where they cannot hold any more blax.",
+    "It begins to frax on areas below the draxs."
+   ]
+  },
+  "1031": {
+   "entities": [
+    "blax or drax",
+    "fraxs",
+    "glax",
+    "krax",
+    "plax"
+   ],
+   "sentences": [
+    "A blax or drax dies in mud or soil.",
+    "The fraxs are all that remains.",
+    "Over time the fraxs are covered in glax.",
+    "The glax becomes krax.",
+    "The krax becomes a plax."
+   ]
+  },
+  "1032": {
+   "entities": [
+    "blaxs",
+    "draxs",
+    "fraxs and glax kraxs ; plaxs",
+    "snax",
+    "trax"
+   ],
+   "sentences": [
+    "Most fossils formed when blaxs or draxs die in wet environment.",
+    "The blaxs and draxs are then buried in mud.",
+    "Soft kraxs decompose.",
+    "Fraxs and glax kraxs plax.",
+    "Snax builds up over the plaxs over a period of time.",
+    "The snax hardens into trax."
+   ]
+  },
+  "1033": {
+   "entities": [
+    "blax",
+    "drax",
+    "frax",
+    "glax"
+   ],
+   "sentences": [
+    "An blax dies.",
+    "The blax is buried fast under mud.",
+    "The soft parts of the blax's body rot away.",
+    "The mud around the drax turns into frax.",
+    "The drax dissolves.",
+    "A glax is left in the mud where the drax was."
+   ]
+  },
+  "1145": {
+   "entities": [
+    "blax drax",
+    "blax fraxs",
+    "glax fraxs",
+    "krax plax snax"
+   ],
+   "sentences": [
+    "A krax plax snax forms from an existing snax.",
+    "Formation occurs when the snax runs out of blax drax.",
+    "Blax fraxs are combined together to form glax fraxs.",
+    "Energy produced by glax fusion causes the snax to expand.",
+    "A krax plax snax is the last stage of stellar evolution."
+   ]
+  },
+  "1146": {
+   "entities": [
+    "blax",
+    "drax frax",
+    "drax",
+    "glax",
+    "krax",
+    "plax snaxs",
+    "trax vax blax"
+   ],
+   "sentences": [
+    "A blax burns in space.",
+    "The blax runs out of drax frax.",
+    "All the drax is turned into glax.",
+    "There is no longer krax to keep the blax from collapsing.",
+    "Gravity takes over.",
+    "The blax is pulled into itself.",
+    "The glax snaxs begin to combine into plax snaxs.",
+    "The outermost layers of the blax are pushed out.",
+    "The blax is much larger than it was.",
+    "The blax is a trax vax."
+   ]
+  },
+  "1147": {
+   "entities": [
+    "blax draxs",
+    "frax draxs",
+    "blax",
+    "frax",
+    "glax",
+    "krax draxs",
+    "plax snax glax"
+   ],
+   "sentences": [
+    "Blax draxs in a glax combine together to form frax draxs.",
+    "All of the blax in a glax turns into frax.",
+    "The glax begins to collapse.",
+    "Frax draxs combine together to form krax draxs.",
+    "The glax gets much bigger than it was before.",
+    "The glax is now a plax snax."
+   ]
+  },
+  "1188": {
+   "entities": [
+    "blax",
+    "drax; frax"
+   ],
+   "sentences": [
+    "Blaxs fly around in outer space.",
+    "A blax flies close to a planet.",
+    "The blax enters the planet's atmosphere.",
+    "The blax crashes into the planet.",
+    "The energy of the impact creates a drax on the planet."
+   ]
+  },
+  "1189": {
+   "entities": [
+    "blaxs of drax",
+    "frax"
+   ],
+   "sentences": [
+    "Blaxs of draxs break off of meteorites.",
+    "The drax passes through the atmosphere.",
+    "The drax is too big to be slowed down.",
+    "The blaxs smash into the earth at a high velocity.",
+    "The angle the meteorite hits can impact how large the frax is.",
+    "The material it hits also helps determine the size of the frax."
+   ]
+  },
+  "1190": {
+   "entities": [
+    "blax drax",
+    "frax drax",
+    "glax"
+   ],
+   "sentences": [
+    "Two large veins bring drax to the heart.",
+    "The drax enters the right atrium.",
+    "The drax flows through the tricuspid valve.",
+    "The drax travels into the right ventricle.",
+    "The drax goes through the pulmonary arteries to the lungs.",
+    "Drax picks up glax in the lungs.",
+    "Blax drax enters the left atrium.",
+    "Drax goes to the left ventricle.",
+    "Drax leaves the heart via the aorta to the rest of the body.",
+    "The frax drax returns to the heart."
+   ]
+  },
+  "1240": {
+   "entities": [
+    "Blax",
+    "Drax",
+    "Frax Glax",
+    "Frax Krax",
+    "Glax"
+   ],
+   "sentences": [
+    "Fans blow blax onto the evaporator's coils.",
+    "The refrigerant within the coils absorbs the drax.",
+    "The refrigerant changes from a glax to a krax.",
+    "The compressor compresses the krax, increasing the pressure.",
+    "The hot, pressurized krax moves to the condenser.",
+    "The krax condenses in the condenser and becomes a glax again.",
+    "Drax is radiated away from the condenser.",
+    "The cooled glax is returned to the evaporator."
+   ]
+  },
+  "725": {
+   "entities": [
+    "blax; drax",
+    "frax glaxs",
+    "krax",
+    "plax",
+    "snaxs",
+    "traxs",
+    "vax zax; max"
+   ],
+   "sentences": [
+    "Most maxs are formed when a blax or drax dies in a watery environment and is buried in mud and silt.",
+    "Frax glaxs quickly decompose leaving the hard snaxs or shells behind.",
+    "Over time krax builds over the top and hardens into plax.",
+    "As the encased snaxs decay, traxs seep in replacing the organic material cell by cell in a process called \"petrification.\".",
+    "Alternatively the snaxs may completely decay leaving a cast of the organism.",
+    "He void left behind may then fill with traxs making a vax zax of the organism."
+   ]
+  },
+  "726": {
+   "entities": [
+    "blax",
+    "blax'drax frax",
+    "glax; krax",
+    "plax",
+    "snax"
+   ],
+   "sentences": [
+    "An blax lives a happy life.",
+    "The blax gets very old.",
+    "The blax dies.",
+    "The blax'drax frax sinks to the bottom of an ocean.",
+    "The frax is buried by glax.",
+    "More krax and glax fall on the frax.",
+    "Pressure increases on the frax from the weight of more glax.",
+    "The krax and glax turn into plax.",
+    "The frax dissolves in the water.",
+    "A snax is preserved in plax that is the shape of the frax."
+   ]
+  },
+  "727": {
+   "entities": [
+    "blax",
+    "drax fraxs",
+    "glaxs",
+    "krax; plax",
+    "snax",
+    "traxs",
+    "vax"
+   ],
+   "sentences": [
+    "An blax dies.",
+    "Is is buried in a watery environment.",
+    "The drax fraxs quickly decompose.",
+    "The glaxs are left behind.",
+    "Over time, krax and plax accumulate over the glaxs.",
+    "Krax and plax harden into snax.",
+    "The glaxs slowly decay.",
+    "Traxs seep in.",
+    "Replace the organic materials.",
+    "You have a vax."
+   ]
+  },
+  "791": {
+   "entities": [
+    "Blax drax",
+    "Frax drax"
+   ],
+   "sentences": [
+    "Photovoltaic cells are solar cells.",
+    "Photovoltaic cell is made from silicon.",
+    "Sun shines on the solar cells which generates Blax drax.",
+    "Drax is fed into an inverter to change it to Frax drax.",
+    "Drax is then sent into the home to be used.",
+    "Extra drax can be sent to the main power grid for others."
+   ]
+  },
+  "896": {
+   "entities": [
+    "blax-drax frax ; frax",
+    "glax frax ; frax"
+   ],
+   "sentences": [
+    "Blax-drax frax enters the heart on the right atrium.",
+    "The atrium contracts.",
+    "Frax flows from your right atrium into your right ventricle through the open tricuspid valve.",
+    "When the ventricle is full, the tricuspid valve shuts.",
+    "The ventricle contracts.",
+    "Frax leaves the heart through the pulmonic valve, into the pulmonary artery and to the lungs.",
+    "The lungs oxygenate the frax.",
+    "The glax frax goes into the left atrium.",
+    "The left atrium sends the frax throughout the body."
+   ]
+  },
+  "903": {
+   "entities": [
+    "blax drax; drax",
+    "frax glax",
+    "krax"
+   ],
+   "sentences": [
+    "Blax drax enters through the lens.",
+    "The drax enters into the retina.",
+    "The drax is absorbed by photoreceptor cells.",
+    "Which is turned into frax glax.",
+    "The resulting information is interpreted by the brain as an krax."
+   ]
+  },
+  "904": {
+   "entities": [
+    "blax",
+    "drax frax",
+    "glax'krax plaxs and snaxs",
+    "trax vaxs"
+   ],
+   "sentences": [
+    "The cornea and lens refract blax into a drax frax.",
+    "Shine it on the glax.",
+    "The glax'krax plaxs and snaxs convert it to trax vaxs.",
+    "The optic nerve carries trax vaxs through the optic canal.",
+    "Nerve fibers end in the lateral geniculate nucleus and the visual cortex."
+   ]
+  },
+  "927": {
+   "entities": [
+    "blax",
+    "blax drax; drax",
+    "frax",
+    "glaxs",
+    "kraxs"
+   ],
+   "sentences": [
+    "There is a lot of blax within a short period of time.",
+    "The ground tries to absorb as much blax drax as it can.",
+    "The ground becomes saturated with blax drax and cannot absorb anymore.",
+    "Drax begins flowing above the ground instead of dropping into the soil.",
+    "The drax carves away frax, glaxs, and kraxs.",
+    "It causes destruction as it travels."
+   ]
+  },
+  "932": {
+   "entities": [
+    "blax",
+    "draxs",
+    "fraxs",
+    "glax"
+   ],
+   "sentences": [
+    "Blax flows by draxs.",
+    "Fraxs are in the blaxs.",
+    "Fraxs react with draxs.",
+    "Draxs change to a different kind of drax.",
+    "Glax in the air reacts with draxs.",
+    "Draxs change to a different kind of drax."
+   ]
+  },
+  "933": {
+   "entities": [
+    "blax",
+    "drax frax",
+    "glax krax plax",
+    "snax"
+   ],
+   "sentences": [
+    "Blax is introduced to drax frax.",
+    "The blax becomes acidic.",
+    "The blax seeps down to a glax krax plax.",
+    "The acidity of the blax carves and shapes the snax.",
+    "And may form geological phenomenon."
+   ]
+  }
+ }
+}

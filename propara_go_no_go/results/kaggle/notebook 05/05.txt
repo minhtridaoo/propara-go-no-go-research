@@ -1,0 +1,33 @@
+=== GỬI LẠI ===
+notebook=05_pp3_pp4 gpus=[('Tesla T4', 14.6), ('Tesla T4', 14.6)] runtime=2.13h seeds=[13, 42, 2026] epochs=8 patience=3 khoi_phuc=0 file
+đã xong ['CRF_FULL13', 'CRF_FULL2026', 'CRF_FULL42', 'CRF_NOE13', 'CRF_NOE2026', 'CRF_NOE42', 'CRF_NOPAIR13', 'CRF_NOPAIR2026', 'CRF_NOPAIR42', 'CRF_RANDE13', 'CRF_RANDE2026', 'CRF_RANDE42', 'M013', 'M02026', 'M042']  CV ['CRF_FULLfold0', 'CRF_FULLfold1', 'CRF_FULLfold2', 'CRF_FULLfold3', 'CRF_FULLfold4', 'M0fold0', 'M0fold1', 'M0fold2', 'M0fold3', 'M0fold4']
+checkpoint tốt nhất ['CRF_FULL_seed13_best.pt', 'CRF_NOE_seed13_best.pt', 'CRF_NOPAIR_seed13_best.pt', 'CRF_RANDE_seed13_best.pt', 'M0_seed13_best.pt', 'M0c_seed13_best.pt']
+PP3 ok {'n_pairs_distinct' 3683, 'n_pair_mentions' 4304, 'coverage_all_min1' {'n_gold_pairs' 533, 'cover_pair' 0.06941838649155722, 'cover_source' 0.6191369606003753, 'cover_target' 0.5872420262664165, 'same_head_pairs' 0.0900562851782364}, 'propara_auc_dev' 0.6115014112161001, 'best_val' {'epoch' 30, 'train_loss' 0.4536391595676925, 'val_loss' 0.5821656584739685, 'auc' 0.6917884703200727, 'ap' 0.4956951393786333, 'auc_vs_reverse' 0.7683801353796662, 'n_val' 1098}}
+  DEV M0 độc lập           PAIR_F1=0.449±0.040 @any_imp=0.030±0.052 LOC=0.241 IMP_D=0.022 IMP_C=0.000 VIOL=0.291 ep=[6, 4, 8]
+  DEV M0c = M0 + luật      PAIR_F1=0.467±0.032 @any_imp=0.000±0.000 LOC=0.276 IMP_D=0.000 IMP_C=0.000 VIOL=0.000 ep=[5, 5, 8]
+  DEV M3-no-pair (CRF)     PAIR_F1=0.495±0.026 @any_imp=0.000±0.000 LOC=0.311 IMP_D=0.000 IMP_C=0.030 VIOL=0.000 ep=[7, 6, 5]
+  DEV M3-no-E              PAIR_F1=0.519±0.009 @any_imp=0.027±0.046 LOC=0.298 IMP_D=0.000 IMP_C=0.030 VIOL=0.000 ep=[4, 6, 5]
+  DEV M2r (E xáo trộn)     PAIR_F1=0.506±0.006 @any_imp=0.000±0.000 LOC=0.286 IMP_D=0.000 IMP_C=0.000 VIOL=0.000 ep=[8, 5, 5]
+  DEV M3 (đầy đủ)          PAIR_F1=0.508±0.005 @any_imp=0.000±0.000 LOC=0.281 IMP_D=0.000 IMP_C=0.000 VIOL=0.000 ep=[4, 7, 5]
+  Δdev CRF_FULL-M0c@all +0.041 seed0CI -0.054..+0.124
+  Δdev CRF_FULL-M0c@any_implicit +0.000 seed0CI +0.000..+0.000
+  Δdev CRF_FULL-CRF_NOE@all -0.011 seed0CI -0.024..+0.012
+  Δdev CRF_FULL-CRF_NOE@any_implicit -0.027 seed0CI +0.000..+0.000
+  Δdev CRF_FULL-CRF_RANDE@all +0.003 seed0CI -0.057..+0.056
+  Δdev CRF_FULL-CRF_RANDE@any_implicit +0.000 seed0CI +0.000..+0.000
+  Δdev CRF_NOE-CRF_NOPAIR@all +0.024 seed0CI -0.058..+0.030
+  Δdev CRF_NOE-CRF_NOPAIR@any_implicit +0.027 seed0CI +0.000..+0.000
+  Δdev CRF_NOPAIR-M0c@all +0.028 seed0CI -0.027..+0.132
+  Δdev CRF_NOPAIR-M0c@any_implicit +0.000 seed0CI +0.000..+0.000
+  Δdev M0c-M0@all +0.018 seed0CI -0.058..+0.078
+  Δdev M0c-M0@any_implicit -0.030 seed0CI -0.308..+0.000
+  NONCE dev {'M0' {'orig' 0.449, 'nonce' 0.324, 'orig_imp' 0.03, 'nonce_imp' 0.0}, 'M0c' {'orig' 0.467, 'nonce' 0.381, 'orig_imp' 0.0, 'nonce_imp' 0.0}, 'CRF_NOPAIR' {'orig' 0.495, 'nonce' 0.396, 'orig_imp' 0.0, 'nonce_imp' 0.028}, 'CRF_NOE' {'orig' 0.519, 'nonce' 0.406, 'orig_imp' 0.027, 'nonce_imp' 0.0}, 'CRF_FULL' {'orig' 0.508, 'nonce' 0.421, 'orig_imp' 0.0, 'nonce_imp' 0.0}}
+  PP2 (τ1=0.1, τ2=0.9) {'M0c' {'candidate_ratio' 0.5263279445727482, 'gold_recall' 0.8275862068965517, 'H1_pass' False, 'n_gold' 58}, 'CRF_FULL' {'candidate_ratio' 0.6214780600461893, 'gold_recall' 0.9310344827586207, 'H1_pass' False, 'n_gold' 58}}  phủ vị trí ứng viên {'train' (5507, 6256), 'dev' (617, 693), 'test' (695, 793)}
+  CV M0         PAIR_F1=0.469 @src=0.060 @tgt=0.042 @any=0.058
+  CV M0c        PAIR_F1=0.472 @src=0.032 @tgt=0.021 @any=0.030
+  CV CRF_FULL   PAIR_F1=0.524 @src=0.107 @tgt=0.057 @any=0.096
+  ΔCV CRF_FULL-M0c@all +0.051 [+0.020, +0.085]
+  ΔCV CRF_FULL-M0c@src_implicit +0.075 [+0.007, +0.145]
+  ΔCV CRF_FULL-M0c@tgt_implicit +0.036 [-0.004, +0.093]
+  ΔCV CRF_FULL-M0c@any_implicit +0.065 [+0.015, +0.116]
+=== HẾT ===
